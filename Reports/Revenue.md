@@ -14,7 +14,31 @@
 - timezone (String)
 - websiteId (String)
 
-**Sample response**
+---
+
+<details>
+<summary>Sample request body</summary>
+
+```json
+{
+    "websiteId":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "dateRange":{
+        "startDate":"2025-05-19T14:00:00.000Z",
+        "endDate":"2025-05-20T13:59:59.999Z",
+        "offset":0,
+        "num":24,
+        "unit":"hour",
+        "value":"24hour"
+    },
+    "currency":"USD",
+    "timezone":"Europe/Berlin"
+}
+```
+
+</details>
+
+<details>
+<summary>Sample response</summary>
 
 ```json
 {
@@ -46,3 +70,5 @@
     ]
 }
 ```
+
+<details>

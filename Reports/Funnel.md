@@ -17,18 +17,54 @@
 - websiteId (String)
 - window (Int)
 
-**Sample response**
+---
+
+<details>
+<summary>Sample request body</summary>
+
+```json
+{
+    "window":60,
+    "steps":[
+        {
+            "type":"url",
+            "value":"/"
+        },
+        {
+            "type":"url",
+            "value":"/contact"
+        }
+    ],
+    "websiteId":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "dateRange":{
+        "startDate":"2025-05-13T22:00:00.000Z",
+        "endDate":"2025-05-20T21:59:59.999Z",
+        "unit":"day",
+        "offset":0,
+        "num":7,
+        "value":"7day"
+    },
+    "timezone":"Europe/Berlin"
+}
+```
+
+</details>
+
+<details>
+<summary>Sample response</summary>
 
 ```json
 [
-  {
+    {
         "type": "url",
-    "value": "/",
-    "visitors": 1,
-    "previous": 0,
-    "dropped": 0,
-    "dropoff": null,
-    "remaining": 1
+        "value": "/",
+        "visitors": 1,
+        "previous": 0,
+        "dropped": 0,
+        "dropoff": null,
+        "remaining": 1
     }
 ]
 ```
+
+</details>

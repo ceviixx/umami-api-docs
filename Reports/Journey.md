@@ -16,21 +16,47 @@
 - startStep (optional String)
 - endStep (optional String)
 
-**Sample response**
+---
+
+<details>
+<summary>Sample request body</summary>
+
+```json
+{
+    "steps":5,
+    "websiteId":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "dateRange":{
+        "startDate":"2025-05-17T22:00:00.000Z",
+        "endDate":"2025-05-24T21:59:59.999Z",
+        "unit":"day",
+        "offset":0,
+        "num":1,
+        "value":"0week"
+    },
+    "timezone":"Europe/Berlin"
+}
+```
+
+</details>
+
+<details>
+<summary>Sample response</summary>
 
 ```json
 [
-  {
-    "items": ["index.html", "outbound-link-click", null, null],
-    "count": 1
+    {
+        "items": ["index.html", "outbound-link-click", null, null],
+        "count": 1
     },
-  {
-    "items": ["/", null],
-    "count": 1
-  },
-  {
-    "items": ["index.html", "open-app-store", null],
-    "count": 1
+    {
+        "items": ["/", null],
+        "count": 1
+    },
+    {
+        "items": ["index.html", "open-app-store", null],
+        "count": 1
     }
 ]
 ```
+
+</details>

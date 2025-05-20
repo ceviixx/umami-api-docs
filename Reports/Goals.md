@@ -20,15 +20,47 @@
 - timezone (String)
 - websiteId (String)
 
-**Sample response**
+---
+
+<details>
+<summary>Sample request body</summary>
+
+```json
+{
+    "goals":[
+        {
+            "type":"url",
+            "value":"/",
+            "goal":10
+        }
+    ],
+    "websiteId":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "dateRange":{
+        "startDate":"2025-05-17T22:00:00.000Z",
+        "endDate":"2025-05-24T21:59:59.999Z",
+        "unit":"day",
+        "offset":0,
+        "num":1,
+        "value":"0week"
+    },
+    "timezone":"Europe/Berlin"
+}
+```
+
+</details>
+
+<details>
+<summary>Sample response</summary>
 
 ```json
 [
-  {
-    "type": "url",
-    "value": "/",
-    "goal": 10,
-    "result": 10
+    {
+        "type": "url",
+        "value": "/",
+        "goal": 10,
+        "result": 10
     }
 ]
 ```
+
+</details>

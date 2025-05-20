@@ -24,17 +24,51 @@
 - timezone (String)
 - websiteId (String)
 
-**Sample response**
+---
+
+<details>
+<summary>Sample request body</summary>
+
+```json
+{
+    "fields":[
+        {
+            "name":"url",
+            "type":"string",
+            "label":"URL"
+        }
+    ],
+    "filters":[
+    ],
+    "websiteId":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",,
+    "dateRange":{
+        "startDate":"2025-05-17T22:00:00.000Z",
+        "endDate":"2025-05-24T21:59:59.999Z",
+        "unit":"day",
+        "offset":0,
+        "num":1,
+        "value":"0week"
+    },
+    "timezone":"Europe/Berlin"
+}
+```
+
+</details>
+
+<details>
+<summary>Sample response</summary>
 
 ```json
 [
-  {
+    {
         "views": 8,
-    "visitors": 3,
-    "visits": 3,
-    "bounces": 1,
-    "totaltime": 242,
-    "country": "US"
-    },
+        "visitors": 3,
+        "visits": 3,
+        "bounces": 1,
+        "totaltime": 242,
+        "country": "US"
+    }
 ]
 ```
+
+</details>

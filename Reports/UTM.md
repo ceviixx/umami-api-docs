@@ -13,30 +13,55 @@
 - timezone (String)
 - websiteId (String)
 
-**Sample response**
+---
+
+<details>
+<summary>Sample request body</summary>
 
 ```json
 {
-  "utm_source" : {
-    "test" : 1
-  },
-  "utm_content" : {
-    "email-newsletter-1" : 1124
-  },
-  "utm_term" : {
-    "software" : 4
-  },
-  "utm_medium" : {
-    "test" : 1
-  },
-  "utm_campaign" : {
-    "test" : 1
-  },
-  "utm_agid" : {
-    "12345" : 5
-  },
-  "utm_banner" : {
-    "12345" : 1
-  }
+    "websiteId":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "dateRange":{
+        "startDate":"2025-05-17T22:00:00.000Z",
+        "endDate":"2025-05-24T21:59:59.999Z",
+        "unit":"day",
+        "offset":0,
+        "num":1,
+        "value":"0week"
+    },
+    "timezone":"Europe/Berlin"
 }
 ```
+
+</details>
+
+<details>
+<summary>Sample response</summary>
+
+```json
+{
+    "utm_source" : {
+        "test" : 1
+    },
+    "utm_content" : {
+        "email-newsletter-1" : 1124
+    },
+    "utm_term" : {
+        "software" : 4
+    },
+    "utm_medium" : {
+        "test" : 1
+    },
+    "utm_campaign" : {
+        "test" : 1
+    },
+    "utm_agid" : {
+        "12345" : 5
+    },
+    "utm_banner" : {
+        "12345" : 1
+    }
+}
+```
+
+</details>

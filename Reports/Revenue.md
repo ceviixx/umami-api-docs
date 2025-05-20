@@ -1,0 +1,48 @@
+## Revenue
+**POST /reports/revenue**
+
+**Parameters**
+
+- [dateRange](./Parameter/dateRange.md) (Object)
+  - startDate (String) e.g. 2025-05-13T22:00:00.000Z
+  - endDate (String) e.g. 2025-05-20T21:59:59.999Z
+  - num (Int) [ 1 | 24 | ... ]
+  - offset (Int) [ 0 | 0 |  ... ]
+  - unit (String) [ hour | hour | ... ]
+  - value (String) [ 0day | 24hour | .... ] 
+- currency (String) [ USD | EUR | ... ]
+- timezone (String)
+- websiteId (String)
+
+**Sample response**
+
+```json
+{
+    "chart": [
+        {
+            "x": "",
+            "t": "2025-05-19T15:00:00Z",
+            "y": 289.94
+        }
+    ],
+    "country": [
+        {
+            "name": "DE",
+            "value": 289.94
+        }
+    ],
+    "total": {
+        "sum": 289.94,
+        "count": 6,
+        "unique_count": 1
+    },
+    "table": [
+        {
+            "currency": "USD",
+            "sum": 289.94,
+            "count": 6,
+            "unique_count": 1
+        }
+    ]
+}
+```

@@ -1,0 +1,17 @@
+# System-Metadaten
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Windows & macOS Thumb-Dateien
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Spotlight & temporäres Systemzeug
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems

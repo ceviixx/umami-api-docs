@@ -1,9 +1,6 @@
 ## Insights
 **POST /reports/insights**
 
-> [!NOTE]  
-> Currently only working on self hosted but not on cloud
-
 **Parameters**
 
 - [dateRange](./Parameter/dateRange.md) (Object)

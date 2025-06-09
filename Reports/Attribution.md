@@ -1,9 +1,6 @@
 ## Attribution
 **POST /reports/attribution**
 
-> [!NOTE]  
-> Currently only working on self hosted but not on cloud
-
 **Parameters**
 
 - [dateRange](./Parameter/dateRange.md) (Object)

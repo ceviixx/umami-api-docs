@@ -19,9 +19,7 @@
 
 --- 
 
-<details>
-<summary>Sample request body</summary>
-
+**Sample request body**
 ```json
 {
     "model":"firstClick",
@@ -44,11 +42,7 @@
 }
 ```
 
-</details>
-
-<details>
-<summary>Sample response</summary>
-
+**Sample response**
 ```json
 {
     "paidAds" : [
@@ -100,5 +94,3 @@
     }
 }
 ```
-
-</details>

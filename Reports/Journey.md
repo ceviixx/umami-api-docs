@@ -18,9 +18,7 @@
 
 ---
 
-<details>
-<summary>Sample request body</summary>
-
+**Sample request body**
 ```json
 {
     "steps":5,
@@ -37,11 +35,7 @@
 }
 ```
 
-</details>
-
-<details>
-<summary>Sample response</summary>
-
+**Sample response**
 ```json
 [
     {
@@ -58,5 +52,3 @@
     }
 ]
 ```
-
-</details>

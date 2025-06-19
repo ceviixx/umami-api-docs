@@ -16,9 +16,7 @@
 
 ---
 
-<details>
-<summary>Sample request body</summary>
-
+**Sample request body**
 ```json
 {
     "websiteId":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -35,11 +33,7 @@
 }
 ```
 
-</details>
-
-<details>
-<summary>Sample response</summary>
-
+**Sample response**
 ```json
 {
     "chart": [
@@ -70,5 +64,3 @@
     ]
 }
 ```
-
-<details>

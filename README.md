@@ -3,6 +3,9 @@
 > [!NOTE]  
 > Docs for myself from [uamami Analytics](https://github.com/umami-software/umami/blob/master/README.md) for creating the [iOS app](https://github.com/ceviixx/umami-Analytics-App).
 
+## Stats
+- [Sending stats](SendingStats/SendingStats.md)
+
 ## Reports
 - [Insights](Reports/Insights.md)
 - [Funnel](Reports/Funnel.md)

@@ -1,0 +1,72 @@
+name: Umami API Tests
+
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0,12 * * *'
+
+env:
+  BASE_URL: https://api.umami.is/v1
+  API_KEY: ${{ secrets.API_KEY }}
+  TEST_WEBSITE_ID: ${{ secrets.TEST_WEBSITE_ID }}
+  TEST_SESSION_ID: ${{ secrets.TEST_SESSION_ID }}
+
+jobs:
+  test-api-groups:
+    name: Run API Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        group: [stats, users, teams, events, sessions, websites, website-stats, reports]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Execute API tests for ${{ matrix.group }}
+        continue-on-error: true
+        run: |
+          echo "::group::Running tests for group: ${{ matrix.group }}"
+          jq -c ".\"${{ matrix.group }}\"[]" _tests/endpoints.json | while read -r entry; do
+            bash _tests/test-endpoint.sh "$entry" "${{ matrix.group }}" || true
+          done
+          echo "::endgroup::"
+
+      - name: Upload test failures for ${{ matrix.group }}
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failures-${{ matrix.group }}
+          path: failures/
+
+  report-failures:
+    name: Report Failures as GitHub Issues
+    runs-on: ubuntu-latest
+    needs: test-api-groups
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all failure artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-failures
+
+      - name: Install dependencies for reporting
+        run: npm install @octokit/rest
+
+      - name: Create and update GitHub Issues
+        if: always()
+        run: node _tests/report-failures.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update API status table in README
+        if: always()
+        run: node _tests/update-readme.js
+
+      - name: Commit updated README
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Update API status in README"
+          git push

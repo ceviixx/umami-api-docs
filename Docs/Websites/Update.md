@@ -1,20 +1,46 @@
-## Updates a website.
-**POST /api/websites/:websiteId**
+## Updates website
+<!-- testable: false -->
+<!-- expectedStatus: 200 -->
+**Description:**  
+Updating website data.
 
-**Parameters**
-- name: (optional string) The name of the website in Umami.
-- domain: (optional string) The full domain of the tracked website.
-- shareId: (optional string) A unique string to enable a share url. Set null to unshare.
+**Latest check:** <!--status-->⏳<!--status-end-->
 
+```
+POST /api/websites/:websiteId
+```
 
 ---
 
-**Sample request body**
-```json
+### 📩 Request Body Parameters
+| Name               | Type              | Description                                                 | Example             | Required |
+| :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
+| name               | string            | The name of the website in Umami.                           | Example             | no       |
+| domain             | string            | The full domain of the tracked website.                     | example.com         | no       |
+| shareId            | string            | A unique string to enable a share url. Set null to unshare. | dfna03ad            | no       |
 
+---
+
+### 📨 Request Body
+```json
+{
+    "name": "Example",
+    "domain": "example.com",
+    "shareId": "dfna03ad"
+}
 ```
 
-**Sample response**
+---
+
+### 🔁 Example Request
+```http
+POST /api/websites/:websiteId HTTP/1.1
+x-umami-api-key: {api-key}
+```
+
+---
+
+📦 Example Response
 ```json
 {
   "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -27,4 +53,11 @@
   "updatedAt": null,
   "deletedAt": null
 }
+```
+
+---
+
+📘 Response Structure
+```json
+
 ```

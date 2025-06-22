@@ -1,19 +1,42 @@
-## Creates a team.
-**POST /api/teams**
+## Creates team
+<!-- testable: false -->
+<!-- expectedStatus: 200 -->
+**Description:**  
+Create an new team.
 
-**Parameters**
-- name: (string) The team's name.
+**Latest check:** <!--status-->⏳<!--status-end-->
+
+```
+POST /api/teams
+```
 
 ---
 
-**Sample request body**
+### 📩 Request Body Parameters
+| Name               | Type              | Description                                                 | Example             | Required |
+| :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
+| name               | string            | The team's name.                                            | demo-team           | yes      |
+
+---
+
+### 📨 Request Body
 ```json
 {
   "name": "marketing"
 }
 ```
 
-**Sample response**
+---
+
+### 🔁 Example Request
+```http
+POST /api/teams HTTP/1.1
+x-umami-api-key: {api-key}
+```
+
+---
+
+📦 Example Response
 ```json
 [
   {
@@ -32,4 +55,11 @@
     "userId": "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"
   }
 ]
+```
+
+---
+
+📘 Response Structure
+```json
+
 ```

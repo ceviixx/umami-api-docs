@@ -1,210 +1,397 @@
 #!/bin/bash
 
-# Exit immediately on error, undefined variable, or pipe failure
 set -euo pipefail
 
-# Input parameters
-ENTRY="$1"
-GROUP="$2"
+FILE="$1"
 
-# Extract test name and whether it should be executed
-NAME=$(echo "$ENTRY" | jq -r '.name')
-SHOULD_TEST=$(echo "$ENTRY" | jq -r 'if .testing == false then "false" else "true" end')
-
-# Skip test if disabled
-if [[ "$SHOULD_TEST" != "true" ]]; then
-  echo "⏭️  Skipping $GROUP/$NAME"
+if grep -q '<!-- testable: false -->' "$FILE"; then
+  echo "⏭️  Skipping $(basename "$FILE") (testable: false)"
   exit 0
-else
-  echo "✅ Testing $GROUP/$NAME"
 fi
 
-# Extract method, route, body, headers, expected status and expected body
-METHOD=$(echo "$ENTRY" | jq -r '.method')
-ROUTE=$(echo "$ENTRY" | jq -r '.route' | envsubst)
-RAW_BODY=$(echo "$ENTRY" | jq -c '.body // empty')
-BODY=$(echo "$RAW_BODY" | envsubst)
-HEADERS=$(echo "$ENTRY" | jq -c '.headers // {}')
-EXPECTED=$(echo "$ENTRY" | jq -r '.expectedStatus // 200')
-EXPECTED_BODY=$(echo "$ENTRY" | jq -c '.expectedBody // empty')
+NAME="$(basename "$FILE" .md)"
+GROUP="$(basename "$(dirname "$FILE")")"
 
-# Construct full URL
-if [[ "$ROUTE" == http*://* ]]; then
-  URL="$ROUTE"
-else
-  URL="$BASE_URL$ROUTE"
+echo " ▶️ Testing $GROUP/$NAME"
+
+METHOD=$(grep -E '^(GET|POST|PUT|DELETE|PATCH) ' "$FILE" | cut -d' ' -f1 | head -n1)
+ROUTE=$(grep -E '^(GET|POST|PUT|DELETE|PATCH) ' "$FILE" | cut -d' ' -f2 | head -n1)
+
+if [[ -z "$METHOD" || -z "$ROUTE" ]]; then
+  echo "❌ Could not find method or route in $FILE"
+  exit 1
 fi
 
-# Secrets to be masked in logs
-SECRETS_TO_MASK=("$TEST_WEBSITE_ID" "$TEST_SESSION_ID" "$API_KEY")
+EXPECTED_STATUS=$(grep -oE '<!-- expectedStatus: [0-9]+ -->' "$FILE" | grep -oE '[0-9]+' || echo "200")
 
-# Replace secret values with placeholders
-redact_secrets() {
-  local content="$1"
-  for secret in "${SECRETS_TO_MASK[@]}"; do
-    if [ -n "$secret" ]; then
-      content=$(echo "$content" | sed "s|$secret|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|g")
-    fi
-  done
-  echo "$content"
-}
+ROUTE="${ROUTE/:websiteId/$TEST_WEBSITE_ID}"
+ROUTE="${ROUTE/:sessionId/$TEST_SESSION_ID}"
+ROUTE=$(echo "$ROUTE" | sed 's|^/api||')
 
-# Replace sensitive values in response (e.g. usernames, domains)
-anonymize_response_values() {
-  local json="$1"
-  echo "$json" |
-    jq 'walk(
-      if type == "object" then
-        with_entries(
-          if .key == "name"
-            or .key == "domain"
-            or .key == "shareId"
-            or .key == "username"
-          then .value |= "*****"
-          else .
-          end
-        )
-      else
-        .
-      end
-    )' 2>/dev/null |
-    sed -E 's/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/*****-****-****-****-************/g'
-}
+[[ "${DEBUG:-}" == "true" ]] && echo "  🔧 Method: $METHOD"
+[[ "${DEBUG:-}" == "true" ]] && echo "  🔧 Raw Route: $ROUTE"
+[[ "${DEBUG:-}" == "true" ]] && echo "  🎯 Expected Status: $EXPECTED_STATUS"
 
 MISMATCHES=()
 
-# Recursively compare expected vs actual JSON types
 check_types_recursive() {
   local expected="$1"
   local actual="$2"
   local path="${3:-root}"
 
-  local expected_type
-  expected_type=$(echo "$expected" | jq -r 'if type == "string" then . elif type == "object" and .type then .type else type end')
-  local actual_type
+  local expected_type actual_type
+  expected_type=$(echo "$expected" | jq -r '
+    if type == "string" then .
+    elif type == "object" and has("type") and (keys_unsorted | length) == 1 then .type
+    else type
+    end'
+  )
   actual_type=$(echo "$actual" | jq -r 'type')
 
-  # Handle arrays
+  local allow_null="false"
+  if [[ "$expected_type" == *"|null" ]]; then
+    expected_type="${expected_type%%|null}"
+    allow_null="true"
+    if [[ "$actual_type" == "null" ]]; then return 0; fi
+  fi
+
   if [[ "$expected_type" == "array" ]]; then
     if [[ "$actual_type" != "array" ]]; then
-      TMP_MISMATCHES+=("Key '$path': Type mismatch – expected array but got $actual_type")
+      MISMATCHES+=("Key '$path': Type mismatch – expected array but got $actual_type")
       return 1
     fi
 
     local expected_item
-    expected_item=$(echo "$expected" | jq -c 'if type == "array" then .[0] elif type == "object" then .items[0] else empty end')
+    expected_item=$(echo "$expected" | jq -c '
+      if type == "object" and has("items") then .items
+      elif type == "array" then .[0]
+      else empty
+      end'
+    )
 
-    # If object structure, wrap in properties
-    if [[ "$(echo "$expected_item" | jq 'type')" == '"object"' ]]; then
-      has_type=$(echo "$expected_item" | jq 'has("type")')
-      has_non_type_keys=$(echo "$expected_item" | jq 'keys | map(select(. != "type" and . != "optional")) | length')
-      if [[ "$has_type" == "true" && "$has_non_type_keys" -eq 0 ]]; then :; else
-        expected_item="{\"type\": \"object\", \"properties\": $expected_item }"
-      fi
-    fi
-
-    local length
-    length=$(echo "$actual" | jq 'length')
-    if (( length == 0 )); then
-      return 0
-    fi
-
-    for i in $(seq 0 $((length - 1))); do
-      local actual_item
-      actual_item=$(echo "$actual" | jq -c ".[$i]")
-      INNER_MISMATCHES=()
-      if ! check_types_recursive "$expected_item" "$actual_item" "$path[$i]"; then
-        for m in "${INNER_MISMATCHES[@]}"; do TMP_MISMATCHES+=("$m"); done
-        return 1
-      fi
-    done
-    return 0
-  fi
-
-  # Handle objects
-  if [[ "$expected_type" == "object" ]]; then
-    if [[ "$actual_type" != "object" ]]; then
-      TMP_MISMATCHES+=("Key '$path': Type mismatch – expected object but got $actual_type")
+    if [[ -z "$expected_item" || "$expected_item" == "null" ]]; then
+      MISMATCHES+=("Key '$path': Cannot determine expected item structure for array")
       return 1
     fi
 
-    if echo "$expected" | jq -e 'has("properties")' >/dev/null; then
-      expected=$(echo "$expected" | jq -c '.properties')
+    local has_errors=0
+    local length
+    length=$(echo "$actual" | jq 'length')
+
+    for ((i=0; i<length; i++)); do
+      local actual_item
+      actual_item=$(echo "$actual" | jq -c ".[$i]")
+      if ! check_types_recursive "$expected_item" "$actual_item" "$path[$i]"; then
+        has_errors=1
+      fi
+    done
+
+    return $has_errors
+  fi
+
+  if [[ "$expected_type" == "object" ]]; then
+    if [[ "$actual_type" != "object" ]]; then
+      MISMATCHES+=("Key '$path': Type mismatch – expected object but got $actual_type")
+      return 1
     fi
 
     local keys has_errors=0
     keys=$(echo "$expected" | jq -r 'keys_unsorted[]')
     for key in $keys; do
-      local exp_sub act_sub is_optional
-      exp_sub=$(echo "$expected" | jq -c --arg key "$key" '.[$key]')
+      local expected_value actual_value has_key is_optional
+      expected_value=$(echo "$expected" | jq -c --arg key "$key" '.[$key]')
       has_key=$(echo "$actual" | jq -e --arg key "$key" 'has($key)') || has_key="false"
-      is_optional=$(echo "$exp_sub" | jq -r 'if type == "object" and .optional == true then "true" else "false" end')
-
+      is_optional=$(echo "$expected_value" | jq -r '
+        if type == "string" and test("\\|null$") then "true"
+        elif type == "object" and .optional == true then "true"
+        else "false" end'
+      )
       if [[ "$has_key" != "true" ]]; then
-        if [[ "$is_optional" == "true" ]]; then
-          continue
-        else
-          TMP_MISMATCHES+=("Key '$path.$key': Missing required key")
-          has_errors=1
-          continue
-        fi
+        if [[ "$is_optional" == "true" ]]; then continue; fi
+        MISMATCHES+=("Key '$path.$key': Missing required key")
+        has_errors=1
+        continue
       fi
-
-      act_sub=$(echo "$actual" | jq -c --arg key "$key" '.[$key]')
-
-      INNER_MISMATCHES=()
-      if ! check_types_recursive "$exp_sub" "$act_sub" "$path.$key"; then
-        for m in "${INNER_MISMATCHES[@]}"; do TMP_MISMATCHES+=("$m"); done
+      actual_value=$(echo "$actual" | jq -c --arg key "$key" '.[$key]')
+      if ! check_types_recursive "$expected_value" "$actual_value" "$path.$key"; then
         has_errors=1
       fi
     done
-
-    if [[ "$has_errors" -eq 1 ]]; then return 1; fi
-    return 0
+    return $has_errors
   fi
 
-  # Compare primitive types
+  if [[ "$expected_type" == date* && "$actual_type" == "string" ]]; then
+    local value
+    value=$(echo "$actual" | jq -r .)
+    if [[ "$expected_type" == "date" ]]; then
+      if [[ ! "$value" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$ ]]; then
+        MISMATCHES+=("Key '$path': Date format mismatch – expected ISO8601 (Z) but got \"$value\"")
+        return 1
+      fi
+      return 0
+    fi
+    if [[ "$expected_type" == date:* ]]; then
+      local format="${expected_type#date:}"
+      local format_regex="$format"
+      format_regex=$(echo "$format_regex" | sed -E \
+        -e 's/yyyy/[0-9]{4}/g' \
+        -e 's/mm/[0-9]{2}/g' \
+        -e 's/dd/[0-9]{2}/g' \
+        -e 's/Thh/\\T[0-9]{2}/g' \
+        -e 's/hh/[0-9]{2}/g' \
+        -e 's/ss/[0-9]{2}/g' \
+        -e 's/Z$/Z/' )
+      if [[ ! "$value" =~ ^$format_regex$ ]]; then
+        MISMATCHES+=("Key '$path': Date format mismatch – expected format $format but got \"$value\"")
+        return 1
+      fi
+      return 0
+    fi
+  fi
+
   if [[ "$expected_type" != "$actual_type" ]]; then
-    local is_optional
-    is_optional=$(echo "$expected" | jq -r 'if type == "object" and .optional == true then "true" else "false" end')
-
-    if [[ "$actual_type" == "null" && "$is_optional" == "true" ]]; then return 0; fi
-
-    local actual_value_str
-    actual_value_str=$(echo "$actual" | jq -c '.' 2>/dev/null || echo "<unreadable>")
-    TMP_MISMATCHES+=("Key '${path}': Type mismatch – expected ${expected_type:-<unknown>} but got ${actual_type:-<unknown>} (value: ${actual_value_str})")
+    local actual_str
+    actual_str=$(echo "$actual" | jq -c . 2>/dev/null || echo "<unreadable>")
+    MISMATCHES+=("Key '$path': Type mismatch – expected $expected_type but got $actual_type (value: $actual_str)")
     return 1
   fi
 
   return 0
 }
 
-# Build curl request
-CURL_ARGS=(-s -w "%{http_code}" -o tmp_response.json -X "$METHOD" "$URL")
+CURL_ARGS=(-s -w "%{http_code}" -o tmp_response.json -X "$METHOD" \
+  -H "x-umami-api-key: $API_KEY" \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15")
 
-# Add headers
-while read -r row; do
-  KEY=$(echo "$row" | jq -r '.key')
-  VAL=$(echo "$row" | jq -r '.value')
-  [[ "$VAL" == *'$'* ]] && VAL=$(eval echo "\"$VAL\"")
-  CURL_ARGS+=("-H" "$KEY: $VAL")
-done < <(echo "$HEADERS" | jq -c '. | to_entries[]')
+RAW_BODY="{}"
 
-# Check if request body should be sent
-SEND_BODY=false
-[[ -n "$BODY" && "$METHOD" != "GET" ]] && SEND_BODY=true
+make_json_safe() {
+  local value="$1"
+  local type="${2:-string}"
 
-# Perform request and capture HTTP status code
-if [[ "$SEND_BODY" == "true" ]]; then
-  CODE=$(printf "%s" "$BODY" | curl --data "@-" "${CURL_ARGS[@]}")
-else
-  CODE=$(curl "${CURL_ARGS[@]}")
+  if [[ "$type" == "array" && ( -z "$value" || "$value" == "-" ) ]]; then
+    echo "[]"
+    return 0
+  fi
+
+  if [[ -z "$value" || "$value" == "-" ]]; then
+    return 1
+  fi
+
+  fix_json_syntax() {
+    echo "$1" |
+      sed -E 's/([{,])\s*([a-zA-Z0-9_]+)\s*:/\1"\2":/g' |
+      sed -E 's/:\s*([^"{[][^\s,}]*)/\: "\1"/g' |
+      sed -E 's/:\s*"\s*([^"]*?)\s*"/: "\1"/g'
+  }
+
+  if [[ "$type" == "array" ]]; then
+    local parts=()
+
+    if [[ "$value" =~ ^\{.*\},[[:space:]]*\{.*\}$ ]]; then
+      IFS=$'\n' read -rd '' -a parts < <(
+        echo "$value" | sed 's/},[[:space:]]*{/\}|SPLIT|\{/g' | tr '|SPLIT|' '\n'
+      )
+    else
+      parts=("$value")
+    fi
+
+    local fixed_array=()
+    for part in "${parts[@]}"; do
+      fixed=$(fix_json_syntax "$part")
+      if echo "$fixed" | jq empty >/dev/null 2>&1; then
+        fixed_array+=("$fixed")
+      else
+        echo "  ⚠️  Skipping invalid array item: $fixed" >&2
+      fi
+    done
+
+    local joined
+    joined=$(IFS=,; echo "[${fixed_array[*]}]")
+    echo "$joined"
+    return 0
+  fi
+
+  if [[ "$value" =~ ^\{.*\}$ ]]; then
+    local fixed
+    fixed=$(fix_json_syntax "$value")
+    if echo "$fixed" | jq empty >/dev/null 2>&1; then
+      echo "$fixed"
+      return 0
+    else
+      echo "  ⚠️  Invalid object value after fix: $fixed" >&2
+      return 1
+    fi
+  fi
+
+  if echo "$value" | jq empty >/dev/null 2>&1; then
+    echo "$value"
+    return 0
+  fi
+
+  if [[ "$type" == "number" && "$value" =~ ^-?[0-9]+(\.[0-9]+)?$ ]]; then
+    echo "$value"
+    return 0
+  fi
+
+  if [[ "$type" == "boolean" && "$value" =~ ^(true|false)$ ]]; then
+    echo "$value"
+    return 0
+  fi
+
+  printf '"%s"' "$value"
+  return 0
+}
+
+add_to_json() {
+  local path="$1"
+  local value="$2"
+  local type="$3"
+
+  value="${value/:websiteId/$TEST_WEBSITE_ID}"
+  value="${value/:sessionId/$TEST_SESSION_ID}"
+
+  if [[ "$value" == "-" ]]; then return; fi
+
+  safe_value=$(make_json_safe "$value" "$type") || {
+    echo "  ⚠️  Skipping invalid JSON value for '$path'"
+    return
+  }
+
+  [[ "${DEBUG:-}" == "true" ]] && echo "  ✅ Adding body param '$path' = '$value' (type: $type)"
+
+  IFS='.' read -ra keys <<< "$path"
+  local json="$safe_value"
+  for (( idx=${#keys[@]}-1 ; idx>=0 ; idx-- )); do
+    json="{\"${keys[$idx]}\":$json}"
+  done
+
+  RAW_BODY=$(jq -c --argjson new "$json" '. * $new' <<< "$RAW_BODY") || {
+    echo "  ⚠️  Failed to inject JSON for '$path'"
+  }
+}
+
+if [[ "$METHOD" =~ ^(POST|PUT|PATCH)$ ]]; then
+  if grep -q "### 📩 Request Body Parameters" "$FILE"; then
+    [[ "${DEBUG:-}" == "true" ]] && echo "  📦 Building request body from 📩 table"
+    mapfile -t body_lines < <(
+      awk '/### 📩 Request Body Parameters/{flag=1; next} /^### /{flag=0} flag' "$FILE" |
+      awk 'NR>2 && $0 ~ /\|/'
+    )
+    for line in "${body_lines[@]}"; do
+      IFS='|' read -r _ name type _ example required _ <<< "$line"
+      name=$(echo "$name" | xargs)
+      type=$(echo "$type" | xargs | tr '[:upper:]' '[:lower:]')
+      example=$(echo "$example" | xargs)
+      required=$(echo "$required" | xargs | tr '[:upper:]' '[:lower:]')
+
+      [[ "$name" =~ ^(:?-+|name)$ ]] && continue
+
+      if [[ -z "$example" && "$required" == "no" ]]; then continue; fi
+
+      [[ "${DEBUG:-}" == "true" ]] && echo "  ✅ Adding body param '$name' = '$example' (type: $type)"
+      add_to_json "$name" "$example" "$type"
+    done
+  fi
+  [[ "${DEBUG:-}" == "true" ]] && echo "  📦 Final JSON Body:" && echo "$RAW_BODY" | jq .
+  [[ -n "$RAW_BODY" ]] && CURL_ARGS+=(-d "$RAW_BODY")
 fi
 
-# Read response body
+QUERY_PARAMS=()
+if grep -q "### 🔍 Query Parameters" "$FILE"; then
+  [[ "${DEBUG:-}" == "true" ]] && echo "  🔍 Reading query parameters from $FILE"
+  mapfile -t query_lines < <(
+    awk '/### 🔍 Query Parameters/{flag=1; next} /^### /{flag=0} flag' "$FILE" |
+    awk 'NR>2 && $0 ~ /\|/'
+  )
+  for line in "${query_lines[@]}"; do
+    IFS='|' read -r _ name type _ example required _ <<< "$line"
+    name=$(echo "$name" | xargs)
+    type=$(echo "$type" | xargs | tr '[:upper:]' '[:lower:]')
+    example=$(echo "$example" | xargs)
+    required=$(echo "$required" | xargs | tr '[:upper:]' '[:lower:]')
+
+    [[ "$name" =~ ^(:?-+|name)$ ]] && continue
+    [[ -z "$example" || "$required" == "no" ]] && continue
+
+    example="${example/:websiteId/$TEST_WEBSITE_ID}"
+    example="${example/:sessionId/$TEST_SESSION_ID}"
+    [[ "${DEBUG:-}" == "true" ]] && echo "  ✅ Adding required query param '$name' = '$example'"
+    QUERY_PARAMS+=("${name}=${example}")
+  done
+fi
+
+if [[ "${DEBUG:-}" == "true" && ${#QUERY_PARAMS[@]} -gt 0 ]]; then
+  echo "  🧪 Query Parameters:"
+  for param in "${QUERY_PARAMS[@]}"; do
+    echo "    - $param"
+  done
+fi
+
+
+
+
+if [[ "$ROUTE" =~ ^https?:// ]]; then
+  BASE="$ROUTE"
+else
+  BASE="$BASE_URL$ROUTE"
+fi
+
+if [[ ${#QUERY_PARAMS[@]} -gt 0 ]]; then
+  QUERY_STRING=$(IFS='&'; echo "${QUERY_PARAMS[*]}")
+  FINAL_URL="${BASE}?${QUERY_STRING}"
+else
+  FINAL_URL="$BASE"
+fi
+
+
+
+[[ "${DEBUG:-}" == "true" ]] && echo "  🌐 Final Request URL: $FINAL_URL"
+CURL_ARGS+=("$FINAL_URL")
+[[ "${DEBUG:-}" == "true" ]] && printf "  📥 Running curl:" && for arg in "${CURL_ARGS[@]}"; do printf " %q" "$arg"; done && echo
+
+CODE=$(curl "${CURL_ARGS[@]}")
 BODY_TEXT=$(cat tmp_response.json)
 
-# Validate JSON
+if [[ "$CODE" == "$EXPECTED_STATUS" ]]; then
+  echo "  ✅ Status code check succeeded ($CODE)"
+else
+  echo "  ❌ Status code check failed – expected $EXPECTED_STATUS but got $CODE"
+fi
+
+
+
+EXPECTED_BODY=""
+if grep -q "### 📘 Response Structure" "$FILE"; then
+  if [[ "${DEBUG:-}" == "true" ]]; then echo "  📘 Parsing response structure block..."; fi
+
+  RAW_STRUCTURE=$(awk '
+    /### 📘 Response Structure/ { found=1; next }
+    found && /^```/ { in_block = !in_block; next }
+    found && in_block { print }
+  ' "$FILE")
+
+  EXPECTED_BODY=$(jq -c . <<< "$RAW_STRUCTURE" 2>/dev/null || echo "")
+
+  if [[ -n "$EXPECTED_BODY" ]]; then
+    [[ "${DEBUG:-}" == "true" ]] && echo "  📘 Loaded expected body structure:"
+    [[ "${DEBUG:-}" == "true" ]] && echo "$EXPECTED_BODY" | jq .
+  else
+    [[ "${DEBUG:-}" == "true" ]] && echo "  ⚠️ Invalid or empty JSON in 📘 Response Structure"
+  fi
+fi
+
+if [[ "${DEBUG:-}" == "true" ]]; then
+  echo "  📨 Raw Response Body:"
+  if jq -e . tmp_response.json >/dev/null 2>&1; then
+    jq . tmp_response.json
+  else
+    cat tmp_response.json
+  fi
+fi
+
+
 IS_VALID_JSON=false
 ACTUAL_BODY=""
 if jq -e . tmp_response.json >/dev/null 2>&1; then
@@ -212,55 +399,176 @@ if jq -e . tmp_response.json >/dev/null 2>&1; then
   IS_VALID_JSON=true
 fi
 
-# Compare expected vs actual body structure
-BODY_MISMATCH=false
 if [[ -n "$EXPECTED_BODY" && "$IS_VALID_JSON" == true ]]; then
+  [[ "${DEBUG:-}" == "true" ]] && echo "🧪 Starting body type check..."
   EXPECTED_BODY_TYPE=$(echo "$EXPECTED_BODY" | jq -r 'type')
   ACTUAL_BODY_TYPE=$(echo "$ACTUAL_BODY" | jq -r 'type')
 
-  TMP_MISMATCHES=()
-  if [[ "$EXPECTED_BODY_TYPE" == "array" && "$ACTUAL_BODY_TYPE" == "array" ]]; then
-    if ! check_types_recursive "$EXPECTED_BODY" "$ACTUAL_BODY" "root"; then
-      BODY_MISMATCH=true
-    fi
-  elif [[ "$EXPECTED_BODY_TYPE" == "object" && "$ACTUAL_BODY_TYPE" == "object" ]]; then
-    if ! check_types_recursive "$EXPECTED_BODY" "$ACTUAL_BODY" "root"; then
-      BODY_MISMATCH=true
-    fi
+  [[ "${DEBUG:-}" == "true" ]] && echo "  📦 Expected body type: $EXPECTED_BODY_TYPE"
+  [[ "${DEBUG:-}" == "true" ]] && echo "  📬 Actual body type:   $ACTUAL_BODY_TYPE"
+
+  if [[ "$EXPECTED_BODY_TYPE" == "$ACTUAL_BODY_TYPE" ]]; then
+    check_types_recursive "$EXPECTED_BODY" "$ACTUAL_BODY" "root"
+  else
+    #MISMATCHES+=("Root: Type mismatch – expected $EXPECTED_BODY_TYPE but got $ACTUAL_BODY_TYPE")
+    MISMATCHES+=("Key 'root': Type mismatch – expected $EXPECTED_BODY_TYPE but got $ACTUAL_BODY_TYPE")
   fi
-  MISMATCHES+=("${TMP_MISMATCHES[@]}")
+
+  if [[ ${#MISMATCHES[@]} -gt 0 ]]; then
+    echo "  ❌ Body does not match expected structure"
+    echo "  ⚠️  Type mismatches:"
+    for m in "${MISMATCHES[@]}"; do
+      echo "    - $m"
+    done
+  else
+    echo "  ✅ Body matches expected structure"
+  fi
 elif [[ -n "$EXPECTED_BODY" && "$IS_VALID_JSON" == false ]]; then
-  BODY_MISMATCH=true
+  echo "  ❌ Response is not valid JSON – cannot perform type check"
 fi
 
-# Save failure report if status or structure mismatch
-if [[ "$CODE" != "$EXPECTED" || "$BODY_MISMATCH" == "true" ]]; then
+
+SECRETS_TO_MASK=("$TEST_WEBSITE_ID" "$TEST_SESSION_ID" "$API_KEY")
+redact_secrets() {
+  local content="$1"
+  for secret in "${SECRETS_TO_MASK[@]}"; do
+    content=$(echo "$content" | sed "s|$secret|xxxxx|g")
+  done
+  echo "$content"
+}
+anonymize_response_values() {
+  jq '
+    def mask_string:
+      if type == "string" then
+        "*" * length
+      else
+        .
+      end;
+
+    def mask_value:
+      if type == "string" then mask_string
+      elif type == "number" then 0
+      elif type == "boolean" then false
+      elif type == "array" then map(mask_value)
+      elif type == "object" then with_entries(.value |= mask_value)
+      else .
+      end;
+
+    mask_value
+  ' <<< "$1" 2>/dev/null |
+  sed -E 's/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/*****-****-****-****-************/g'
+}
+pretty_json() {
+  local input="$1"
+
+  if echo "$input" | jq empty >/dev/null 2>&1; then
+    echo "$input" | jq .
+    return
+  fi
+
+  if [[ "$input" =~ ^\".*\"$ ]]; then
+    echo "$input" | jq -r .
+    return
+  fi
+
+  echo "$input"
+}
+
+if [[ "${DEBUG:-}" == "true" ]]; then
+  echo "  DEBUG: Status=$CODE, expected=$EXPECTED_STATUS"
+  echo "  DEBUG: MISMATCH count = ${#MISMATCHES[@]}"
+fi 
+
+
+
+
+
+
+
+if [[ "$CODE" != "$EXPECTED_STATUS" || ${#MISMATCHES[@]} -gt 0 ]]; then
+  if [[ "${DEBUG:-}" == "true" ]]; then
+    echo "  DEBUG inline block: Status=$CODE, expected=$EXPECTED_STATUS"
+    echo "  DEBUG inline block: MISMATCH count = ${#MISMATCHES[@]}"
+  fi 
+
+  if [[ ${#MISMATCHES[@]} -eq 0 ]]; then
+    MISMATCHES_JOINED="(none)"
+  else
+    MISMATCHES_JOINED=""
+    for m in "${MISMATCHES[@]}"; do
+      echo "  DEBUG raw mismatch: [$m]"
+      sanitized="$(redact_secrets "$m")"
+      echo "  DEBUG sanitized: [$sanitized]"
+      MISMATCHES_JOINED+="$sanitized"$'\n'
+    done
+  fi
+  echo "  DEBUG inline block: $MISMATCHES_JOINED"
+
+
+
   mkdir -p failures
-  FILENAME="failures/$(echo "$GROUP" | tr '/' '_')__$(echo "$NAME" | tr '/' '_').txt"
+  FILENAME="failures/${GROUP}__${NAME}.txt"
+
   {
     echo "Group: $GROUP"
     echo "Name: $NAME"
     echo "Method: $METHOD"
     echo "Route: $(redact_secrets "$ROUTE")"
-    echo "Expected Status: $EXPECTED"
+    echo "URL: $(redact_secrets "$FINAL_URL")"
+    echo "Expected Status: $EXPECTED_STATUS"
     echo "Actual Status: $CODE"
     echo
     echo "Request Body:"
-    echo "$(anonymize_response_values "$(redact_secrets "$BODY")")"
+    pretty_json "$(anonymize_response_values "$(redact_secrets "$RAW_BODY")")"
     echo
     echo "Response Body:"
-    echo "$(anonymize_response_values "$(redact_secrets "$BODY_TEXT")")"
-    if [[ "$BODY_MISMATCH" == "true" ]]; then
-      echo
-      echo "Expected Body (types):"
-      echo "$(redact_secrets "$EXPECTED_BODY")"
-      if [[ ${#MISMATCHES[@]} -gt 0 ]]; then
-        echo
-        echo "Type mismatches:"
-        for m in "${MISMATCHES[@]}"; do
-          echo "$m"
-        done
-      fi
-    fi
+    pretty_json "$(anonymize_response_values "$(redact_secrets "$BODY_TEXT")")"
+    echo
+    echo "Expected Body (types):"
+    pretty_json "$(redact_secrets "$EXPECTED_BODY")"
+    echo
+    echo "Type mismatches:"
+    echo $MISMATCHES_JOINED
   } > "$FILENAME"
+
+  if [[ -n "${GITHUB_STEP_SUMMARY:-}" ]]; then
+    {
+      echo "**❌ $GROUP / $NAME**"
+      echo "- **Method**: \`$METHOD\`"
+      echo "- **Route**: \`$(redact_secrets "$ROUTE")\`"
+      echo "- **Expected**: \`$EXPECTED_STATUS\`, got \`$CODE\`"
+      echo ""
+
+      echo "<details><summary>Request Body</summary>"
+      echo
+      echo '```json'
+      pretty_json "$(anonymize_response_values "$(redact_secrets "$RAW_BODY")")"
+      echo '```'
+      echo "</details>"
+      echo ""
+
+      echo "<details><summary>Response Body</summary>"
+      echo
+      echo '```json'
+      pretty_json "$(anonymize_response_values "$(redact_secrets "$BODY_TEXT")")"
+      echo '```'
+      echo "</details>"
+      echo ""
+
+      echo "<details><summary>Expected Body (types)</summary>"
+      echo
+      echo '```json'
+      pretty_json "$(redact_secrets "$EXPECTED_BODY")"
+      echo '```'
+      echo "</details>"
+      echo ""
+
+      echo "**Type mismatches:**"
+      echo '```'
+      echo $MISMATCHES_JOINED
+      echo '```'
+      echo "---"
+      echo ""
+    } >> "$GITHUB_STEP_SUMMARY"
+  fi
 fi

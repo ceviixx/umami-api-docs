@@ -1,12 +1,14 @@
+# main.yml
 name: Umami API Tests
 
 on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: '0 0,12 * * *'
+     - cron: '0 0,12 * * *'
 
 env:
+  DEBUG: true
   BASE_URL: https://api.umami.is/v1
   API_KEY: ${{ secrets.API_KEY }}
   TEST_WEBSITE_ID: ${{ secrets.TEST_WEBSITE_ID }}
@@ -18,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        group: [stats, users, teams, events, sessions, websites, website-stats, reports]
+        group: [sending-stats, users, teams, events, sessions, websites, website-stats, reports]
     steps:
       - uses: actions/checkout@v4
 
@@ -26,13 +28,25 @@ jobs:
         continue-on-error: true
         run: |
           echo "::group::Running tests for group: ${{ matrix.group }}"
-          jq -c ".\"${{ matrix.group }}\"[]" _tests/endpoints.json | while read -r entry; do
-            bash _tests/test-endpoint.sh "$entry" "${{ matrix.group }}" || true
+          find docs/${{ matrix.group }} -type f -name "*.md" \
+            ! -path "*/_parameters_/*" \
+            ! -name "index.md" | while read -r file; do
+              echo "▶️ Testing $file"
+              bash _tests/test-endpoint.sh "$file" || true
           done
           echo "::endgroup::"
 
+      - name: Check if failures exist
+        id: check_failures
+        run: |
+          if [ -d failures ] && [ "$(find failures -type f | wc -l)" -gt 0 ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Upload test failures for ${{ matrix.group }}
-        if: always()
+        if: steps.check_failures.outputs.found == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: failures-${{ matrix.group }}
@@ -63,10 +77,17 @@ jobs:
         if: always()
         run: node _tests/update-readme.js
 
-      - name: Commit updated README
+      - name: Commit updated API status
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add README.md
-          git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Update API status in README"
-          git push
+          
+          git add README.md docs/**/*.md
+          
+          # Nur committen, wenn sich wirklich etwas geändert hat
+          if ! git diff --cached --quiet; then
+            git commit -m "🔄 Update API status"
+            git push
+          else
+            echo "✅ No changes to commit"
+          fi

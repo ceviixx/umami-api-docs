@@ -1,29 +1,35 @@
 ## Insights
-**POST /reports/insights**
+<!-- testable: true -->
+<!-- expectedStatus: 200 -->
+**Description:**  
+Dive deeper into your data by using segments and filters.
 
-**Parameters**
+**Latest check:** <!--status-->✔️<!--status-end-->
 
-- [dateRange](./Parameter/dateRange.md) (Object)
-  - startDate (String) e.g. 2025-05-13T22:00:00.000Z
-  - endDate (String) e.g. 2025-05-20T21:59:59.999Z
-  - num (Int) [ 1 | 24 | ... ]
-  - offset (Int) [ 0 | 0 |  ... ]
-  - unit (String) [ hour | hour | ... ]
-  - value (String) [ 0day | 24hour | .... ] 
-- fields (Array) **1 required** 
-  - label (String)
-  - name (String)
-  - type (String)
-- filters (Array)
-  - name (String)
-  - operator (String) [ eq | neq | c | dnc ]
-  - type (String)
-- timezone (String)
-- websiteId (String)
+```
+POST /reports/insights
+```
 
 ---
 
-**Sample request body**
+### 📩 Request Body Parameters
+| Name               | Type              | Description                                                 | Example             | Required |
+| :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
+| dateRange          | object            | Root dateRange object                                       | -                   | yes      |
+| dateRange.startDate| string            | Root dateRange object                                       | 2025-05-13T22:00:00.000Z| yes  |
+| dateRange.endDate  | string            | Root dateRange object                                       | 2025-05-20T21:59:59.999Z| yes  |
+| dateRange.num      | number            | Root dateRange object                                       | 1                   | yes      |
+| dateRange.offset   | number            | Root dateRange object                                       | 0                   | yes      |
+| dateRange.unit     | string            | Root dateRange object                                       | day                 | yes      |
+| dateRange.value    | string            | Root dateRange object                                       | 0week               | yes      |
+| fields             | array             | -                                                           | {name: "url", type: "string", label: "URL"} | yes     |
+| filters            | array             | operator  ( eq / neq / c / dnc )                            |                     | yes      |
+| timezone           | string            | Root dateRange object                                       | Europe/Berlin       | yes      |
+| websiteId          | string            | Root dateRange object                                       | :websiteId          | yes      |
+
+---
+
+### 📨 Request Body
 ```json
 {
     "fields":[
@@ -48,7 +54,17 @@
 }
 ```
 
-**Sample response**
+---
+
+### 🔁 Example Request
+```http
+POST /reports/insights HTTP/1.1
+x-umami-api-key: {api-key}
+```
+
+---
+
+### 📦 Example Response
 ```json
 [
     {
@@ -60,4 +76,11 @@
         "country": "US"
     }
 ]
+```
+
+---
+
+### 📘 Response Structure
+```json
+
 ```

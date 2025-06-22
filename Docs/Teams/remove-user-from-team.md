@@ -1,20 +1,20 @@
-## Reset data for website
+## Remove user from team.
 <!-- testable: false -->
 <!-- expectedStatus: 200 -->
 **Description:**  
-Resets a website by removing all data related to the website.
+Removes the user from the team.
 
 **Latest check:** <!--status-->⏳<!--status-end-->
 
 ```
-POST /api/websites/:websiteId/reset
+DELETE /api/teams/:teamId/users/:userId
 ```
 
 ---
 
 ### 🔁 Example Request
 ```http
-POST /api/websites/:websiteId/reset HTTP/1.1
+DELETE /api/teams/:teamId/users/:userId HTTP/1.1
 x-umami-api-key: {api-key}
 ```
 

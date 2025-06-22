@@ -2,12 +2,12 @@
 <!-- testable: true -->
 <!-- expectedStatus: 200 -->
 **Description:**  
-Gets summarized website session statistics.
+Gets summarized website statistics.
 
-**Latest check:** <!--status-->✔️<!--status-end-->
+**Latest check:** <!--status-->✅<!--status-end-->
 
 ```
-GET /api/websites/:websiteId/sessions/stats
+GET /api/websites/:websiteId/stats
 ```
 
 ---
@@ -15,8 +15,8 @@ GET /api/websites/:websiteId/sessions/stats
 ### 🔍 Query Parameters
 | Name               | Type              | Description                                                 | Example             | Required |
 | :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
-| startAt            | number            | (in ms) of starting date                                    | 1234567890000       | yes      |
-| endAt              | number            | (in ms) of end date                                         | 1234567890000       | yes      |
+| startAt            | number            | (in ms) of starting date.                                   | 1234567890000       | yes      |
+| endAt              | number            | (in ms) of end date.                                        | 1234567890000       | yes      |
 | url                | string            | Name of URL.                                                |                     | no       |
 | referrer           | string            | Name of referrer.                                           |                     | no       |
 | title              | string            | Name of page title.                                         |                     | no       |
@@ -34,7 +34,7 @@ GET /api/websites/:websiteId/sessions/stats
 
 ### 🔁 Example Request
 ```http
-GET /api/websites/:websiteId/sessions/stats?startAt=0000000000000&endAt=0000000000000 HTTP/1.1
+GET /api/websites/:websiteId/stats?startAt=0000000000000&endAt=0000000000000 HTTP/1.1
 x-umami-api-key: {api-key}
 ```
 
@@ -44,31 +44,57 @@ x-umami-api-key: {api-key}
 ```json
 {
   "pageviews": { 
-    "value": 3018 
+    "value": 3018, 
+    "prev": 3508 
   },
-  "visitors": { 
-    "value": 847 
+  "visitors": {
+    "value": 847, 
+    "prev": 910 
   },
-  "visits": {
-    "value": 984 
+  "visits": { 
+    "value": 984, 
+    "prev": 1080 
   },
-  "countries": { 
-    "value": 537 
+  "bounces": {
+    "value": 537, 
+    "prev": 628 
   },
-  "events": { 
-    "value": 150492 
+  "totaltime": { 
+    "value": 150492, 
+    "prev": 164713 
   }
 }
 ```
 pageviews: Pages hits \
 visitors: Number of unique visitors \
 visits: Number of sessions \
-countries: Number of unique countries \
-events: Number of custom events
+bounces: Number of visitors who only visit a single page \
+totaltime: Time spent on the website
 
 ---
 
 ### 📘 Response Structure
 ```json
-
+{
+  "pageviews": { 
+    "value": "number", 
+    "prev": "number" 
+  },
+  "visitors": {
+    "value": "number", 
+    "prev": "number" 
+  },
+  "visits": { 
+    "value": "number", 
+    "prev": "number" 
+  },
+  "bounces": {
+    "value": "number", 
+    "prev": "number" 
+  },
+  "totaltime": { 
+    "value": "number", 
+    "prev": "number" 
+  }
+}
 ```

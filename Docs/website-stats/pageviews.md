@@ -1,13 +1,13 @@
-## Stats
+## Pageviews
 <!-- testable: true -->
 <!-- expectedStatus: 200 -->
 **Description:**  
-Gets summarized website session statistics.
+Gets pageviews and sessions within a given time range.
 
-**Latest check:** <!--status-->✔️<!--status-end-->
+**Latest check:** <!--status-->✅<!--status-end-->
 
 ```
-GET /api/websites/:websiteId/sessions/stats
+GET /api/websites/:websiteId/pageviews
 ```
 
 ---
@@ -15,13 +15,13 @@ GET /api/websites/:websiteId/sessions/stats
 ### 🔍 Query Parameters
 | Name               | Type              | Description                                                 | Example             | Required |
 | :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
-| startAt            | number            | (in ms) of starting date                                    | 1234567890000       | yes      |
-| endAt              | number            | (in ms) of end date                                         | 1234567890000       | yes      |
+| startAt            | number            | (in ms) of starting date.                                   | 1234567890000       | yes      |
+| endAt              | number            | (in ms) of end date.                                        | 1234567890000       | yes      |
+| unit               | string            | Time unit (year | month | hour | day).                      | month               | yes      |
+| timezone           | string            | Timezone (ex. America/Los_Angeles).                         | America/Los_Angeles | yes      |
 | url                | string            | Name of URL.                                                |                     | no       |
 | referrer           | string            | Name of referrer.                                           |                     | no       |
 | title              | string            | Name of page title.                                         |                     | no       |
-| query              | string            | Name of query.                                              |                     | no       |
-| event              | string            | Name of event.                                              |                     | no       |
 | host               | string            | Name of hostname.                                           |                     | no       |
 | os                 | string            | Name of operating system.                                   |                     | no       |
 | browser            | string            | Name of browser.                                            |                     | no       |
@@ -34,7 +34,7 @@ GET /api/websites/:websiteId/sessions/stats
 
 ### 🔁 Example Request
 ```http
-GET /api/websites/:websiteId/sessions/stats?startAt=0000000000000&endAt=0000000000000 HTTP/1.1
+GET /api/websites/:websiteId/pageviews?startAt=0000000000000&endAt=0000000000000 HTTP/1.1
 x-umami-api-key: {api-key}
 ```
 
@@ -43,32 +43,47 @@ x-umami-api-key: {api-key}
 ### 📦 Example Response
 ```json
 {
-  "pageviews": { 
-    "value": 3018 
-  },
-  "visitors": { 
-    "value": 847 
-  },
-  "visits": {
-    "value": 984 
-  },
-  "countries": { 
-    "value": 537 
-  },
-  "events": { 
-    "value": 150492 
-  }
+  "pageviews": [
+    { 
+      "x": "2020-04-20 01:00:00", 
+      "y": 3 
+    },
+    { 
+      "x": "2020-04-20 02:00:00", 
+      "y": 7 
+    }
+  ],
+  "sessions": [
+    { 
+      "x": "2020-04-20 01:00:00", 
+      "y": 2
+    },
+    { 
+      "x": "2020-04-20 02:00:00", 
+      "y": 4 
+    }
+  ]
 }
 ```
-pageviews: Pages hits \
-visitors: Number of unique visitors \
-visits: Number of sessions \
-countries: Number of unique countries \
-events: Number of custom events
+x: Timestamp. \
+y: Number of visitors.
 
 ---
 
 ### 📘 Response Structure
 ```json
-
+{
+  "pageviews": [
+    { 
+      "x": "date:yyyy-mm-dd hh:mm:ss", 
+      "y": "number" 
+    }
+  ],
+  "sessions": [
+    { 
+      "x": "date:yyyy-mm-dd hh:mm:ss", 
+      "y": "number"
+    }
+  ]
+}
 ```

@@ -1,12 +1,33 @@
 ## Delete user
-**DELETE /api/users/:userId**
+<!-- testable: false -->
+<!-- expectedStatus: 200 -->
+**Description:**  
+Delete given user.
 
-**Parameters** \
-None
+**Latest check:** <!--status-->⏳<!--status-end-->
+
+```
+DELETE /api/users/:userId
+```
 
 ---
 
-**Sample response**
+### 🔁 Example Request
+```http
+DELETE /api/users/:userId HTTP/1.1
+x-umami-api-key: {api-key}
+```
+
+---
+
+📦 Example Response
 ```json
 ok
+```
+
+---
+
+📘 Response Structure
+```json
+
 ```

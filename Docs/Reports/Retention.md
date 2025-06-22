@@ -1,21 +1,33 @@
 ## Retention
-**POST /reports/retention**
+<!-- testable: true -->
+<!-- expectedStatus: 200 -->
+**Description:**  
+Measure your website stickiness by tracking how often users return.
 
-**Parameters**
+**Latest check:** <!--status-->✅<!--status-end-->
 
-- [dateRange](./Parameter/dateRange.md) (Object)
-  - startDate (String) e.g. 2025-05-13T22:00:00.000Z
-  - endDate (String) e.g. 2025-05-20T21:59:59.999Z
-  - num (Int) [ 1 | 24 | ... ]
-  - offset (Int) [ 0 | 0 |  ... ]
-  - unit (String) [ hour | hour | ... ]
-  - value (String) [ 0day | 24hour | .... ] 
-- timezone (String)
-- websiteId (String)
+```
+POST /reports/retention
+```
 
 ---
 
-**Sample request body**
+### 📩 Request Body Parameters
+| Name               | Type              | Description                                                 | Example             | Required |
+| :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
+| dateRange          | object            | Root dateRange object                                       | -                   | yes      |
+| dateRange.startDate| string            | Root dateRange object                                       | 2025-05-13T22:00:00.000Z| yes  |
+| dateRange.endDate  | string            | Root dateRange object                                       | 2025-05-20T21:59:59.999Z| yes  |
+| dateRange.num      | number            | Root dateRange object                                       | 1                   | yes      |
+| dateRange.offset   | number            | Root dateRange object                                       | 0                   | yes      |
+| dateRange.unit     | string            | Root dateRange object                                       | day                 | yes      |
+| dateRange.value    | string            | Root dateRange object                                       | 0week               | yes      |
+| timezone           | string            | Root dateRange object                                       | Europe/Berlin       | yes      |
+| websiteId          | string            | Root dateRange object                                       | :websiteId          | yes      |
+
+---
+
+### 📨 Request Body
 ```json
 {
     "dateRange":{
@@ -30,7 +42,17 @@
 }
 ```
 
-**Sample response**
+---
+
+### 🔁 Example Request
+```http
+POST /reports/retention HTTP/1.1
+x-umami-api-key: {api-key}
+```
+
+---
+
+### 📦 Example Response
 ```json
 [
     {
@@ -46,6 +68,21 @@
         "visitors": 1,
         "returnVisitors": 1,
         "percentage": 100
+    }
+]
+```
+
+---
+
+### 📘 Response Structure
+```json
+[
+    {
+        "date": "date:yyyy-mm-ddThh:mm:ssZ",
+        "day": "number",
+        "visitors": "number",
+        "returnVisitors": "number",
+        "percentage": "number"
     }
 ]
 ```

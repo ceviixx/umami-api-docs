@@ -6,7 +6,6 @@ const token = process.env.GITHUB_TOKEN;
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
 const octokit = new Octokit({ auth: token });
 
-// Format JSON content into indented blocks or return raw if invalid
 const formatJsonBlock = (input) => {
   try {
     const parsed = JSON.parse(input);
@@ -16,7 +15,6 @@ const formatJsonBlock = (input) => {
   }
 };
 
-// Extract a section of lines between given start and end markers
 const extractSection = (lines, start, end) => {
   const startIndex = lines.findIndex(l => l.startsWith(start));
   const endIndex = lines.findIndex((l, i) => i > startIndex && l.startsWith(end));
@@ -29,7 +27,6 @@ const extractSection = (lines, start, end) => {
   return null;
 };
 
-// Parse and format the "Type mismatches" section into a Markdown table
 const extractTypeMismatchTable = (lines) => {
   const start = lines.findIndex(l => l.trim() === 'Type mismatches:');
   if (start === -1) return null;
@@ -48,11 +45,7 @@ const extractTypeMismatchTable = (lines) => {
         expected: (match[2] || '').trim() || '<empty>',
       });
     } else {
-      rows.push({
-        error: line,
-        value: '',
-        expected: '',
-      });
+      rows.push({ error: line, value: '', expected: '' });
     }
   }
 
@@ -66,7 +59,6 @@ const extractTypeMismatchTable = (lines) => {
   return `${header}\n${body}`;
 };
 
-// Format the issue body for GitHub
 const formatIssue = (raw) => {
   const lines = raw.trim().split('\n');
 
@@ -85,54 +77,60 @@ const formatIssue = (raw) => {
   const expectedBody = extractSection(lines, 'Expected Body (types):', 'Type mismatches:') || extractSection(lines, 'Expected Body (types):', '');
   const mismatchTable = extractTypeMismatchTable(lines);
 
-  return `\
+  let body = `\
 **Group:** \`${group}\`  
-**Name:** \`${name}\`
+**Name:** \`${name}\`  
 **Method:** \`${method}\`  
 **Route:** \`${route}\`  
 **Expected Status:** \`${expected}\`  
-**Actual Status:** \`${actual}\`
+**Actual Status:** \`${actual}\`\n\n`;
 
-${requestBody ? `<details>
+  if (requestBody) {
+    body += `<details>
 <summary>Request body</summary>
 
 \`\`\`json
 ${formatJsonBlock(requestBody)}
 \`\`\`
-</details>
+</details>\n\n`;
+  }
 
-` : ''}<details>
-<summary>Response Body (showing first item from 'data' array)</summary>
+  body += `<details>
+<summary>Response Body</summary>
 
 \`\`\`json
 ${formatJsonBlock(responseBody || '')}
 \`\`\`
-</details>
+</details>\n\n`;
 
-<details>
+  if (expectedBody && expectedBody.trim() && expectedBody !== '{}') {
+    body += `<details>
 <summary>Expected Body (types)</summary>
 
 \`\`\`json
-${formatJsonBlock(expectedBody || '')}
+${formatJsonBlock(expectedBody)}
 \`\`\`
-</details>
+</details>\n\n`;
+  }
 
-${mismatchTable ? `<details>
+  if (mismatchTable) {
+    body += `<details>
 <summary>Type mismatches</summary>
 
 ${mismatchTable}
-</details>` : ''}`;
+</details>\n`;
+  }
+
+  return body.trim();
 };
 
 (async () => {
   const failuresRoot = path.join(process.env.GITHUB_WORKSPACE, 'all-failures');
   const hasFailures = fs.existsSync(failuresRoot);
 
-  // Fetch all issues (open + closed)
   const allIssues = await octokit.issues.listForRepo({ owner, repo, state: 'all' });
   const currentFailureTitles = new Set();
 
-  // Process new failures and create/update issues
   if (hasFailures) {
     const getTitle = (content) => {
       const nameLine = content.split('\n').find(l => l.startsWith('Name:'));
@@ -190,7 +188,6 @@ ${mismatchTable}
     }
   }
 
-  // Close previously open issues that are no longer failing
   for (const issue of allIssues.data) {
     if (!issue.title.startsWith("🚨 API Failure:")) continue;
     if (issue.state !== 'open') continue;
@@ -211,7 +208,6 @@ ${mismatchTable}
     });
   }
 
-  // Export all currently open issues to issues.json
   const exportDir = path.join(process.env.GITHUB_WORKSPACE, 'scripts');
   fs.mkdirSync(exportDir, { recursive: true });
 

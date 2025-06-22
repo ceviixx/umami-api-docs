@@ -1,18 +1,34 @@
-## Gets session activity for a individual session
-**GET /api/websites/:websiteId/sessions/:sessionId/activity**
+## Activity
+<!-- testable: true -->
+<!-- expectedStatus: 200 -->
+**Description:**  
+Gets session activity for a individual session
 
-**Parameters**
-- startAt: Timestamp (in ms) of starting date.
-- endAt: Timestamp (in ms) of end date.
+**Latest check:** <!--status-->✔️<!--status-end-->
+
+```
+GET /api/websites/:websiteId/sessions/:sessionId/activity
+```
 
 ---
 
-**Sample route**
-```
-/api/websites/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/sessions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/activity?startAt=0000000000000&endAt=0000000000000
+### 🔍 Query Parameters
+| Name               | Type              | Description                                                 | Example             | Required |
+| :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
+| startAt            | number            | (in ms) of starting date                                    | 1234567890000       | yes      |
+| endAt              | number            | (in ms) of starting date                                    | 1234567890000       | yes      |
+
+---
+
+### 🔁 Example Request
+```http
+GET /api/websites/:websiteId/sessions/:sessionId/activity?startAt=0000000000000&endAt=0000000000000 HTTP/1.1
+x-umami-api-key: {api-key}
 ```
 
-**Sample response**
+---
+
+### 📦 Example Response
 ```json
 [
   {
@@ -36,4 +52,11 @@
     "visitId": "609a5116-b139-5c6d-9293-fbea9b8a3b61"
   }
 ]
+```
+
+---
+
+### 📘 Response Structure
+```json
+
 ```

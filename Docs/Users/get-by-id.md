@@ -1,20 +1,20 @@
-## Reset data for website
+## Get user by id
 <!-- testable: false -->
 <!-- expectedStatus: 200 -->
 **Description:**  
-Resets a website by removing all data related to the website.
+Get details about the user.
 
 **Latest check:** <!--status-->⏳<!--status-end-->
 
 ```
-POST /api/websites/:websiteId/reset
+GET /api/users/:userId
 ```
 
 ---
 
 ### 🔁 Example Request
 ```http
-POST /api/websites/:websiteId/reset HTTP/1.1
+GET /api/users/:userId HTTP/1.1
 x-umami-api-key: {api-key}
 ```
 
@@ -22,7 +22,11 @@ x-umami-api-key: {api-key}
 
 📦 Example Response
 ```json
-ok
+{
+  "id": "1a457e1a-121a-11ee-be56-0242ac120002",
+  "username": "umami",
+  "role": "admin"
+}
 ```
 
 ---

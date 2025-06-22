@@ -1,13 +1,14 @@
-## Update team
+## Add a user to a team
 <!-- testable: false -->
 <!-- expectedStatus: 200 -->
-**Description:**  
-Update data of the team.
+**Description:**
+Add a specific user to the team.
+
 
 **Latest check:** <!--status-->⏳<!--status-end-->
 
 ```
-POST /api/teams/:teamId
+POST /api/teams/:teamId/users
 ```
 
 ---
@@ -15,16 +16,16 @@ POST /api/teams/:teamId
 ### 📩 Request Body Parameters
 | Name               | Type              | Description                                                 | Example             | Required |
 | :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
-| name               | string            | The team's name.                                            | marketing           | no       |
-| accessCode         | string            | The team's access code.                                     | zY8pQwIUKjxDIot     | no       |
+- userId: ID of user to be added.
+- role: Role user will be added as [ team-member | team-view-only | team-manager ].
 
 ---
 
 ### 📨 Request Body
 ```json
 {
-  "name": "marketing",
-  "accessCode": "zY8pQwIUKjxDIot"
+  "userId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "role": "team-member"
 }
 ```
 
@@ -32,7 +33,7 @@ POST /api/teams/:teamId
 
 ### 🔁 Example Request
 ```http
-POST /api/teams/:teamId HTTP/1.1
+POST /api/teams/:teamId/users HTTP/1.1
 x-umami-api-key: {api-key}
 ```
 
@@ -41,11 +42,12 @@ x-umami-api-key: {api-key}
 📦 Example Response
 ```json
 {
-  "accessCode": "zY8pQwIUKjxDIot",
-  "createdAt": "0000-00-00T00:00:00.000Z",
   "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-  "name": "marketing",
-  "updatedAt": null
+  "teamId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "userId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "role": "team-member",
+  "createdAt": "0000-00-00T00:00:00.000Z",
+  "updatedAt": "0000-00-00T00:00:00.000Z"
 }
 ```
 

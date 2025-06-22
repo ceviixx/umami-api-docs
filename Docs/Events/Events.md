@@ -1,23 +1,45 @@
-## Gets website event details within a given time range.
-**GET /api/websites/:websiteId/events**
+## Events
+<!-- testable: true -->
+<!-- expectedStatus: 200 -->
+**Description:**  
+Gets website event details within a given time range.
 
-**Parameters**
-- startAt: Timestamp (in ms) of starting date.
-- endAt: Timestamp (in ms) of end date.
-- query: (optional string) Search text.
-- page: (optional number, default 1) Determines page.
-- pageSize: (optional string) Determines how many results to return.
-- orderBy: (optional string) Order by column name.
+**Latest check:** <!--status-->✅<!--status-end-->
 
+```
+GET /api/websites/:websiteId/events
+```
 
 ---
 
-**Sample route**
-```
-/api/websites/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/events?startAt=0000000000000&endAt=0000000000000&query=&page=1&pageSize=20
+### 🔍 Query Parameters
+| Name    | Type              | Description              | Example         | Required |
+|---------|-------------------|--------------------------|-----------------|----------|
+| startAt | number            | (in ms) of starting date | 1234567890000   | yes      |
+| endAt   | number            | (in ms) of starting date | 1234567899999   | yes      |
+| query   | string            | Search text              | 1234567890000   | no       |
+| page    | number            | Determines page.         | 1               | no       |
+| pageSize | number           | Determines how many results to return | 10 | no       |
+| orderBy | string            | Order by column name.    | name            | no       |
+
+---
+
+### 📨 Request Body
+```json
+
 ```
 
-**Sample response**
+---
+
+### 🔁 Example Request
+```http
+GET /api/websites/:websiteId/events?startAt=0000000000000&endAt=0000000000000&query=&page=1&pageSize=20 HTTP/1.1
+x-umami-api-key: {api-key}
+```
+
+---
+
+### 📦 Example Response
 ```json
 {
   "data": [
@@ -53,5 +75,32 @@
   "count": 1000,
   "page": 1,
   "pageSize": 20
+}
+```
+
+---
+
+### 📘 Response Structure
+```json
+{
+  "data": [
+    {
+      "id": "string",
+      "websiteId": "string",
+      "sessionId": "string",
+      "createdAt": "string",
+      "urlPath": "string",
+      "urlQuery": "string",
+      "referrerPath": "string",
+      "referrerQuery": "string",
+      "referrerDomain": "string",
+      "pageTitle": "string",
+      "eventType": "number",
+      "eventName": "string"
+    }
+  ],
+  "count": "number",
+  "page": "number",
+  "pageSize": "number"
 }
 ```

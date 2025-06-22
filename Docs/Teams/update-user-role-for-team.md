@@ -1,13 +1,13 @@
-## Update team
+## Update user team role
 <!-- testable: false -->
 <!-- expectedStatus: 200 -->
 **Description:**  
-Update data of the team.
+Update a user's role on a team.
 
 **Latest check:** <!--status-->⏳<!--status-end-->
 
 ```
-POST /api/teams/:teamId
+POST /api/teams/:teamId/users/:userId
 ```
 
 ---
@@ -15,16 +15,14 @@ POST /api/teams/:teamId
 ### 📩 Request Body Parameters
 | Name               | Type              | Description                                                 | Example             | Required |
 | :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
-| name               | string            | The team's name.                                            | marketing           | no       |
-| accessCode         | string            | The team's access code.                                     | zY8pQwIUKjxDIot     | no       |
+| role               | string            | Role user will be added as (member or view-only)            | member              | yes      |
 
 ---
 
 ### 📨 Request Body
 ```json
 {
-  "name": "marketing",
-  "accessCode": "zY8pQwIUKjxDIot"
+    "role": "member"
 }
 ```
 
@@ -32,7 +30,7 @@ POST /api/teams/:teamId
 
 ### 🔁 Example Request
 ```http
-POST /api/teams/:teamId HTTP/1.1
+POST /api/teams/:teamId/users/:userId HTTP/1.1
 x-umami-api-key: {api-key}
 ```
 
@@ -40,13 +38,7 @@ x-umami-api-key: {api-key}
 
 📦 Example Response
 ```json
-{
-  "accessCode": "zY8pQwIUKjxDIot",
-  "createdAt": "0000-00-00T00:00:00.000Z",
-  "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-  "name": "marketing",
-  "updatedAt": null
-}
+ok
 ```
 
 ---

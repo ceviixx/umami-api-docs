@@ -1,25 +1,34 @@
 ## Funnel
-**POST /reports/funnel**
+<!-- testable: true -->
+**Description:**  
+Understand the conversion and drop-off rate of users.
 
-**Parameters**
+**Latest check:** <!--status-->✅<!--status-end-->
 
-- [dateRange](./Parameter/dateRange.md) (Object)
-  - startDate (String) e.g. 2025-05-13T22:00:00.000Z
-  - endDate (String) e.g. 2025-05-20T21:59:59.999Z
-  - num (Int) [ 1 | 24 | ... ]
-  - offset (Int) [ 0 | 0 |  ... ]
-  - unit (String) [ hour | hour | ... ]
-  - value (String) [ 0day | 24hour | .... ] 
-- steps (Array)
-  - type (String) [ url | event ]
-  - value (String)
-- timezone (String)
-- websiteId (String)
-- window (Int)
+```
+POST /reports/funnel
+```
 
 ---
 
-**Sample request body**
+### 📩 Request Body Parameters
+| Name               | Type              | Description                                                 | Example             | Required |
+| :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
+| dateRange          | object            | Root dateRange object                                       | -                   | yes      |
+| dateRange.startDate| string            | Root dateRange object                                       | 2025-05-13T22:00:00.000Z| yes  |
+| dateRange.endDate  | string            | Root dateRange object                                       | 2025-05-20T21:59:59.999Z| yes  |
+| dateRange.num      | number            | Root dateRange object                                       | 1                   | yes      |
+| dateRange.offset   | number            | Root dateRange object                                       | 0                   | yes      |
+| dateRange.unit     | string            | Root dateRange object                                       | day                 | yes      |
+| dateRange.value    | string            | Root dateRange object                                       | 0week               | yes      |
+| steps              | array             | Root dateRange object                                       | {type: "url", value: "/"}, {type: "url", value: "/contact"}| yes |
+| timezone           | string            | Root dateRange object                                       | Europe/Berlin       | yes      |
+| websiteId          | string            | Root dateRange object                                       | :websiteId          | yes      |
+| window             | number            | Root dateRange object                                       | 60                  | yes      |
+
+---
+
+### 📨 Request Body
 ```json
 {
     "window":60,
@@ -46,7 +55,17 @@
 }
 ```
 
-**Sample response**
+---
+
+### 🔁 Example Request
+```http
+POST /reports/funnel HTTP/1.1
+x-umami-api-key: {api-key}
+```
+
+---
+
+### 📦 Example Response
 ```json
 [
     {
@@ -58,5 +77,22 @@
         "dropoff": null,
         "remaining": 1
     }
+]
+```
+
+---
+
+### 📘 Response Structure
+```json
+[
+  {
+    "type": "string",
+    "value": "string",
+    "visitors": "number",
+    "previous": "number",
+    "dropped": "number",
+    "dropoff": "number|null",
+    "remaining": "number"
+  }
 ]
 ```

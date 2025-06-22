@@ -1,13 +1,13 @@
-## Stats
+## Events
 <!-- testable: true -->
 <!-- expectedStatus: 200 -->
 **Description:**  
-Gets summarized website session statistics.
+Gets events within a given time range.
 
-**Latest check:** <!--status-->✔️<!--status-end-->
+**Latest check:** <!--status-->✅<!--status-end-->
 
 ```
-GET /api/websites/:websiteId/sessions/stats
+GET /api/websites/:websiteId/events/series
 ```
 
 ---
@@ -17,11 +17,11 @@ GET /api/websites/:websiteId/sessions/stats
 | :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
 | startAt            | number            | (in ms) of starting date                                    | 1234567890000       | yes      |
 | endAt              | number            | (in ms) of end date                                         | 1234567890000       | yes      |
+| unit               | string            | Time unit (year | month | hour | day).                      | day                 | yes      |
+| timezone           | string            | Timezone (ex. America/Los_Angeles).                         | America/Los_Angeles | yes      |
 | url                | string            | Name of URL.                                                |                     | no       |
 | referrer           | string            | Name of referrer.                                           |                     | no       |
 | title              | string            | Name of page title.                                         |                     | no       |
-| query              | string            | Name of query.                                              |                     | no       |
-| event              | string            | Name of event.                                              |                     | no       |
 | host               | string            | Name of hostname.                                           |                     | no       |
 | os                 | string            | Name of operating system.                                   |                     | no       |
 | browser            | string            | Name of browser.                                            |                     | no       |
@@ -34,7 +34,7 @@ GET /api/websites/:websiteId/sessions/stats
 
 ### 🔁 Example Request
 ```http
-GET /api/websites/:websiteId/sessions/stats?startAt=0000000000000&endAt=0000000000000 HTTP/1.1
+GET /api/websites/:websiteId/events/series?startAt=0000000000000&endAt=0000000000000&unit=hour&timezone=America%2FLos_Angeles HTTP/1.1
 x-umami-api-key: {api-key}
 ```
 
@@ -42,33 +42,47 @@ x-umami-api-key: {api-key}
 
 ### 📦 Example Response
 ```json
-{
-  "pageviews": { 
-    "value": 3018 
+[
+  { 
+    "x": "live-demo-button", 
+    "t": "2023-04-12T22:00:00Z", 
+    "y": 1 
   },
-  "visitors": { 
-    "value": 847 
+  {
+    "x": "get-started-button", 
+    "t": "2023-04-12T22:00:00Z", 
+    "y": 5 
   },
-  "visits": {
-    "value": 984 
+  { 
+    "x": "get-started-button", 
+    "t": "2023-04-12T23:00:00Z",
+    "y": 4 
   },
-  "countries": { 
-    "value": 537 
+  {
+    "x": "live-demo-button", 
+    "t": "2023-04-12T23:00:00Z", 
+    "y": 4 
   },
-  "events": { 
-    "value": 150492 
+  { 
+    "x": "social-Discord", 
+    "t": "2023-04-13T00:00:00Z", 
+    "y": 1 
   }
-}
+]
 ```
-pageviews: Pages hits \
-visitors: Number of unique visitors \
-visits: Number of sessions \
-countries: Number of unique countries \
-events: Number of custom events
+x: Event name. \
+t: Timestamp. \
+y: Number of events.
 
 ---
 
 ### 📘 Response Structure
 ```json
-
+[
+  { 
+    "x": "string", 
+    "t": "date:yyyy-mm-ddThh:mm:ssZ", 
+    "y": "number"
+  }
+]
 ```

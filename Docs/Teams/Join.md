@@ -1,19 +1,42 @@
-## Join a team.
-**POST /api/teams/join**
+## Join team
+<!-- testable: false -->
+<!-- expectedStatus: 200 -->
+**Description:**  
+Join a theam with access code
 
-**Parameters**
-- accessCode: (string) The team's access code.
+**Latest check:** <!--status-->⏳<!--status-end-->
+
+```
+POST /api/teams/join
+```
 
 ---
 
-**Sample request body**
+### 📩 Request Body Parameters
+| Name               | Type              | Description                                                 | Example             | Required |
+| :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
+| accessCode         | string            | The team's access code.                                     | xxwtoY8pzKjDIUQi    | yes      |
+
+---
+
+### 📨 Request Body
 ```json
 {
   "accessCode": "xxwtoY8pzKjDIUQi"
 }
 ```
 
-**Sample response**
+---
+
+### 🔁 Example Request
+```http
+POST /api/teams/join HTTP/1.1
+x-umami-api-key: {api-key}
+```
+
+---
+
+📦 Example Response
 ```json
 [
   {
@@ -36,4 +59,11 @@
     ]
   }
 ]
+```
+
+---
+
+📘 Response Structure
+```json
+
 ```

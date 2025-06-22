@@ -1,16 +1,28 @@
-## Creates a website.
-**POST /api/websites**
+## Creates website
+<!-- testable: false -->
+<!-- expectedStatus: 200 -->
+**Description:**  
+Create an new website entry for tracking.
 
-**Parameters**
-- domain: (string) The full domain of the tracked website.
-- name: (string) The name of the website in Umami.
-- shareId: (optional string) A unique string to enable a share url. Set null to unshare.
-- teamId: (optional string) The ID of the team the website will be created under.
+**Latest check:** <!--status-->⏳<!--status-end-->
 
+```
+POST /api/websites
+```
 
 ---
 
-**Sample request body**
+### 📩 Request Body Parameters
+| Name               | Type              | Description                                                 | Example             | Required |
+| :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
+| domain             | string            | The full domain of the tracked website.                     | example.com         | yes      |
+| name               | string            | The name of the website in Umami.                           | Example             | yes      |
+| shareId            | string            | A unique string to enable a share url. Set null to unshare. |                     | no       |
+| teamId             | string            | The ID of the team the website will be created under.       |                     | no       |
+
+---
+
+### 📨 Request Body
 ```json
 {
   "name": "Umami",
@@ -18,7 +30,17 @@
 }
 ```
 
-**Sample response**
+---
+
+### 🔁 Example Request
+```http
+POST /api/websites HTTP/1.1
+x-umami-api-key: {api-key}
+```
+
+---
+
+📦 Example Response
 ```json
 {
   "id": 1,
@@ -29,4 +51,11 @@
   "shareId": "xxxxxxxx",
   "createdAt": "0000-00-00T00:00:00.000Z"
 }
+```
+
+---
+
+📘 Response Structure
+```json
+
 ```

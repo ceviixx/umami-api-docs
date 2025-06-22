@@ -2,7 +2,7 @@
 Docs from [uamami Analytics](https://github.com/umami-software/umami) with daily status update to detect not documented changes. \
 Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Analytics-App).
 
-[![Umami API Tests](https://github.com/ceviixx/umami-api-tests/actions/workflows/main.yml/badge.svg)](https://github.com/ceviixx/umami-api-tests/actions/workflows/main.yml)
+[![Umami API Tests](https://github.com/ceviixx/umami-api-docs/actions/workflows/main.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/main.yml)
 
 <!--last-updated:start-->
 **Last updated: 2025-06-22 15:32:57 UTC**

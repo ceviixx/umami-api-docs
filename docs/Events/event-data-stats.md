@@ -4,7 +4,7 @@
 **Description:**  
 Gets summarized website events, fields, and records within a given time range.
 
-**Latest check:** <!--status-->🚨 [#177](https://github.com/ceviixx/umami-api-tests/issues/177)<!--status-end-->
+**Latest check:** <!--status-->✔️<!--status-end-->
 
 ```
 GET /api/websites/:websiteId/event-data/stats

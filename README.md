@@ -5,7 +5,7 @@ Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Ana
 [![Umami API Tests](https://github.com/ceviixx/umami-api-docs/actions/workflows/main.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/main.yml)
 
 <!--last-updated:start-->
-**Last updated: 2025-06-24 13:32:10 UTC**
+**Last updated: 2025-06-24 14:05:05 UTC**
 <!--last-updated:end-->
 
 ### 📊 API Test Status Legend
@@ -64,24 +64,17 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 <!--table:sessions-->
 | Status | Name           | Description                     |
 | :-------: | :-------- | :---------------- |
-| <!--status:sessions/Activity-->✔️<!--status-end--> | [Activity](docs/sessions/activity.md) | Gets session activity for a individual session |
-| <!--status:sessions/Activity-->✔️<!--status-end--> | [Activity](docs/sessions/Activity.md) | Gets session activity for a individual session |
 | <!--status:sessions/Detailsforid-->✔️<!--status-end--> | [Details for id](docs/sessions/get-by-id.md) | Gets session details for a individual session |
 | <!--status:sessions/Properties-->✔️<!--status-end--> | [Properties](docs/sessions/properties.md) | Gets session properties for a individual session |
 | <!--status:sessions/Dataproperties-->✔️<!--status-end--> | [Data properties](docs/sessions/session-data-properties.md) | Gets session data counts by property name |
 | <!--status:sessions/Datavalues-->✔️<!--status-end--> | [Data values](docs/sessions/session-data-values.md) | Gets session data counts for a given property |
-| <!--status:sessions/Sessions-->✔️<!--status-end--> | [Sessions](docs/sessions/sessions.md) | Gets website session details within a given time range. |
-| <!--status:sessions/Sessions-->✔️<!--status-end--> | [Sessions](docs/sessions/Sessions.md) | Gets website session details within a given time range. |
-| <!--status:sessions/Stats-->✔️<!--status-end--> | [Stats](docs/sessions/stats.md) | Gets summarized website session statistics. |
-| <!--status:sessions/Stats-->✔️<!--status-end--> | [Stats](docs/sessions/Stats.md) | Gets summarized website session statistics. |
-| <!--status:sessions/Weekly-->✔️<!--status-end--> | [Weekly](docs/sessions/weekly.md) | Gets weekly data |
-| <!--status:sessions/Weekly-->✔️<!--status-end--> | [Weekly](docs/sessions/Weekly.md) | Gets weekly data |
 <!--table-end-->
 
 ## Reports
 <!--table:reports-->
 | Status | Name           | Description                     |
 | :-------: | :-------- | :---------------- |
+| <!--status:reports/Currency-->✔️<!--status-end--> | [Currency](docs/reports/addon_currency.md) | Get currency for given range. Needed for Revenue and optional in Attribution reports. |
 | <!--status:reports/Attribution-->✅<!--status-end--> | [Attribution](docs/reports/attribution.md) | See how users engage with your marketing and what drives conversions. |
 | <!--status:reports/Funnel-->✅<!--status-end--> | [Funnel](docs/reports/funnel.md) | Understand the conversion and drop-off rate of users. |
 | <!--status:reports/Goals-->✔️<!--status-end--> | [Goals](docs/reports/goals.md) | Track your goals for pageviews and events. |

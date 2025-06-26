@@ -4,7 +4,7 @@
 **Description:**  
 Gets session data counts for a given property
 
-**Latest check:** <!--status-->✔️<!--status-end-->
+**Latest check:** <!--status-->🚨 [#4](https://github.com/ceviixx/umami-api-docs/issues/4)<!--status-end-->
 
 ```
 GET /api/websites/:websiteId/session-data/values

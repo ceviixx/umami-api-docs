@@ -4,7 +4,7 @@
 **Description:**  
 Get auth data for shared website.
 
-**Latest check:** <!--status--><!--status-end-->
+**Latest check:** <!--status-->⏳<!--status-end-->
 
 ```
 GET /api/share/:shareId

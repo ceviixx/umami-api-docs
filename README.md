@@ -6,7 +6,7 @@ Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Ana
 [![Check source code](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml)
 
 <!--last-updated:start-->
-**Last updated: 2025-06-26 21:36:35 UTC**
+**Last updated: 2025-06-26 22:09:54 UTC**
 <!--last-updated:end-->
 
 ### 📊 API Test Status Legend
@@ -55,7 +55,9 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 
 ## Share
 <!--table:share-->
-*(There are currently no requests available.)*
+| Status | Name           | Description                     |
+| :-------: | :-------- | :---------------- |
+| <!--status:share/Shared-->⏳<!--status-end--> | [Shared](docs/share/share.md) | Get auth data for shared website. |
 <!--table-end-->
 
 ## Sending stats
@@ -92,10 +94,10 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 <!--table:events-->
 | Status | Name           | Description                     |
 | :-------: | :-------- | :---------------- |
-| <!--status:events/Eventdataevents-->✅<!--status-end--> | [Event data events](docs/events/event-data-events.md) | Gets event data names, properties, and counts |
-| <!--status:events/Getseventdatapropertyandvaluecounts-->✅<!--status-end--> | [Gets event data property and value counts](docs/events/event-data-fields.md) | Gets event data property and value counts within a given time range. |
-| <!--status:events/Eventdatastats-->✔️<!--status-end--> | [Event data stats](docs/events/event-data-stats.md) | Gets summarized website events, fields, and records within a given time range. |
-| <!--status:events/Eventdatavalues-->✔️<!--status-end--> | [Event data values](docs/events/event-data-values.md) | Gets event data counts for a given event and property |
+| <!--status:events/Eventdataevents-->✅<!--status-end--> | [Event data events](docs/events/data-events.md) | Gets event data names, properties, and counts |
+| <!--status:events/Getseventdatapropertyandvaluecounts-->✅<!--status-end--> | [Gets event data property and value counts](docs/events/data-fields.md) | Gets event data property and value counts within a given time range. |
+| <!--status:events/Eventdatastats-->✅<!--status-end--> | [Event data stats](docs/events/data-stats.md) | Gets summarized website events, fields, and records within a given time range. |
+| <!--status:events/Eventdatavalues-->✅<!--status-end--> | [Event data values](docs/events/data-values.md) | Gets event data counts for a given event and property |
 | <!--status:events/Events-->✅<!--status-end--> | [Events](docs/events/events.md) | Gets website event details within a given time range. |
 <!--table-end-->
 
@@ -104,10 +106,10 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | Status | Name           | Description                     |
 | :-------: | :-------- | :---------------- |
 | <!--status:sessions/Sessionactivity-->✅<!--status-end--> | [Session activity](docs/sessions/activity.md) | Get activity from session |
-| <!--status:sessions/Detailsforid-->✔️<!--status-end--> | [Details for id](docs/sessions/get-by-id.md) | Gets session details for a individual session |
-| <!--status:sessions/Properties-->✔️<!--status-end--> | [Properties](docs/sessions/properties.md) | Gets session properties for a individual session |
-| <!--status:sessions/Dataproperties-->✔️<!--status-end--> | [Data properties](docs/sessions/session-data-properties.md) | Gets session data counts by property name |
-| <!--status:sessions/Datavalues-->✔️<!--status-end--> | [Data values](docs/sessions/session-data-values.md) | Gets session data counts for a given property |
+| <!--status:sessions/Dataproperties-->✅<!--status-end--> | [Data properties](docs/sessions/data-properties.md) | Gets session data counts by property name |
+| <!--status:sessions/Datavalues-->🚨 [#4](https://github.com/ceviixx/umami-api-docs/issues/4)<!--status-end--> | [Data values](docs/sessions/data-values.md) | Gets session data counts for a given property |
+| <!--status:sessions/Detailsforid-->✅<!--status-end--> | [Details for id](docs/sessions/get-by-id.md) | Gets session details for a individual session |
+| <!--status:sessions/Properties-->✅<!--status-end--> | [Properties](docs/sessions/properties.md) | Gets session properties for a individual session |
 | <!--status:sessions/Getsessions-->✅<!--status-end--> | [Get sessions](docs/sessions/sessions.md) | Get list of sessions in date range |
 | <!--status:sessions/Statsforsessions-->✅<!--status-end--> | [Stats for sessions](docs/sessions/stats.md) | Calculated list of stats |
 | <!--status:sessions/Weeklysessiondata-->✔️<!--status-end--> | [Weekly session data](docs/sessions/weekly.md) | Get collected count of sessions by hour of weekday. |
@@ -117,14 +119,14 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 <!--table:reports-->
 | Status | Name           | Description                     |
 | :-------: | :-------- | :---------------- |
-| <!--status:reports/Currency-->✔️<!--status-end--> | [Currency](docs/reports/addon_currency.md) | Get currency for given range. Needed for Revenue and optional in Attribution reports. |
+| <!--status:reports/Currency-->✅<!--status-end--> | [Currency](docs/reports/addon_currency.md) | Get currency for given range. Needed for Revenue and optional in Attribution reports. |
 | <!--status:reports/Attribution-->✅<!--status-end--> | [Attribution](docs/reports/attribution.md) | See how users engage with your marketing and what drives conversions. |
 | <!--status:reports/Deletereport-->⏳<!--status-end--> | [Delete report](docs/reports/delete.md) | Delete report with given id. |
 | <!--status:reports/Funnel-->✅<!--status-end--> | [Funnel](docs/reports/funnel.md) | Understand the conversion and drop-off rate of users. |
-| <!--status:reports/Goals-->✔️<!--status-end--> | [Goals](docs/reports/goals.md) | Track your goals for pageviews and events. |
-| <!--status:reports/Insights-->✔️<!--status-end--> | [Insights](docs/reports/insights.md) | Dive deeper into your data by using segments and filters. |
+| <!--status:reports/Detailsforid-->✅<!--status-end--> | [Details for id](docs/reports/get-by-id.md) | Gets session details for a individual session |
+| <!--status:reports/Goals-->✅<!--status-end--> | [Goals](docs/reports/goals.md) | Track your goals for pageviews and events. |
+| <!--status:reports/Insights-->✅<!--status-end--> | [Insights](docs/reports/insights.md) | Dive deeper into your data by using segments and filters. |
 | <!--status:reports/Journey-->✔️<!--status-end--> | [Journey](docs/reports/journey.md) | Understand how users nagivate through your website. |
-| <!--status:reports/Detailsforid-->✅<!--status-end--> | [Details for id](docs/reports/report-details.md) | Gets session details for a individual session |
 | <!--status:reports/Listreports-->✅<!--status-end--> | [List reports](docs/reports/reports.md) | Get all reports your personal reports. |
 | <!--status:reports/Retention-->✅<!--status-end--> | [Retention](docs/reports/retention.md) | Measure your website stickiness by tracking how often users return. |
 | <!--status:reports/Revenue-->✅<!--status-end--> | [Revenue](docs/reports/revenue.md) | Look into your revenue data and how users are spending. |

@@ -4,7 +4,7 @@
 **Description:**  
 Gets session properties for a individual session
 
-**Latest check:** <!--status-->✔️<!--status-end-->
+**Latest check:** <!--status-->✅<!--status-end-->
 
 ```
 GET /api/websites/:websiteId/sessions/:sessionId/properties

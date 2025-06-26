@@ -4,7 +4,7 @@
 **Description:**  
 Track your goals for pageviews and events.
 
-**Latest check:** <!--status-->✔️<!--status-end-->
+**Latest check:** <!--status-->✅<!--status-end-->
 
 ```
 POST /reports/goals

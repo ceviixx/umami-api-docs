@@ -99,6 +99,10 @@ x-umami-api-key: {api-key}
         "id": "string"
       }
     }
-  ]
+  ],
+  "count": "number",
+  "page": "number",
+  "pageSize": "number",
+  "orderBy": "string"
 }
 ```

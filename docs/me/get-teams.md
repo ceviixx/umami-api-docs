@@ -33,4 +33,12 @@ GET "https://api.umami.is/v1/me/teams"
 
 ### 📘 Response Structure
 ```json
+{
+    "data": [
+        
+    ],
+    "count": "number",
+    "page": "number",
+    "pageSize": "number"
+}
 ```

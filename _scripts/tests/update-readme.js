@@ -76,7 +76,7 @@ const extractFromMarkdown = (content) => {
 // 🧩 Update tables
 readme = readme.replace(/<!--table:(.*?)-->(.*?)<!--table-end-->/gs, (_, group) => {
   const groupDir = path.join(docsRoot, group);
-  if (!fs.existsSync(groupDir)) return `<!--table:${group}-->\n*(directory not found)*\n<!--table-end-->`;
+  if (!fs.existsSync(groupDir)) return `<!--table:${group}-->\n*(There are currently no requests available.)*\n<!--table-end-->`;
 
   const files = fs.readdirSync(groupDir)
     .filter(f => f.endsWith(".md") && f.toLowerCase() !== "index.md")

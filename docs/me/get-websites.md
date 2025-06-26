@@ -50,4 +50,29 @@ GET "https://api.umami.is/v1/me/websites"
 
 ### 📘 Response Structure
 ```json
+{
+    "data": [
+        {
+            "id": "string",
+            "name": "string",
+            "domain": "string",
+            "shareId": "string",
+            "resetAt": "date|null",
+            "userId": "string",
+            "teamId": "string|null",
+            "createdBy": "string",
+            "createdAt": "date",
+            "updatedAt": "date",
+            "deletedAt": "date|null",
+            "user": {
+                "username": "string",
+                "id": "string"
+            }
+        }
+    ],
+    "count": "number",
+    "page": "number",
+    "pageSize": "number",
+    "orderBy": "string"
+}
 ```

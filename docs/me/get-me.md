@@ -37,4 +37,16 @@ GET "https://api.umami.is/v1/me"
 
 ### 📘 Response Structure
 ```json
+{
+    "user": {
+        "id": "string",
+        "username": "string",
+        "role": "string",
+        "createdAt": "date",
+        "isAdmin": "boolean"
+    },
+    "grant": [],
+    "token": "string",
+    "shareToken": "string|null"
+}
 ```

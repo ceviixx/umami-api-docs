@@ -49,7 +49,7 @@ POST /reports/revenue
 
 ### 🔁 Example Request
 ```http
-POST /reports/revenue HTTP/1.1
+POST /api/reports/revenue HTTP/1.1
 x-umami-api-key: {api-key}
 ```
 

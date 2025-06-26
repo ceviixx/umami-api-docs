@@ -55,7 +55,7 @@ POST /reports/goals
 
 ### 🔁 Example Request
 ```http
-POST /reports/goals HTTP/1.1
+POST /api/reports/goals HTTP/1.1
 x-umami-api-key: {api-key}
 ```
 

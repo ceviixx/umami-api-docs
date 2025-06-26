@@ -58,7 +58,7 @@ POST /reports/insights
 
 ### 🔁 Example Request
 ```http
-POST /reports/insights HTTP/1.1
+POST /api/reports/insights HTTP/1.1
 x-umami-api-key: {api-key}
 ```
 

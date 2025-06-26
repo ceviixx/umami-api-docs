@@ -47,7 +47,7 @@ POST /reports/utm
 
 ### 🔁 Example Request
 ```http
-POST /reports/utm HTTP/1.1
+POST /api/reports/utm HTTP/1.1
 x-umami-api-key: {api-key}
 ```
 

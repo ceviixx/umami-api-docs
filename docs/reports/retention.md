@@ -46,7 +46,7 @@ POST /reports/retention
 
 ### 🔁 Example Request
 ```http
-POST /reports/retention HTTP/1.1
+POST /api/reports/retention HTTP/1.1
 x-umami-api-key: {api-key}
 ```
 

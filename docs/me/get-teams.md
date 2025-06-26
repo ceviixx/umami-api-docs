@@ -13,7 +13,7 @@ GET /api/me/teams
 
 ### 🔁 Example Request
 ```
-GET "https://api.umami.is/v1/me/teams"
+GET /api/me/teams
 ```
 ---
 

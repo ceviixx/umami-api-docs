@@ -51,7 +51,7 @@ POST /reports/journey
 
 ### 🔁 Example Request
 ```http
-POST /reports/journey HTTP/1.1
+POST /api/reports/journey HTTP/1.1
 x-umami-api-key: {api-key}
 ```
 

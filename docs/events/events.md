@@ -24,13 +24,6 @@ GET /api/websites/:websiteId/events
 
 ---
 
-### 📨 Request Body
-```json
-
-```
-
----
-
 ### 🔁 Example Request
 ```http
 GET /api/websites/:websiteId/events?startAt=0000000000000&endAt=0000000000000&query=&page=1&pageSize=20 HTTP/1.1

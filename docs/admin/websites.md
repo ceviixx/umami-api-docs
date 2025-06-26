@@ -1,19 +1,28 @@
-## My websites
+## Admin all websites
 <!-- testable: true -->
 <!-- expectedStatus: 200 -->
 **Description:**  
-Get all your websites.
+Get all websites as admin.
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest check:** <!--status--><!--status-end-->
 
 ```
-GET /api/me/websites
+GET /api/admin/websites
 ```
+---
+
+### 🔍 Query Parameters
+| Name               | Type              | Description                                                 | Example             | Required |
+| :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
+| userId             | string            |                                                             |                     | no       |
+| includeOwnedTeams  | string            |                                                             |                     | no       |
+| includeAllTeams    | string            |                                                             |                     | no       |
+
 ---
 
 ### 🔁 Example Request
 ```
-GET /api/me/websites
+GET /api/admin/websites
 ```
 ---
 
@@ -39,7 +48,7 @@ GET /api/me/websites
             }
         }
     ],
-    "count": 3,
+    "count": 1,
     "page": 1,
     "pageSize": 10,
     "orderBy": "name"

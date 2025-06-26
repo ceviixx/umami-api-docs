@@ -6,7 +6,7 @@ Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Ana
 [![Check source code](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml)
 
 <!--last-updated:start-->
-**Last updated: 2025-06-26 19:37:57 UTC**
+**Last updated: 2025-06-26 19:57:19 UTC**
 <!--last-updated:end-->
 
 ### 📊 API Test Status Legend

@@ -1,5 +1,5 @@
 ## Delete report
-<!-- testable: true -->
+<!-- testable: false -->
 <!-- expectedStatus: 200 -->
 **Description:**  
 Delete report with given id.

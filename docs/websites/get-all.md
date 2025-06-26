@@ -32,28 +32,50 @@ x-umami-api-key: {api-key}
 
 ### 📦 Example Response
 ```json
-[
-  {
-    "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-    "name": "Umami",
-    "domain": "umami.is",
-    "shareId": null,
-    "resetAt": null,
-    "createdAt": "0000-00-00T00:00:00.000Z",
-    "updatedAt": null,
-    "deletedAt": null
-  },
-  {
-    "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-    "name": "Example",
-    "domain": "example.com",
-    "shareId": null,
-    "resetAt": null,
-    "createdAt": "0000-00-00T00:00:00.000Z",
-    "updatedAt": null,
-    "deletedAt": null
-  }
-]
+{
+    "data": [
+        {
+            "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "name": "Example",
+            "domain": "example.com",
+            "shareId": null,
+            "resetAt": null,
+            "userId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "teamId": null,
+            "createdBy": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "createdAt": "0000-00-00T00:00:00.000Z",
+            "updatedAt": "0000-00-00T00:00:00.000Z",
+            "deletedAt": null,
+            "user": {
+                "username": "xxxxxxx@xxxx.xxxx",
+                "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+            }
+        },
+        {
+            "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "name": "Example",
+            "domain": "example.com",
+            "shareId": null,
+            "resetAt": null,
+            "userId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "teamId": null,
+            "createdBy": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "createdAt": "0000-00-00T00:00:00.000Z",
+            "updatedAt": "0000-00-00T00:00:00.000Z",
+            "deletedAt": null,
+            "user": {
+                "username": "xxxxxxx@xxxx.xxxx",
+                "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+            }
+        },
+    ],
+    "count": 2,
+    "page": 1,
+    "pageSize": 10,
+    "orderBy": "name"
+}
+
+
 ```
 
 ---
@@ -71,7 +93,11 @@ x-umami-api-key: {api-key}
       "userId": "string",
       "createdAt": "string",
       "updatedAt": "string|null",
-      "deletedAt": "string|null"
+      "deletedAt": "string|null",
+      "user": {
+        "username": "string",
+        "id": "string"
+      }
     }
   ]
 }

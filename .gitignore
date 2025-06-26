@@ -16,5 +16,5 @@ Desktop.ini
 .fseventsd
 .TemporaryItems
 
-
-fix.sh
+_scripts/checks/docs_exists.json
+_scripts/checks/docs_missing.json

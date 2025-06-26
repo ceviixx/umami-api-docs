@@ -1,0 +1,1721 @@
+[
+  {
+    "method": "POST",
+    "route": "/api/auth/verify",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": false
+  },
+  {
+    "method": "POST",
+    "route": "/api/auth/logout",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": false
+  },
+  {
+    "method": "POST",
+    "route": "/api/auth/sso",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": false
+  },
+  {
+    "method": "POST",
+    "route": "/api/auth/login",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "username",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "password",
+        "type": "string",
+        "required": "yes"
+      }
+    ],
+    "authRequired": false,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/admin/users",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/admin/websites",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "userId",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "includeOwnedTeams",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "includeAllTeams",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/realtime/:websiteId",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/heartbeat",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": false
+  },
+  {
+    "method": "POST",
+    "route": "/api/batch",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": false
+  },
+  {
+    "method": "GET",
+    "route": "/api/me",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": false
+  },
+  {
+    "method": "POST",
+    "route": "/api/me/password",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "currentPassword",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "newPassword",
+        "type": "string",
+        "required": "yes"
+      }
+    ],
+    "authRequired": false,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/me/teams",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": false,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/me/websites",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": false,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/users",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "id",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "username",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "password",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "role",
+        "type": "string",
+        "required": "yes",
+        "options": [
+          "admin",
+          "user",
+          "view-only"
+        ]
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/users/:userId",
+    "routeParameters": [
+      "userId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "username",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "password",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/users/:userId",
+    "routeParameters": [
+      "userId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "username",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "password",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "DELETE",
+    "route": "/api/users/:userId",
+    "routeParameters": [
+      "userId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "username",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "password",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/users/:userId/usage",
+    "routeParameters": [
+      "userId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      }
+    ],
+    "authRequired": false,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/users/:userId/teams",
+    "routeParameters": [
+      "userId"
+    ],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": false,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/users/:userId/websites",
+    "routeParameters": [
+      "userId"
+    ],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": false,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/scripts/telemetry",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": false
+  },
+  {
+    "method": "POST",
+    "route": "/api/teams",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/teams/join",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "accessCode",
+        "type": "string",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/teams/:teamId",
+    "routeParameters": [
+      "teamId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "accessCode",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/teams/:teamId",
+    "routeParameters": [
+      "teamId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "accessCode",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "DELETE",
+    "route": "/api/teams/:teamId",
+    "routeParameters": [
+      "teamId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "accessCode",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/teams/:teamId/users",
+    "routeParameters": [
+      "teamId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "userId",
+        "type": "string",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/teams/:teamId/users",
+    "routeParameters": [
+      "teamId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "userId",
+        "type": "string",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/teams/:teamId/users/:userId",
+    "routeParameters": [
+      "teamId",
+      "userId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "role",
+        "type": "string",
+        "required": "yes",
+        "options": [
+          "team-member",
+          "team-view-only",
+          "team-manager"
+        ]
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/teams/:teamId/users/:userId",
+    "routeParameters": [
+      "teamId",
+      "userId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "role",
+        "type": "string",
+        "required": "yes",
+        "options": [
+          "team-member",
+          "team-view-only",
+          "team-manager"
+        ]
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "DELETE",
+    "route": "/api/teams/:teamId/users/:userId",
+    "routeParameters": [
+      "teamId",
+      "userId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "role",
+        "type": "string",
+        "required": "yes",
+        "options": [
+          "team-member",
+          "team-view-only",
+          "team-manager"
+        ]
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/teams/:teamId/websites",
+    "routeParameters": [
+      "teamId"
+    ],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/send",
+    "routeParameters": [],
+    "queryParameters": [
+      {
+        "name": "msclkid",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "utm_term",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "fbclid",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "utm_medium",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "twclid",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "utm_source",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "ttclid",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "gclid",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "utm_content",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "utm_campaign",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "li_fat_id",
+        "type": "string",
+        "required": "yes"
+      }
+    ],
+    "requestBody": [
+      {
+        "name": "type",
+        "type": "enum",
+        "required": "yes"
+      },
+      {
+        "name": "payload",
+        "type": "object",
+        "required": "yes"
+      },
+      {
+        "name": "hostname",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "language",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "screen",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "tag",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "ip",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "userAgent",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "timestamp",
+        "type": "coerce",
+        "required": "no"
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": false,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "domain",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "shareId",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "teamId",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/websites",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "domain",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "shareId",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "teamId",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "domain",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "shareId",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/websites/:websiteId",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "domain",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "shareId",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "DELETE",
+    "route": "/api/websites/:websiteId",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "domain",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "shareId",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/metrics",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "type",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "limit",
+        "type": "coerce",
+        "required": "no"
+      },
+      {
+        "name": "offset",
+        "type": "coerce",
+        "required": "no"
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/event-data/values",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "eventName",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "propertyName",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/event-data/properties",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "propertyName",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/event-data/fields",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/event-data/events",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/event-data/stats",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "propertyName",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/daterange",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/websites/:websiteId/reset",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/values",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "type",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/websites/:websiteId/transfer",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "userId",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "teamId",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/session-data/values",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "propertyName",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/session-data/properties",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "propertyName",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/sessions",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/sessions/:sessionId",
+    "routeParameters": [
+      "websiteId",
+      "sessionId"
+    ],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/sessions/:sessionId/activity",
+    "routeParameters": [
+      "websiteId",
+      "sessionId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/sessions/:sessionId/properties",
+    "routeParameters": [
+      "websiteId",
+      "sessionId"
+    ],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/sessions/weekly",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/sessions/stats",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/active",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/events",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/events/series",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/stats",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "compare",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/reports",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/websites/:websiteId/pageviews",
+    "routeParameters": [
+      "websiteId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "startAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "endAt",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "compare",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/reports",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "websiteId",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "teamId",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "websiteId",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "parameters",
+        "type": "object",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/reports",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "websiteId",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "teamId",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "websiteId",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "parameters",
+        "type": "object",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/reports/insights",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "filters",
+        "type": "array",
+        "required": "yes"
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "operator",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/reports/goals",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "type",
+        "type": "string",
+        "required": "yes",
+        "options": [
+          "url",
+          "event",
+          "event-data"
+        ]
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "goal",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "property",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/reports/retention",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/reports/journey",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "steps",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "startStep",
+        "type": "string",
+        "required": "no"
+      },
+      {
+        "name": "endStep",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/reports/attribution",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "model",
+        "type": "string",
+        "required": "yes",
+        "options": [
+          "firstClick",
+          "lastClick"
+        ]
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "currency",
+        "type": "string",
+        "required": "no"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/reports/:reportId",
+    "routeParameters": [
+      "reportId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "websiteId",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "parameters",
+        "type": "object",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/reports/:reportId",
+    "routeParameters": [
+      "reportId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "websiteId",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "parameters",
+        "type": "object",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "DELETE",
+    "route": "/api/reports/:reportId",
+    "routeParameters": [
+      "reportId"
+    ],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "websiteId",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "parameters",
+        "type": "object",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/reports/revenue",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "currency",
+        "type": "string",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/reports/revenue",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "currency",
+        "type": "string",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/reports/funnel",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [
+      {
+        "name": "window",
+        "type": "coerce",
+        "required": "yes"
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "required": "yes"
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": "yes"
+      }
+    ],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "POST",
+    "route": "/api/reports/utm",
+    "routeParameters": [],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": true,
+    "exampleResponse": {}
+  },
+  {
+    "method": "GET",
+    "route": "/api/share/:shareId",
+    "routeParameters": [
+      "shareId"
+    ],
+    "queryParameters": [],
+    "requestBody": [],
+    "authRequired": false,
+    "exampleResponse": {}
+  }
+]

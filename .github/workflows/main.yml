@@ -1,5 +1,5 @@
 # main.yml
-name: Umami API Tests
+name: API Tests
 
 on:
   push:

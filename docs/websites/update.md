@@ -25,8 +25,7 @@ POST /api/websites/:websiteId
 ```json
 {
     "name": "Example",
-    "domain": "example.com",
-    "shareId": "dfna03ad"
+    "domain": "example.com"
 }
 ```
 
@@ -44,8 +43,8 @@ x-umami-api-key: {api-key}
 ```json
 {
   "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-  "name": "Umami",
-  "domain": "umami.is",
+  "name": "Example",
+  "domain": "example.com",
   "shareId": null,
   "resetAt": null,
   "userId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -59,5 +58,15 @@ x-umami-api-key: {api-key}
 
 📘 Response Structure
 ```json
-
+{
+  "id": "string",
+  "name": "string",
+  "domain": "string",
+  "shareId": "string|null",
+  "resetAt": "string|null",
+  "userId": "string",
+  "createdAt": "date",
+  "updatedAt": "date|null",
+  "deletedAt": "date|null"
+}
 ```

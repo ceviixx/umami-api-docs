@@ -3,6 +3,7 @@ Docs from [uamami Analytics](https://github.com/umami-software/umami) with daily
 Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Analytics-App).
 
 [![Umami API Tests](https://github.com/ceviixx/umami-api-docs/actions/workflows/main.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/main.yml)
+[![Check source code](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml)
 
 <!--last-updated:start-->
 **Last updated: 2025-06-26 19:37:57 UTC**

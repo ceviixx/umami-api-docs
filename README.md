@@ -6,7 +6,7 @@ Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Ana
 [![Check source code](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml)
 
 <!--last-updated:start-->
-**Last updated: 2025-06-26 20:12:22 UTC**
+**Last updated: 2025-06-26 21:32:36 UTC**
 <!--last-updated:end-->
 
 ### 📊 API Test Status Legend
@@ -36,12 +36,16 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 
 ## Admin
 <!--table:admin-->
-*(There are currently no requests available.)*
+| Status | Name           | Description                     |
+| :-------: | :-------- | :---------------- |
+| <!--status:admin/Adminallwebsites-->✅<!--status-end--> | [Admin all websites](docs/admin/websites.md) | Get all websites as admin. |
 <!--table-end-->
 
 ## Realtime
 <!--table:realtime-->
-*(There are currently no requests available.)*
+| Status | Name           | Description                     |
+| :-------: | :-------- | :---------------- |
+| <!--status:realtime/Weeklysessiondata-->✅<!--status-end--> | [Weekly session data](docs/realtime/realtime-stats.md) | Get collected count of sessions by hour of weekday. |
 <!--table-end-->
 
 ## Scripts
@@ -99,10 +103,14 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 <!--table:sessions-->
 | Status | Name           | Description                     |
 | :-------: | :-------- | :---------------- |
+| <!--status:sessions/Sessionactivity-->✅<!--status-end--> | [Session activity](docs/sessions/activity.md) | Get activity from session |
 | <!--status:sessions/Detailsforid-->✔️<!--status-end--> | [Details for id](docs/sessions/get-by-id.md) | Gets session details for a individual session |
 | <!--status:sessions/Properties-->✔️<!--status-end--> | [Properties](docs/sessions/properties.md) | Gets session properties for a individual session |
 | <!--status:sessions/Dataproperties-->✔️<!--status-end--> | [Data properties](docs/sessions/session-data-properties.md) | Gets session data counts by property name |
 | <!--status:sessions/Datavalues-->✔️<!--status-end--> | [Data values](docs/sessions/session-data-values.md) | Gets session data counts for a given property |
+| <!--status:sessions/Getsessions-->✅<!--status-end--> | [Get sessions](docs/sessions/sessions.md) | Get list of sessions in date range |
+| <!--status:sessions/Statsforsessions-->✅<!--status-end--> | [Stats for sessions](docs/sessions/stats.md) | Calculated list of stats |
+| <!--status:sessions/Weeklysessiondata-->✔️<!--status-end--> | [Weekly session data](docs/sessions/weekly.md) | Get collected count of sessions by hour of weekday. |
 <!--table-end-->
 
 ## Reports
@@ -111,10 +119,13 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | :-------: | :-------- | :---------------- |
 | <!--status:reports/Currency-->✔️<!--status-end--> | [Currency](docs/reports/addon_currency.md) | Get currency for given range. Needed for Revenue and optional in Attribution reports. |
 | <!--status:reports/Attribution-->✅<!--status-end--> | [Attribution](docs/reports/attribution.md) | See how users engage with your marketing and what drives conversions. |
+| <!--status:reports/Deletereport-->✔️<!--status-end--> | [Delete report](docs/reports/delete.md) | Delete report with given id. |
 | <!--status:reports/Funnel-->✅<!--status-end--> | [Funnel](docs/reports/funnel.md) | Understand the conversion and drop-off rate of users. |
 | <!--status:reports/Goals-->✔️<!--status-end--> | [Goals](docs/reports/goals.md) | Track your goals for pageviews and events. |
 | <!--status:reports/Insights-->✔️<!--status-end--> | [Insights](docs/reports/insights.md) | Dive deeper into your data by using segments and filters. |
 | <!--status:reports/Journey-->✔️<!--status-end--> | [Journey](docs/reports/journey.md) | Understand how users nagivate through your website. |
+| <!--status:reports/Detailsforid-->✅<!--status-end--> | [Details for id](docs/reports/report-details.md) | Gets session details for a individual session |
+| <!--status:reports/Listreports-->✅<!--status-end--> | [List reports](docs/reports/reports.md) | Get all reports your personal reports. |
 | <!--status:reports/Retention-->✅<!--status-end--> | [Retention](docs/reports/retention.md) | Measure your website stickiness by tracking how often users return. |
 | <!--status:reports/Revenue-->✅<!--status-end--> | [Revenue](docs/reports/revenue.md) | Look into your revenue data and how users are spending. |
 | <!--status:reports/UTM-->✔️<!--status-end--> | [UTM](docs/reports/utm.md) | Track your campaigns through UTM parameters. |

@@ -4,7 +4,7 @@
 **Description:**  
 Calculated list of stats
 
-**Latest check:** <!--status--><!--status-end-->
+**Latest check:** <!--status-->✅<!--status-end-->
 
 ```
 GET /api/websites/:websiteId/sessions/stats

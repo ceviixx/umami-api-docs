@@ -14,7 +14,7 @@ GET /api/websites
 
 ### 🔍 Query Parameters
 | Name               | Type              | Description                                                 | Example             | Required |
-| :----------------- | :----------G------ | :---------------------------------------------------------- | :------------------ | :------: |
+| :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
 | query              | string            | Search text.                                                |                     | no       |
 | page               | number            | Determines page.                                            |                     | no       |
 | pageSize           | string            | Determines how many results to return.                      |                     | no       |

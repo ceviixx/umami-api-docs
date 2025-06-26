@@ -1,19 +1,17 @@
 name: API Check
 
 on:
+  workflow_dispatch:     # manuell auslösbar
   schedule:
-    - cron: '0 8 * * 1' 
-  workflow_dispatch:
+    - cron: '0 9 * * 1'  # jeden Montag um 09:00 UTC
 
 jobs:
-  api-check:
+  create-doc-issues:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -23,23 +21,11 @@ jobs:
       - name: Install required Python packages
         run: pip install requests
 
-      - name: Run API check script
-        run: python _scripts/checks/endpoints.py
+      - name: Generate docs_missing.json
+        run: python .github/_scripts/checks/endpoints.py
 
-      - name: Generate API documentation
-        run: python _scripts/checks/create-docs.py
-
-      - name: Check for changes
-        id: check_diff
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@users.noreply.github.com"
-          git diff --quiet || echo "has_changes=true" >> "$GITHUB_OUTPUT"
-
-      - name: Commit and push changes to api-check branch
-        if: steps.check_diff.outputs.has_changes == 'true'
-        run: |
-          git checkout -B api-check
-          git add -A
-          git commit -m "API check: $(date -u +'%Y-%m-%d')"
-          git push origin api-check --force
+      - name: Create GitHub Issues for undocumented endpoints
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: python .github/_scripts/generate-issues.py ./github/.json

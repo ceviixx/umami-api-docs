@@ -98,7 +98,8 @@ for r, _, fs in os.walk(api_dir):
                 entry["exampleResponse"] = example
             (docs_exist if key in documented else docs_missing).append(entry)
 
-open("_scripts/checks/docs_exists.json","w",encoding="utf-8").write(json.dumps(docs_exist,indent=2))
-open("_scripts/checks/docs_missing.json","w",encoding="utf-8").write(json.dumps(docs_missing,indent=2))
+os.makedirs("tmp", exist_ok=True)
+open("tmp/docs_exists.json","w", encoding="utf-8").write(json.dumps(docs_exist,indent=2))
+open("tmp/docs_missing.json","w", encoding="utf-8").write(json.dumps(docs_missing,indent=2))
 shutil.rmtree(qd)
 debug("✅ Fertig!")

@@ -5,7 +5,7 @@ Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Ana
 [![Umami API Tests](https://github.com/ceviixx/umami-api-docs/actions/workflows/main.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/main.yml)
 
 <!--last-updated:start-->
-**Last updated: 2025-06-26 19:25:04 UTC**
+**Last updated: 2025-06-26 19:28:30 UTC**
 <!--last-updated:end-->
 
 ### 📊 API Test Status Legend
@@ -28,9 +28,9 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 <!--table:me-->
 | Status | Name           | Description                     |
 | :-------: | :-------- | :---------------- |
-| <!--status:me/me-->⏳<!--status-end--> | [me](docs/me/get-me.md) | Get data about your account basaed on authentification. |
-| <!--status:me/meteams-->⏳<!--status-end--> | [me teams](docs/me/get-teams.md) | Get all your teams. |
-| <!--status:me/mewebsites-->⏳<!--status-end--> | [me websites](docs/me/get-websites.md) | Get all your websites. |
+| <!--status:me/Mywebsites-->✔️<!--status-end--> | [My websites](docs/me/get-me.md) | Get data about your account basaed on authentification. |
+| <!--status:me/Myteams-->✔️<!--status-end--> | [My teams](docs/me/get-teams.md) | Get all your teams. |
+| <!--status:me/Mywebsites-->✔️<!--status-end--> | [My websites](docs/me/get-websites.md) | Get all your websites. |
 <!--table-end-->
 
 ## Admin

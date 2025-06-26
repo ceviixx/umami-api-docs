@@ -4,7 +4,7 @@
 **Description:**  
 Get all your teams.
 
-**Latest check:** <!--status-->⏳<!--status-end-->
+**Latest check:** <!--status-->✔️<!--status-end-->
 
 ```
 GET /api/me/teams

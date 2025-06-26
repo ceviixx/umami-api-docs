@@ -6,7 +6,7 @@ Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Ana
 [![Check source code](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml)
 
 <!--last-updated:start-->
-**Last updated: 2025-06-26 21:32:36 UTC**
+**Last updated: 2025-06-26 21:36:35 UTC**
 <!--last-updated:end-->
 
 ### 📊 API Test Status Legend
@@ -119,7 +119,7 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | :-------: | :-------- | :---------------- |
 | <!--status:reports/Currency-->✔️<!--status-end--> | [Currency](docs/reports/addon_currency.md) | Get currency for given range. Needed for Revenue and optional in Attribution reports. |
 | <!--status:reports/Attribution-->✅<!--status-end--> | [Attribution](docs/reports/attribution.md) | See how users engage with your marketing and what drives conversions. |
-| <!--status:reports/Deletereport-->✔️<!--status-end--> | [Delete report](docs/reports/delete.md) | Delete report with given id. |
+| <!--status:reports/Deletereport-->⏳<!--status-end--> | [Delete report](docs/reports/delete.md) | Delete report with given id. |
 | <!--status:reports/Funnel-->✅<!--status-end--> | [Funnel](docs/reports/funnel.md) | Understand the conversion and drop-off rate of users. |
 | <!--status:reports/Goals-->✔️<!--status-end--> | [Goals](docs/reports/goals.md) | Track your goals for pageviews and events. |
 | <!--status:reports/Insights-->✔️<!--status-end--> | [Insights](docs/reports/insights.md) | Dive deeper into your data by using segments and filters. |

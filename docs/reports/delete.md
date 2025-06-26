@@ -4,7 +4,7 @@
 **Description:**  
 Delete report with given id.
 
-**Latest check:** <!--status-->✔️<!--status-end-->
+**Latest check:** <!--status-->⏳<!--status-end-->
 
 ```
 DELETE /api/reports/:reportId

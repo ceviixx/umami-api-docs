@@ -6,7 +6,7 @@ Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Ana
 [![Check source code](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml)
 
 <!--last-updated:start-->
-**Last updated: 2025-06-26 22:09:54 UTC**
+**Last updated: 2025-06-26 22:15:49 UTC**
 <!--last-updated:end-->
 
 ### 📊 API Test Status Legend
@@ -97,7 +97,7 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | <!--status:events/Eventdataevents-->✅<!--status-end--> | [Event data events](docs/events/data-events.md) | Gets event data names, properties, and counts |
 | <!--status:events/Getseventdatapropertyandvaluecounts-->✅<!--status-end--> | [Gets event data property and value counts](docs/events/data-fields.md) | Gets event data property and value counts within a given time range. |
 | <!--status:events/Eventdatastats-->✅<!--status-end--> | [Event data stats](docs/events/data-stats.md) | Gets summarized website events, fields, and records within a given time range. |
-| <!--status:events/Eventdatavalues-->✅<!--status-end--> | [Event data values](docs/events/data-values.md) | Gets event data counts for a given event and property |
+| <!--status:events/Eventdatavalues-->✔️<!--status-end--> | [Event data values](docs/events/data-values.md) | Gets event data counts for a given event and property |
 | <!--status:events/Events-->✅<!--status-end--> | [Events](docs/events/events.md) | Gets website event details within a given time range. |
 <!--table-end-->
 
@@ -107,7 +107,7 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | :-------: | :-------- | :---------------- |
 | <!--status:sessions/Sessionactivity-->✅<!--status-end--> | [Session activity](docs/sessions/activity.md) | Get activity from session |
 | <!--status:sessions/Dataproperties-->✅<!--status-end--> | [Data properties](docs/sessions/data-properties.md) | Gets session data counts by property name |
-| <!--status:sessions/Datavalues-->🚨 [#4](https://github.com/ceviixx/umami-api-docs/issues/4)<!--status-end--> | [Data values](docs/sessions/data-values.md) | Gets session data counts for a given property |
+| <!--status:sessions/Datavalues-->✔️<!--status-end--> | [Data values](docs/sessions/data-values.md) | Gets session data counts for a given property |
 | <!--status:sessions/Detailsforid-->✅<!--status-end--> | [Details for id](docs/sessions/get-by-id.md) | Gets session details for a individual session |
 | <!--status:sessions/Properties-->✅<!--status-end--> | [Properties](docs/sessions/properties.md) | Gets session properties for a individual session |
 | <!--status:sessions/Getsessions-->✅<!--status-end--> | [Get sessions](docs/sessions/sessions.md) | Get list of sessions in date range |

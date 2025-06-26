@@ -1,4 +1,4 @@
-name: Weekly Python Script
+name: Check source code
 
 on:
   schedule:

@@ -1,5 +1,5 @@
-## me websites
-<!-- testable: false -->
+## My websites
+<!-- testable: true -->
 <!-- expectedStatus: 200 -->
 **Description:**  
 Get all your websites.

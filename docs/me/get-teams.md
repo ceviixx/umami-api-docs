@@ -1,5 +1,5 @@
-## me teams
-<!-- testable: false -->
+## My teams
+<!-- testable: true -->
 <!-- expectedStatus: 200 -->
 **Description:**  
 Get all your teams.

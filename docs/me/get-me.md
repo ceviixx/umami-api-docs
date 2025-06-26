@@ -1,5 +1,5 @@
-## me
-<!-- testable: false -->
+## My websites
+<!-- testable: true -->
 <!-- expectedStatus: 200 -->
 **Description:**  
 Get data about your account basaed on authentification.

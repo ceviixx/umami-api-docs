@@ -34,11 +34,11 @@ x-umami-api-key: {api-key}
 [
   { 
     "value": "EU", 
-    "total": 609 
+    "total": 609
   },
   { 
     "value": "US", 
-    "total": 431 
+    "total": 431
   }
 ]
 ```
@@ -47,5 +47,10 @@ x-umami-api-key: {api-key}
 
 ### 📘 Response Structure
 ```json
-
+[
+  { 
+    "value": "string", 
+    "total": "number"
+  }
+]
 ```

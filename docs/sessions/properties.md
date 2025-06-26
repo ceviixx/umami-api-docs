@@ -50,5 +50,16 @@ x-umami-api-key: {api-key}
 
 ### 📘 Response Structure
 ```json
-
+[
+  {
+    "websiteId": "string",
+    "sessionId": "string",
+    "dataKey": "string",
+    "dataType": "number",
+    "stringValue": "string",
+    "numberValue": "date|null",
+    "dateValue": "date|null",
+    "createdAt": "date"
+  }
+]
 ```

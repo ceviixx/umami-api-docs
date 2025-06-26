@@ -47,5 +47,23 @@ x-umami-api-key: {api-key}
 
 ### 📘 Response Structure
 ```json
-
+{
+  "id": "string",
+  "websiteId": "string",
+  "hostname": "string",
+  "browser": "string",
+  "os": "string",
+  "device": "string",
+  "screen": "string",
+  "language": "string",
+  "country": "string",
+  "subdivision1": "string",
+  "city": "string",
+  "firstAt": "date",
+  "lastAt": "date",
+  "visits": "number",
+  "views": "number",
+  "events": "number",
+  "totaltime": "number"
+}
 ```

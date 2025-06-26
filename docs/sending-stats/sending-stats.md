@@ -56,7 +56,7 @@ POST https://cloud.umami.is/api/send
 ```http
 POST /api/send HTTP/1.1
 x-umami-api-key: {api-key}
-User-Agent: MyCustomTestAgent/1.0
+User-Agent: MyUserAgent/1.0
 ```
 
 ---

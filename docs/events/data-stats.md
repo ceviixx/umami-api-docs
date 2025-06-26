@@ -50,5 +50,11 @@ x-umami-api-key: {api-key}
 
 ### 📘 Response Structure
 ```json
-
+[
+    { 
+        "events": "number", 
+        "fields": "number", 
+        "records": "number" 
+    }
+]
 ```

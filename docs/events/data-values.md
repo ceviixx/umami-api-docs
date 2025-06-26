@@ -48,5 +48,10 @@ x-umami-api-key: {api-key}
 
 ### 📘 Response Structure
 ```json
-
+[
+  {
+    "value": "string",
+    "total": "number"
+  }
+]
 ```

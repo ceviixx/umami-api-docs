@@ -32,26 +32,12 @@ x-umami-api-key: {api-key}
 
 ### 📦 Example Response
 ```json
-[
-  {
-    "value": "female",
-    "total": 4
-  },
-  {
-    "value": "male",
-    "total": 1
-  }
-]
+
 ```
 
 ---
 
 ### 📘 Response Structure
 ```json
-[
-  {
-    "value": "string",
-    "total": "number"
-  }
-]
+
 ```

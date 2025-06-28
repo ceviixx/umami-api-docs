@@ -12,9 +12,11 @@ GET /api/me/teams
 ---
 
 ### 🔁 Example Request
+```bash
+curl -X GET https://api.umami.is/v1/me/teams \
+  -H "x-umami-api-key: YOUR_API_KEY"
 ```
-GET /api/me/teams
-```
+
 ---
 
 ### 📦 Example Response

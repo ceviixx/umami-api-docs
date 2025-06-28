@@ -13,9 +13,9 @@ DELETE /api/users/:userId
 ---
 
 ### 🔁 Example Request
-```http
-DELETE /api/users/:userId HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -X DELETE https://api.umami.is/v1/users/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+  -H "x-umami-api-key: YOUR_API_KEY"
 ```
 
 ---

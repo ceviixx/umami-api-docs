@@ -23,9 +23,13 @@ GET /api/websites/:websiteId/event-data/values
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/websites/:websiteId/event-data/values?startAt=0000000000000&endAt=0000000000000&eventName=survey&propertyName=gender HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -G https://api.umami.is/v1/websites/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/event-data/values \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  --data-urlencode "startAt=1234567890000" \
+  --data-urlencode "endAt=1234567899999" \
+  --data-urlencode "eventName=survey" \
+  --data-urlencode "propertyName=gender"
 ```
 
 ---

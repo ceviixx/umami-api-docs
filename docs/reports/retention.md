@@ -45,9 +45,21 @@ POST /reports/retention
 ---
 
 ### 🔁 Example Request
-```http
-POST /api/reports/retention HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -X POST https://api.umami.is/v1/reports/retention \
+  -H "Content-Type: application/json" \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  -d '{
+    "dateRange": {
+      "startDate": "2025-04-30T22:00:00.000Z",
+      "endDate": "2025-05-31T21:59:59.999Z",
+      "value": "range:1746050400000:1748728799999",
+      "offset": 0,
+      "unit": "day"
+    },
+    "websiteId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "timezone": "Europe/Berlin"
+  }'
 ```
 
 ---

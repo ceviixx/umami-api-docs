@@ -14,9 +14,9 @@ GET /api/websites/:websiteId
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/websites/:websiteId HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl https://api.umami.is/v1/websites/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+  -H "x-umami-api-key: YOUR_API_KEY"
 ```
 
 ---

@@ -33,9 +33,14 @@ POST /api/websites
 ---
 
 ### 🔁 Example Request
-```http
-POST /api/websites HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -X POST https://api.umami.is/v1/websites \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Umami",
+    "domain": "umami.is"
+  }'
 ```
 
 ---

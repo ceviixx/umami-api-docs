@@ -33,9 +33,13 @@ GET /api/websites/:websiteId/events/series
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/websites/:websiteId/events/series?startAt=0000000000000&endAt=0000000000000&unit=hour&timezone=America%2FLos_Angeles HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -G https://api.umami.is/v1/websites/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/events/series \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  --data-urlencode "startAt=0000000000000" \
+  --data-urlencode "endAt=0000000000000" \
+  --data-urlencode "unit=hour" \
+  --data-urlencode "timezone=America/Los_Angeles"
 ```
 
 ---

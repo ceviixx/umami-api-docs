@@ -13,9 +13,9 @@ DELETE /api/websites/:websiteId
 ---
 
 ### 🔁 Example Request
-```http
-DELETE /api/websites/:websiteId HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -X DELETE https://api.umami.is/v1/websites/WEBSITE_ID \
+  -H "x-umami-api-key: YOUR_API_KEY"
 ```
 
 ---

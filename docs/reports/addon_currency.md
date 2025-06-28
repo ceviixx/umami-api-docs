@@ -20,10 +20,11 @@ GET /api/reports/revenue
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/reports/revenue?websiteId=:websiteId&startDate=Thu+Mar+27+2025+00%3A00%3A00+GMT%2B0100+%28Central+European+Standard+Time%29&endDate=Tue+Jun+24+2025+23%3A59%3A59+GMT%2B0200+%28Central+European+Summer+Time%29
- HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -G https://api.umami.is/v1/reports/revenue \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  --data-urlencode "startAt=Thu Mar 27 2025 00:00:00 GMT+0100 (Central European Standard Time)" \
+  --data-urlencode "endAt=Tue Jun 24 2025 23:59:59 GMT+0200 (Central European Summer Time)"
 ```
 
 ---

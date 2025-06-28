@@ -13,9 +13,9 @@ GET /api/share/:shareId
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/share/:shareId HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -X GET https://api.umami.is/v1/share/xxxxxxxxxxxxxxx \
+  -H "x-umami-api-key: YOUR_API_KEY"
 ```
 
 ---

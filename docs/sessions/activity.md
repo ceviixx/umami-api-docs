@@ -21,9 +21,11 @@ GET /api/websites/:websiteId/sessions/:sessionId/activity
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/websites/:websiteId/sessions/:sessionId/activity HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -G https://api.umami.is/v1/websites/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/sessions/yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy/activity \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  --data-urlencode "startAt=1750964008000" \
+  --data-urlencode "endAt=1750964016000"
 ```
 
 ---

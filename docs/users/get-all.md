@@ -16,9 +16,9 @@ GET /api/admin/users
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/admin/users HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -X GET https://api.umami.is/v1/admin/users \
+  -H "x-umami-api-key: YOUR_API_KEY"
 ```
 
 ---

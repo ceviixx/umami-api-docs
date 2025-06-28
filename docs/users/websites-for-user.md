@@ -1,5 +1,5 @@
-## 
-<!-- testable: false -->
+##  Websites from user
+<!-- testable: true -->
 <!-- expectedStatus: 200 -->
 **Description:**  
 Get user websites by user id.
@@ -23,33 +23,73 @@ GET /api/users/:userId/websites
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/users/:userId/websites HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -G https://api.umami.is/v1/users/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/websites \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  --data-urlencode "query=" \
+  --data-urlencode "page=1" \
+  --data-urlencode "pageSize=25" \
+  --data-urlencode "orderBy=name"
 ```
 
 ---
 
 📦 Example Response
 ```json
-[
-  {
-    "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-    "userId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-    "domain": "umami.is",
-    "name": "umami",
-    "shareId": null,
-    "createdAt": "0000-00-00T00:00:00.000Z",
-    "deletedAt": null,
-    "resetAt": null,
-    "updatedAt": null
-  }
-]
+{
+  "data": [
+    {
+      "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "updatedAt": "0000-00-00T00:00:00.00Z",
+      "user": {
+        "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+        "username": "xxxxx"
+      },
+      "domain": "xxxxxxx",
+      "teamId": null,
+      "resetAt": null,
+      "userId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "createdBy": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "shareId": "xxxxxxxxxxxxx",
+      "createdAt": "0000-00-00T00:00:00.00Z",
+      "name": "xxxxx",
+      "deletedAt": null
+    }
+  ],
+  "orderBy": "name",
+  "count": 3,
+  "pageSize": 10,
+  "page": 1
+}
 ```
 
 ---
 
 📘 Response Structure
 ```json
-
+{
+  "data": [
+    {
+      "id": "string",
+      "updatedAt": "date",
+      "user": {
+        "id": "string",
+        "username": "string"
+      },
+      "domain": "string",
+      "teamId": "string|null",
+      "resetAt": "date|null",
+      "userId": "string",
+      "createdBy": "string",
+      "shareId": "string",
+      "createdAt": "date",
+      "name": "string",
+      "deletedAt": "date|null"
+    }
+  ],
+  "orderBy": "string",
+  "count": "number",
+  "pageSize": "number",
+  "page": "number"
+}
 ```

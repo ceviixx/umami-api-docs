@@ -33,9 +33,15 @@ POST /api/users
 ---
 
 ### 🔁 Example Request
-```http
-POST /api/users HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -X POST https://api.umami.is/v1/users \
+  -H "Content-Type: application/json" \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  -d '{
+    "username": "admin",
+    "password": "umami",
+    "role": "admin"
+  }'
 ```
 
 ---

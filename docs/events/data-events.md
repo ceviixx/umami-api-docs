@@ -23,9 +23,9 @@ GET /api/websites/:websiteId/event-data/events
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/websites/:websiteId/event-data/events HTTP/1.1
-Authorization: Bearer {token}
+```bash
+curl -X GET https://api.umami.is/v1/websites/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/event-data/events \
+  -H "x-umami-api-key: YOUR_API_KEY"
 ```
 
 ---

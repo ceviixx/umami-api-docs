@@ -48,9 +48,23 @@ POST /reports/revenue
 ---
 
 ### 🔁 Example Request
-```http
-POST /api/reports/revenue HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -X POST https://api.umami.is/v1/reports/revenue \
+  -H "Content-Type: application/json" \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  -d '{
+    "websiteId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "dateRange": {
+      "startDate": "2025-05-19T14:00:00.000Z",
+      "endDate": "2025-05-20T13:59:59.999Z",
+      "offset": 0,
+      "num": 24,
+      "unit": "hour",
+      "value": "24hour"
+    },
+    "currency": "USD",
+    "timezone": "Europe/Berlin"
+  }'
 ```
 
 ---

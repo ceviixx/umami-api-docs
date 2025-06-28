@@ -6,7 +6,7 @@ See how users engage with your marketing and what drives conversions.
 **Latest status:** <!--status-->✅<!--status-end-->
 
 ```
-POST /reports/attribution
+POST /api/reports/attribution
 ```
 
 ---
@@ -54,9 +54,29 @@ POST /reports/attribution
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/websites/:websiteId/event-data/events HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -X POST https://api.umami.is/v1/attribution \
+  -H "Content-Type: application/json" \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  -d '{
+    "model": "firstClick",
+    "steps": [
+      {
+        "type": "event",
+        "value": "/"
+      }
+    ],
+    "websiteId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "dateRange": {
+      "startDate": "2025-05-13T22:00:00.000Z",
+      "endDate": "2025-05-20T21:59:59.999Z",
+      "unit": "day",
+      "offset": 0,
+      "num": 7,
+      "value": "7day"
+    },
+    "timezone": "Europe/Berlin"
+  }'
 ```
 
 ---

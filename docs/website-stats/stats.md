@@ -33,9 +33,11 @@ GET /api/websites/:websiteId/stats
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/websites/:websiteId/stats?startAt=0000000000000&endAt=0000000000000 HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -G https://api.umami.is/v1/websites/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/stats \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  --data-urlencode "startAt=0000000000000" \
+  --data-urlencode "endAt=0000000000000"
 ```
 
 ---

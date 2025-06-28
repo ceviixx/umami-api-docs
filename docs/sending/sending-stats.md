@@ -53,10 +53,27 @@ POST https://cloud.umami.is/api/send
 ---
 
 ### 🔁 Example Request
-```http
-POST /api/send HTTP/1.1
-x-umami-api-key: {api-key}
-User-Agent: MyUserAgent/1.0
+```bash
+curl -X POST https://cloud.umami.is/api/send \
+  -H "Content-Type: application/json" \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  -H "User-Agent: MyUserAgent/1.0" \
+  -d '{
+    "payload": {
+      "hostname": "your-hostname",
+      "language": "en-US",
+      "referrer": "",
+      "screen": "1920x1080",
+      "title": "dashboard",
+      "url": "/",
+      "website": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "name": "event-name",
+      "data": {
+        "foo": "bar"
+      }
+    },
+    "type": "event"
+  }'
 ```
 
 ---

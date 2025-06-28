@@ -57,9 +57,30 @@ POST /reports/insights
 ---
 
 ### 🔁 Example Request
-```http
-POST /api/reports/insights HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -X POST https://api.umami.is/v1/reports/insights \
+  -H "Content-Type: application/json" \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  -d '{
+    "fields": [
+      {
+        "name": "url",
+        "type": "string",
+        "label": "URL"
+      }
+    ],
+    "filters": [],
+    "websiteId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "dateRange": {
+      "startDate": "2025-05-17T22:00:00.000Z",
+      "endDate": "2025-05-24T21:59:59.999Z",
+      "unit": "day",
+      "offset": 0,
+      "num": 1,
+      "value": "0week"
+    },
+    "timezone": "Europe/Berlin"
+  }'
 ```
 
 ---

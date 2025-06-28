@@ -22,9 +22,12 @@ GET /api/realtime/:websiteId
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/realtime/:websiteId HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -G https://api.umami.is/v1/realtime/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  --data-urlencode "startAt=1234567890000" \
+  --data-urlencode "endAt=1234567899999" \
+  --data-urlencode "timezone=Europe/Berlin"
 ```
 
 ---

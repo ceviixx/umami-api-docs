@@ -23,9 +23,13 @@ GET /api/websites
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/websites HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -G https://api.umami.is/v1/websites \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  --data-urlencode "query=example" \
+  --data-urlencode "page=1" \
+  --data-urlencode "pageSize=10" \
+  --data-urlencode "orderBy=name"
 ```
 
 ---

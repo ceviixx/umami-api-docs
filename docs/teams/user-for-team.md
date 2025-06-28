@@ -13,9 +13,9 @@ GET /api/teams/:teamId/users/:userId
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/teams/:teamId/users/:userId HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -X GET https://api.umami.is/v1/teams/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/users/yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy \
+  -H "x-umami-api-key: YOUR_API_KEY"
 ```
 
 ---

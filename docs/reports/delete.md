@@ -11,9 +11,11 @@ DELETE /api/reports/:reportId
 ```
 
 ### 🔁 Example Request
+```bash
+curl -X DELETE https://api.umami.is/v1/reports/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+  -H "x-umami-api-key: YOUR_API_KEY"
 ```
-DELETE /api/api/reports/:reportId
-```
+
 ---
 
 ### 📦 Example Response

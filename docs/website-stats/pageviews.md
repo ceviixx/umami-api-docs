@@ -33,9 +33,13 @@ GET /api/websites/:websiteId/pageviews
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/websites/:websiteId/pageviews?startAt=0000000000000&endAt=0000000000000 HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -G https://api.umami.is/v1/websites/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/pageviews \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  --data-urlencode "startAt=0000000000000" \
+  --data-urlencode "endAt=0000000000000" \
+  --data-urlencode "unit=month" \
+  --data-urlencode "timezone=America/Los_Angeles"
 ```
 
 ---

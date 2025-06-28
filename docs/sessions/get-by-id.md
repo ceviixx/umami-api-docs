@@ -13,9 +13,9 @@ GET /api/websites/:websiteId/sessions/:sessionId
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/websites/:websiteId/sessions/:sessionId HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -X GET https://api.umami.is/v1/websites/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/sessions/yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy \
+  -H "x-umami-api-key: YOUR_API_KEY"
 ```
 
 ---

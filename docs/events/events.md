@@ -25,9 +25,15 @@ GET /api/websites/:websiteId/events
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/websites/:websiteId/events?startAt=0000000000000&endAt=0000000000000&query=&page=1&pageSize=20 HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -G https://api.umami.is/v1/websites/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/events \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  --data-urlencode "startAt=1234567890000" \
+  --data-urlencode "endAt=1234567899999" \
+  --data-urlencode "query=example" \
+  --data-urlencode "page=1" \
+  --data-urlencode "pageSize=10" \
+  --data-urlencode "orderBy=name"
 ```
 
 ---

@@ -8,7 +8,7 @@ on:
      - cron: '0 0,12 * * *'
 
 env:
-  DEBUG: true
+  DEBUG: false
   BASE_URL: https://api.umami.is/v1
   API_KEY: ${{ secrets.API_KEY }}
   TEST_WEBSITE_ID: ${{ secrets.TEST_WEBSITE_ID }}

@@ -29,9 +29,13 @@ POST /api/teams
 ---
 
 ### 🔁 Example Request
-```http
-POST /api/teams HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -X POST https://api.umami.is/v1/teams \
+  -H "Content-Type: application/json" \
+  -H "x-umami-api-key: YOUR_API_KEY" \
+  -d '{
+    "name": "marketing"
+  }'
 ```
 
 ---

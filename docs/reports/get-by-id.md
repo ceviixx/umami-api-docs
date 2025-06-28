@@ -13,9 +13,9 @@ GET /api/reports/:reportId
 ---
 
 ### 🔁 Example Request
-```http
-GET /api/reports/:reportId HTTP/1.1
-x-umami-api-key: {api-key}
+```bash
+curl -X GET https://api.umami.is/v1/reports/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+  -H "x-umami-api-key: YOUR_API_KEY"
 ```
 
 ---

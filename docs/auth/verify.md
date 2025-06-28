@@ -4,7 +4,7 @@
 **Description:**  
 Verify the token is valid.
 
-**Latest status:** <!--status--><!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 ```
 POST /api/auth/verify

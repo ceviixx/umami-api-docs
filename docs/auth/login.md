@@ -4,7 +4,7 @@
 **Description:**  
 Login using username and password.
 
-**Latest status:** <!--status--><!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 ```
 POST /api/auth/login

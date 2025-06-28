@@ -6,7 +6,7 @@ Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Ana
 [![Check source code](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml)
 
 <!--last-updated:start-->
-**Last updated: 2025-06-28 10:35:46 UTC**
+**Last updated: 2025-06-28 11:12:25 UTC**
 <!--last-updated:end-->
 
 ### 📊 API Test Status Legend
@@ -22,7 +22,10 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 
 ## Auth
 <!--table:auth-->
-*(There are currently no requests available.)*
+| Status | Name           | Description                     |
+| :-------: | :-------- | :---------------- |
+| <!--status:auth/Login-->⏳<!--status-end--> | [Login](docs/auth/login.md) | Login using username and password. |
+| <!--status:auth/Verify-->⏳<!--status-end--> | [Verify](docs/auth/verify.md) | Verify the token is valid. |
 <!--table-end-->
 
 ## Me

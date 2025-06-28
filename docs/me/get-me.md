@@ -4,7 +4,7 @@
 **Description:**  
 Get data about your account basaed on authentification.
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 GET /api/me

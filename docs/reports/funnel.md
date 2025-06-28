@@ -3,7 +3,7 @@
 **Description:**  
 Understand the conversion and drop-off rate of users.
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 POST /reports/funnel

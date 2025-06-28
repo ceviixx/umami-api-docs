@@ -372,7 +372,45 @@ if grep -q "### 📘 Response Structure" "$FILE"; then
     found && in_block { print }
   ' "$FILE")
 
-  EXPECTED_BODY=$(jq -c . <<< "$RAW_STRUCTURE" 2>/dev/null || echo "")
+  # EXPECTED_BODY=$(jq -c . <<< "$RAW_STRUCTURE" 2>/dev/null || echo "")
+  RAW_JSON=$(jq -c . <<< "$RAW_STRUCTURE" 2>/dev/null || echo "")
+  EXPECTED_BODY=""
+  if [[ -n "$RAW_JSON" ]]; then
+    # Prüfen, ob Struktur so aussieht wie: [["number"]] o. Ä.
+    IS_TYPED_ARRAY=$(echo "$RAW_JSON" | jq -e '
+      type == "array" and
+      length > 0 and
+      .[0] | type == "array" and
+      .[0][0] | type == "string" and
+      (.[0][0] | test("^(string|number|boolean|object|array|null)$"))
+    ' 2>/dev/null && echo "true" || echo "false")
+
+    if [[ "$IS_TYPED_ARRAY" == "true" ]]; then
+      FIRST_TYPE=$(echo "$RAW_JSON" | jq -r '.[0][0]')
+      EXPECTED_BODY=$(jq -n --arg t "$FIRST_TYPE" '{
+        type: "array",
+        items: {
+          type: "array",
+          items: { type: $t }
+        }
+      }')
+      [[ "${DEBUG:-}" == "true" ]] && echo "  🧠 Interpreted [[\"$FIRST_TYPE\"]] as nested array type"
+    else
+      EXPECTED_BODY="$RAW_JSON"
+    fi
+
+    if [[ -n "$EXPECTED_BODY" ]]; then
+      [[ "${DEBUG:-}" == "true" ]] && echo "  📘 Loaded expected body structure:"
+      [[ "${DEBUG:-}" == "true" ]] && echo "$EXPECTED_BODY" | jq .
+    else
+      [[ "${DEBUG:-}" == "true" ]] && echo "  ⚠️ Invalid or empty JSON in 📘 Response Structure"
+    fi
+  fi
+
+
+
+
+
 
   if [[ -n "$EXPECTED_BODY" ]]; then
     [[ "${DEBUG:-}" == "true" ]] && echo "  📘 Loaded expected body structure:"

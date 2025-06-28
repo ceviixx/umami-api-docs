@@ -4,7 +4,7 @@
 **Description:**  
 Get a user belonging to a team.
 
-**Latest check:** <!--status-->⏳<!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 ```
 GET /api/teams/:teamId/users/:userId

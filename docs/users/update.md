@@ -4,7 +4,7 @@
 **Description:**  
 Update user details.
 
-**Latest check:** <!--status-->⏳<!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 ```
 POST /api/users/:userId

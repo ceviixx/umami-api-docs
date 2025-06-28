@@ -4,7 +4,7 @@
 **Description:**  
 Join a theam with access code
 
-**Latest check:** <!--status-->⏳<!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 ```
 POST /api/teams/join

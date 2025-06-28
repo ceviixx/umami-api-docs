@@ -4,7 +4,7 @@
 **Description:**  
 Delete website including all statistics.
 
-**Latest check:** <!--status-->⏳<!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 ```
 DELETE /api/websites/:websiteId

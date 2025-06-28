@@ -4,7 +4,7 @@
 **Description:**  
 Update a user's role on a team.
 
-**Latest check:** <!--status-->⏳<!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 ```
 POST /api/teams/:teamId/users/:userId

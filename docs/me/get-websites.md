@@ -4,7 +4,7 @@
 **Description:**  
 Get all your websites.
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 GET /api/me/websites

@@ -4,7 +4,7 @@
 **Description:**  
 Get all users on your account.
 
-**Latest check:** <!--status-->⏳<!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 > [!NOTE]  
 > Admin access is required.

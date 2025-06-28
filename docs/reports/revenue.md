@@ -4,7 +4,7 @@
 **Description:**  
 Look into your revenue data and how users are spending.
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 POST /reports/revenue

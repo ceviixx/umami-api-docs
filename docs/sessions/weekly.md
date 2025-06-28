@@ -4,7 +4,7 @@
 **Description:**  
 Get collected count of sessions by hour of weekday.
 
-**Latest check:** <!--status-->✔️<!--status-end-->
+**Latest status:** <!--status-->✔️<!--status-end-->
 
 ```
 GET /api/websites/:websiteId/sessions/weekly
@@ -46,5 +46,9 @@ x-umami-api-key: {api-key}
 
 ### 📘 Response Structure
 ```json
-
+[
+  [
+    "number"
+  ]
+]
 ```

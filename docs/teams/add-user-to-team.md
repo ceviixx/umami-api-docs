@@ -5,7 +5,7 @@
 Add a specific user to the team.
 
 
-**Latest check:** <!--status-->⏳<!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 ```
 POST /api/teams/:teamId/users

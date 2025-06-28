@@ -4,7 +4,7 @@
 **Description:**  
 Delete the team.
 
-**Latest check:** <!--status-->⏳<!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 ```
 DELETE /api/teams/:teamId

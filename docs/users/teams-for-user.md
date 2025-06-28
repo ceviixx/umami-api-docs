@@ -4,7 +4,7 @@
 **Description:**  
 Get user teams by user id.
 
-**Latest check:** <!--status-->⏳<!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 ```
 GET /api/users/:userId/teams

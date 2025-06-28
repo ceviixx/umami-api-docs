@@ -4,7 +4,7 @@
 **Description:**  
 Create an new website entry for tracking.
 
-**Latest check:** <!--status-->⏳<!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 ```
 POST /api/websites

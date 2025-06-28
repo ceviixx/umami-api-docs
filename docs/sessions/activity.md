@@ -4,7 +4,7 @@
 **Description:**  
 Get activity from session 
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 GET /api/websites/:websiteId/sessions/:sessionId/activity

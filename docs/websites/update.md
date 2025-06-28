@@ -4,7 +4,7 @@
 **Description:**  
 Updating website data.
 
-**Latest check:** <!--status-->⏳<!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 ```
 POST /api/websites/:websiteId

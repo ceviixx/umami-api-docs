@@ -3,7 +3,7 @@
 **Description:**  
 See how users engage with your marketing and what drives conversions.
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 POST /reports/attribution

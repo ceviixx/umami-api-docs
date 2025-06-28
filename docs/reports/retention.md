@@ -4,7 +4,7 @@
 **Description:**  
 Measure your website stickiness by tracking how often users return.
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 POST /reports/retention

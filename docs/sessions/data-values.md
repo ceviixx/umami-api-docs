@@ -4,7 +4,7 @@
 **Description:**  
 Gets session data counts for a given property
 
-**Latest check:** <!--status-->✔️<!--status-end-->
+**Latest status:** <!--status-->✔️<!--status-end-->
 
 ```
 GET /api/websites/:websiteId/session-data/values

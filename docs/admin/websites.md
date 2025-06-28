@@ -4,7 +4,7 @@
 **Description:**  
 Get all websites as admin.
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 GET /api/admin/websites

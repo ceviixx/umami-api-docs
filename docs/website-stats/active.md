@@ -4,7 +4,7 @@
 **Description:**  
 Gets the number of active users on a website.
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 GET /api/websites/:websiteId/active

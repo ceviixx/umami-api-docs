@@ -4,7 +4,7 @@
 **Description:**  
 Gets summarized website statistics.
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 GET /api/websites/:websiteId/stats

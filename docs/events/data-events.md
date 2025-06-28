@@ -4,7 +4,7 @@
 **Description:**  
 Gets event data names, properties, and counts
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 
 ```

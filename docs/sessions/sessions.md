@@ -4,7 +4,7 @@
 **Description:**  
 Get list of sessions in date range
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 GET /api/websites/:websiteId/sessions

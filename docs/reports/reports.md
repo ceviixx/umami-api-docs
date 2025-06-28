@@ -4,7 +4,7 @@
 **Description:**  
 Get all reports your personal reports.
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 GET /api/reports

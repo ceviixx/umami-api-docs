@@ -4,7 +4,7 @@
 **Description:**  
 Get details about the user.
 
-**Latest check:** <!--status-->⏳<!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 ```
 GET /api/users/:userId

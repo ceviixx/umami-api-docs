@@ -4,7 +4,7 @@
 **Description:**  
 Gets summarized website events, fields, and records within a given time range.
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 GET /api/websites/:websiteId/event-data/stats

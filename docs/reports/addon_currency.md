@@ -3,7 +3,7 @@
 **Description:**  
 Get currency for given range. Needed for Revenue and optional in Attribution reports.
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 GET /api/reports/revenue

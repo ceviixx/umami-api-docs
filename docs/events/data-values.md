@@ -4,7 +4,7 @@
 **Description:**  
 Gets event data counts for a given event and property
 
-**Latest check:** <!--status-->✔️<!--status-end-->
+**Latest status:** <!--status-->✔️<!--status-end-->
 
 ```
 GET /api/websites/:websiteId/event-data/values

@@ -4,7 +4,7 @@
 **Description:**  
 Dive deeper into your data by using segments and filters.
 
-**Latest check:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 POST /reports/insights

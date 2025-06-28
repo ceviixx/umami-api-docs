@@ -4,7 +4,7 @@
 **Description:**  
 Resets a website by removing all data related to the website.
 
-**Latest check:** <!--status-->⏳<!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 ```
 POST /api/websites/:websiteId/reset

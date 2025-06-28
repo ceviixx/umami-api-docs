@@ -4,7 +4,7 @@
 **Description:**  
 Delete given user.
 
-**Latest check:** <!--status-->⏳<!--status-end-->
+**Latest status:** <!--status-->⏳<!--status-end-->
 
 ```
 DELETE /api/users/:userId

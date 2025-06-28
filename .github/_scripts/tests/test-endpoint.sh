@@ -26,6 +26,7 @@ EXPECTED_STATUS=$(grep -oE '<!-- expectedStatus: [0-9]+ -->' "$FILE" | grep -oE 
 
 ROUTE="${ROUTE/:websiteId/$TEST_WEBSITE_ID}"
 ROUTE="${ROUTE/:sessionId/$TEST_SESSION_ID}"
+ROUTE="${ROUTE/:userId/$TEST_USER_ID}"
 ROUTE=$(echo "$ROUTE" | sed 's|^/api||')
 
 [[ "${DEBUG:-}" == "true" ]] && echo "  🔧 Method: $METHOD"
@@ -251,6 +252,7 @@ add_to_json() {
 
   value="${value/:websiteId/$TEST_WEBSITE_ID}"
   value="${value/:sessionId/$TEST_SESSION_ID}"
+  value="${value/:userId/$TEST_USER_ID}"
 
   if [[ "$value" == "-" ]]; then return; fi
 
@@ -317,6 +319,7 @@ if grep -q "### 🔍 Query Parameters" "$FILE"; then
 
     example="${example/:websiteId/$TEST_WEBSITE_ID}"
     example="${example/:sessionId/$TEST_SESSION_ID}"
+    example="${example/:userId/$TEST_USER_ID}"
     [[ "${DEBUG:-}" == "true" ]] && echo "  ✅ Adding required query param '$name' = '$example'"
     QUERY_PARAMS+=("${name}=${example}")
   done
@@ -466,7 +469,7 @@ elif [[ -n "$EXPECTED_BODY" && "$IS_VALID_JSON" == false ]]; then
 fi
 
 
-SECRETS_TO_MASK=("$TEST_WEBSITE_ID" "$TEST_SESSION_ID" "$API_KEY")
+SECRETS_TO_MASK=("$TEST_WEBSITE_ID" "$TEST_SESSION_ID" "$TEST_USER_ID" "$API_KEY")
 redact_secrets() {
   local content="$1"
   for secret in "${SECRETS_TO_MASK[@]}"; do

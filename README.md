@@ -6,7 +6,7 @@ Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Ana
 [![Check source code](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml)
 
 <!--last-updated:start-->
-**Last updated: 2025-06-28 01:03:28 UTC**
+**Last updated: 2025-06-28 08:47:52 UTC**
 <!--last-updated:end-->
 
 ### 📊 API Test Status Legend
@@ -112,7 +112,7 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | <!--status:sessions/Properties-->✅<!--status-end--> | [Properties](docs/sessions/properties.md) | Gets session properties for a individual session |
 | <!--status:sessions/Getsessions-->✅<!--status-end--> | [Get sessions](docs/sessions/sessions.md) | Get list of sessions in date range |
 | <!--status:sessions/Statsforsessions-->✅<!--status-end--> | [Stats for sessions](docs/sessions/stats.md) | Calculated list of stats |
-| <!--status:sessions/Weeklysessiondata-->✔️<!--status-end--> | [Weekly session data](docs/sessions/weekly.md) | Get collected count of sessions by hour of weekday. |
+| <!--status:sessions/Weeklysessiondata-->✅<!--status-end--> | [Weekly session data](docs/sessions/weekly.md) | Get collected count of sessions by hour of weekday. |
 <!--table-end-->
 
 ## Reports

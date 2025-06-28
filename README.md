@@ -6,7 +6,7 @@ Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Ana
 [![Check source code](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml)
 
 <!--last-updated:start-->
-**Last updated: 2025-06-28 10:31:37 UTC**
+**Last updated: 2025-06-28 10:35:46 UTC**
 <!--last-updated:end-->
 
 ### 📊 API Test Status Legend
@@ -62,7 +62,10 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 
 ## Sending stats / events
 <!--table:sending-->
-*(There are currently no requests available.)*
+| Status | Name           | Description                     |
+| :-------: | :-------- | :---------------- |
+| <!--status:sending/Sendingstats-->✅<!--status-end--> | [Sending stats](docs/sending/sending-stats.md) | To register an event, you need to send a POST to /api/send. |
+| <!--status:sending/Sendingwithcurrency-->✅<!--status-end--> | [Sending with currency](docs/sending/sending-with-currency.md) | To register an event with currency for e.g. checkout. |
 <!--table-end-->
 
 ## Websites

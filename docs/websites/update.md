@@ -15,8 +15,8 @@ POST /api/websites/:websiteId
 ### 📩 Request Body Parameters
 | Name               | Type              | Description                                                 | Example             | Required |
 | :----------------- | :---------------- | :---------------------------------------------------------- | :------------------ | :------: |
-| name               | string            | The name of the website in Umami.                           | Example             | no       |
-| domain             | string            | The full domain of the tracked website.                     | example.com         | no       |
+| name               | string            | The name of the website in Umami.                           | Example             | yes      |
+| domain             | string            | The full domain of the tracked website.                     | example.com         | yes      |
 | shareId            | string            | A unique string to enable a share url. Set null to unshare. | dfna03ad            | no       |
 
 ---

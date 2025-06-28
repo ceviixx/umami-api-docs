@@ -23,9 +23,10 @@ curl -X GET https://api.umami.is/v1/users/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
 📦 Example Response
 ```json
 {
-  "id": "1a457e1a-121a-11ee-be56-0242ac120002",
-  "username": "umami",
-  "role": "admin"
+  "username" : "xxxxxxxxxxx",
+  "id" : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "role" : "user",
+  "createdAt" : "0000-00-00T00:00:00.000Z"
 }
 ```
 
@@ -33,5 +34,10 @@ curl -X GET https://api.umami.is/v1/users/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
 
 📘 Response Structure
 ```json
-
+{
+  "username" : "string",
+  "id" : "string",
+  "role" : "string",
+  "createdAt" : "date"
+}
 ```

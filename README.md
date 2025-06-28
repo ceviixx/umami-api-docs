@@ -8,7 +8,7 @@ Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Ana
 -->
 
 <!--last-updated:start-->
-**Last updated: 2025-06-28 10:35:46 UTC**
+**Last updated: 2025-06-28 11:31:02 UTC**
 <!--last-updated:end-->
 
 ### 📊 API Test Status Legend
@@ -24,7 +24,10 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 
 ## Auth
 <!--table:auth-->
-*(There are currently no requests available.)*
+| Status | Name           | Description                     |
+| :-------: | :-------- | :---------------- |
+| <!--status:auth/Login-->⏳<!--status-end--> | [Login](docs/auth/login.md) | Login using username and password. |
+| <!--status:auth/Verify-->⏳<!--status-end--> | [Verify](docs/auth/verify.md) | Verify the token is valid. |
 <!--table-end-->
 
 ## Me
@@ -52,7 +55,9 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 
 ## Scripts
 <!--table:scripts-->
-*(There are currently no requests available.)*
+| Status | Name           | Description                     |
+| :-------: | :-------- | :---------------- |
+| <!--status:scripts/Telemetry-->⏳<!--status-end--> | [Telemetry](docs/scripts/telemetry.md) | Get data about your account basaed on authentification. |
 <!--table-end-->
 
 ## Share

@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        group: [admin, auth, me, realtime, scripts, share, sending-stats, users, teams, events, sessions, websites, website-stats, reports]
+        group: [admin, auth, me, realtime, scripts, share, sending, users, teams, events, sessions, websites, website-stats, reports]
     steps:
       - uses: actions/checkout@v4
 

@@ -6,7 +6,7 @@ Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Ana
 [![Check source code](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml)
 
 <!--last-updated:start-->
-**Last updated: 2025-06-28 08:47:52 UTC**
+**Last updated: 2025-06-28 10:22:57 UTC**
 <!--last-updated:end-->
 
 ### 📊 API Test Status Legend
@@ -62,9 +62,7 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 
 ## Sending stats
 <!--table:sending-stats-->
-| Status | Name           | Description                     |
-| :-------: | :-------- | :---------------- |
-| <!--status:sending-stats/Sendingstats-->✅<!--status-end--> | [Sending stats](docs/sending-stats/sending-stats.md) | To register an event, you need to send a POST to /api/send. |
+*(There are currently no requests available.)*
 <!--table-end-->
 
 ## Websites
@@ -141,8 +139,9 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | <!--status:users/Deleteuser-->⏳<!--status-end--> | [Delete user](docs/users/delete.md) | Delete given user. |
 | <!--status:users/Getallusers-->⏳<!--status-end--> | [Get all users](docs/users/get-all.md) | Get all users on your account. |
 | <!--status:users/Getuserbyid-->⏳<!--status-end--> | [Get user by id](docs/users/get-by-id.md) | Get details about the user. |
-| <!--status:users/Teamsfromuser-->⏳<!--status-end--> | [Teams from user](docs/users/teams-for-user.md) | Get user teams by user id. |
+| <!--status:users/Teamsfromuser-->✔️<!--status-end--> | [Teams from user](docs/users/teams-for-user.md) | Get user teams by user id. |
 | <!--status:users/Updateuser-->⏳<!--status-end--> | [Update user](docs/users/update.md) | Update user details. |
+| <!--status:users/Websitesfromuser-->✔️<!--status-end--> | [Websites from user](docs/users/websites-for-user.md) | Get user websites by user id. |
 <!--table-end-->
 
 ## Teams

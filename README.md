@@ -60,8 +60,8 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | <!--status:share/Shared-->⏳<!--status-end--> | [Shared](docs/share/share.md) | Get auth data for shared website. |
 <!--table-end-->
 
-## Sending stats
-<!--table:sending-stats-->
+## Sending stats / events
+<!--table:sending-->
 *(There are currently no requests available.)*
 <!--table-end-->
 

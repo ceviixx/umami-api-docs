@@ -1,3 +1,9 @@
+> [!TIP]
+> **API docs merged**
+> https://umami.is/docs/api
+
+
+
 # umami API docs
 Docs from [uamami Analytics](https://github.com/umami-software/umami) with daily status update to detect not documented changes. \
 Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Analytics-App).

@@ -14,7 +14,7 @@ Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Ana
 -->
 
 <!--last-updated:start-->
-**Last updated: 2025-07-24 12:29:03 UTC**
+**Last updated: 2025-08-03 13:07:30 UTC**
 <!--last-updated:end-->
 
 ### 📊 API Test Status Legend
@@ -144,7 +144,7 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | <!--status:reports/Listreports-->✅<!--status-end--> | [List reports](docs/reports/reports.md) | Get all reports your personal reports. |
 | <!--status:reports/Retention-->✅<!--status-end--> | [Retention](docs/reports/retention.md) | Measure your website stickiness by tracking how often users return. |
 | <!--status:reports/Revenue-->✅<!--status-end--> | [Revenue](docs/reports/revenue.md) | Look into your revenue data and how users are spending. |
-| <!--status:reports/UTM-->✔️<!--status-end--> | [UTM](docs/reports/utm.md) | Track your campaigns through UTM parameters. |
+| <!--status:reports/UTM-->✅<!--status-end--> | [UTM](docs/reports/utm.md) | Track your campaigns through UTM parameters. |
 <!--table-end-->
 
 ## Users

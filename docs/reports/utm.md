@@ -4,7 +4,7 @@
 **Description:**  
 Track your campaigns through UTM parameters.
 
-**Latest status:** <!--status-->✔️<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 POST /reports/utm

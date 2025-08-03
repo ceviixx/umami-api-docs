@@ -5,7 +5,7 @@
 To register an event, you need to send a POST to /api/send.
 You need to set an valid User-Agent in the header to get an success. Otherwise the reponse is like `{"beep": "boop"}`.
 
-**Latest status:** <!--status--><!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 POST https://cloud.umami.is/api/send

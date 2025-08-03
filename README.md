@@ -12,7 +12,7 @@ Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Ana
 
 
 <!--last-updated:start-->
-**Last updated: 2025-08-03 13:17:16 UTC**
+**Last updated: 2025-08-03 13:36:21 UTC**
 <!--last-updated:end-->
 
 ### 📊 API Test Status Legend
@@ -75,7 +75,8 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 <!--table:sending-->
 | Status | Name           | Description                     |
 | :-------: | :-------- | :---------------- |
-| <!--status:sending/Sendingstats-->✅<!--status-end--> | [Sending stats](docs/sending/sending-stats.md) | To register an event, you need to send a POST to /api/send. |
+| <!--status:sending/Sendingevent-->✅<!--status-end--> | [Sending event](docs/sending/sending-event.md) | To register an event, you need to send a POST to /api/send. |
+| <!--status:sending/Sendingstats-->✅<!--status-end--> | [Sending stats](docs/sending/sending-stats.md) | To register an pageview, you need to send a POST to /api/send. |
 | <!--status:sending/Sendingwithcurrency-->✅<!--status-end--> | [Sending with currency](docs/sending/sending-with-currency.md) | To register an event with currency for e.g. checkout. |
 <!--table-end-->
 

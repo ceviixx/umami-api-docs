@@ -1,20 +1,18 @@
-> [!TIP]
-> **API docs merged**
-> https://umami.is/docs/api
-
-
-
 # umami API docs
 Docs from [uamami Analytics](https://github.com/umami-software/umami) with daily status update to detect not documented changes. \
 Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Analytics-App).
 
+
+<div align="laeding">
+
 [![Umami API Tests](https://github.com/ceviixx/umami-api-docs/actions/workflows/main.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/main.yml)
-<!--
-[![Check source code](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/check.yml)
--->
+[![umami version](https://img.shields.io/github/v/release/umami-software/umami?style=flat-square&label=umami)](https://github.com/umami-software/umami/releases)
+
+</div>
+
 
 <!--last-updated:start-->
-**Last updated: 2025-08-03 13:07:30 UTC**
+**Last updated: 2025-07-24 12:29:03 UTC**
 <!--last-updated:end-->
 
 ### 📊 API Test Status Legend
@@ -144,7 +142,7 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | <!--status:reports/Listreports-->✅<!--status-end--> | [List reports](docs/reports/reports.md) | Get all reports your personal reports. |
 | <!--status:reports/Retention-->✅<!--status-end--> | [Retention](docs/reports/retention.md) | Measure your website stickiness by tracking how often users return. |
 | <!--status:reports/Revenue-->✅<!--status-end--> | [Revenue](docs/reports/revenue.md) | Look into your revenue data and how users are spending. |
-| <!--status:reports/UTM-->✅<!--status-end--> | [UTM](docs/reports/utm.md) | Track your campaigns through UTM parameters. |
+| <!--status:reports/UTM-->✔️<!--status-end--> | [UTM](docs/reports/utm.md) | Track your campaigns through UTM parameters. |
 <!--table-end-->
 
 ## Users

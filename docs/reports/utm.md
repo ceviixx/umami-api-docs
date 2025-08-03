@@ -68,34 +68,26 @@ curl -X POST https://api.umami.is/v1/reports/utm \
 
 ### 📦 Example Response
 ```json
-{
-    "utm_source" : {
-        "test" : 1
+[
+    {
+        "url_query": "utm_campaign=xxxxxx&utm_medium=email&utm_source=xxxxxxxxx",
+        "num": 1
     },
-    "utm_content" : {
-        "email-newsletter-1" : 1124
-    },
-    "utm_term" : {
-        "software" : 4
-    },
-    "utm_medium" : {
-        "test" : 1
-    },
-    "utm_campaign" : {
-        "test" : 1
-    },
-    "utm_agid" : {
-        "12345" : 5
-    },
-    "utm_banner" : {
-        "12345" : 1
+    {
+        "url_query": "utm_campaign=xxxxxx&utm_medium=email&utm_source=yyyyyy",
+        "num": 4
     }
-}
+]
 ```
 
 ---
 
 ### 📘 Response Structure
 ```json
-
+[
+    {
+        "url_query": "string",
+        "num": "number"
+    }
+]
 ```

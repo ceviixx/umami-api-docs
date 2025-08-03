@@ -1,4 +1,3 @@
-# main.yml
 name: API Tests
 
 on:
@@ -80,12 +79,11 @@ jobs:
 
       - name: Commit updated API status
         run: |
-          git config user.name "github-actions"
+          git config user.name "Bot"
           git config user.email "github-actions@github.com"
           
           git add README.md docs/**/*.md
           
-          # Nur committen, wenn sich wirklich etwas geändert hat
           if ! git diff --cached --quiet; then
             git commit -m "🔄 Update API status"
             git push

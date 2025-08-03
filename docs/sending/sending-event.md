@@ -1,8 +1,8 @@
-## Sending stats
+## Sending event
 <!-- testable: true -->
 <!-- expectedStatus: 200 -->
 **Description:**  
-To register an pageview, you need to send a POST to /api/send.
+To register an event, you need to send a POST to /api/send.
 You need to set an valid User-Agent in the header to get an success. Otherwise the reponse is like `{"beep": "boop"}`.
 
 **Latest status:** <!--status--><!--status-end-->
@@ -24,6 +24,8 @@ POST https://cloud.umami.is/api/send
 | payload.title      | string   | Page title                   | Home           | yes      |
 | payload.url        | string   | Page URL                     | /home          | yes      |
 | payload.website    | string   | Website ID                   | :websiteId     | yes      |
+| payload.name       | string   | Event name                   | click_button   | yes      |
+| payload.data       | object   | Additional event data        | {"foo": "bar"} | no       |
 | type               | string   | Event type                   | event          | yes      |
 
 ---
@@ -38,7 +40,11 @@ POST https://cloud.umami.is/api/send
         "screen": "1920x1080",
         "title": "dashboard",
         "url": "/",
-        "website": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        "website": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+        "name": "event-name",
+        "data": {
+            "foo": "bar"
+        }
     },
     "type": "event"
 }
@@ -60,7 +66,11 @@ curl -X POST https://cloud.umami.is/api/send \
       "screen": "1920x1080",
       "title": "dashboard",
       "url": "/",
-      "website": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      "website": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "name": "event-name",
+      "data": {
+        "foo": "bar"
+      }
     },
     "type": "event"
   }'

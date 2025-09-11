@@ -107,7 +107,7 @@ readme = readme.replace(/<!--table:(.*?)-->(.*?)<!--table-end-->/gs, (_, group) 
   return `<!--table:${group}-->\n${header}\n${rows.join("\n")}\n<!--table-end-->`;
 });
 
-// 🧩 Einzelne Dateien updaten
+// 🧩 Update single files
 for (const group of fs.readdirSync(docsRoot)) {
   if (group === "_parameters_") continue;
 
@@ -140,12 +140,12 @@ for (const group of fs.readdirSync(docsRoot)) {
 }
 
 // ⏱️ Last updated
-const now = new Date();
-const dateTimeUtc = now.toISOString().replace("T", " ").replace(/\.\d+Z$/, " UTC");
-readme = readme.replace(
-  /<!--last-updated:start-->.*?<!--last-updated:end-->/s,
-  `<!--last-updated:start-->\n**Last updated: ${dateTimeUtc}**\n<!--last-updated:end-->`
-);
+// const now = new Date();
+// const dateTimeUtc = now.toISOString().replace("T", " ").replace(/\.\d+Z$/, " UTC");
+// readme = readme.replace(
+//  /<!--last-updated:start-->.*?<!--last-updated:end-->/s,
+//  `<!--last-updated:start-->\n**Last updated: ${dateTimeUtc}**\n<!--last-updated:end-->`
+// );
 
 // ✅ Save updated README
 fs.writeFileSync(readmePath, readme);

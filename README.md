@@ -3,17 +3,15 @@ Docs from [uamami Analytics](https://github.com/umami-software/umami) with daily
 Used for creating the client on iOS [umami](https://github.com/ceviixx/umami-Analytics-App).
 
 
-<div align="laeding">
+<div align="leading">
 
 [![Umami API Tests](https://github.com/ceviixx/umami-api-docs/actions/workflows/main.yml/badge.svg)](https://github.com/ceviixx/umami-api-docs/actions/workflows/main.yml)
 [![umami version](https://img.shields.io/github/v/release/umami-software/umami?style=flat-square&label=umami)](https://github.com/umami-software/umami/releases)
 
 </div>
 
+![Last validation](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fceviixx%2Fumami-api-docs%2Factions%2Fworkflows%2Fmain.yml%2Fruns%3Fper_page%3D1&query=$.workflow_runs[0].updated_at&label=last%20validation&color=6f42c1&style=flat-square&cacheSeconds=300)
 
-<!--last-updated:start-->
-**Last updated: 2025-09-11 12:35:35 UTC**
-<!--last-updated:end-->
 
 ### 📊 API Test Status Legend
 |   Symbol   | Meaning                                   |

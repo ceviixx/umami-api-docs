@@ -2,7 +2,7 @@
 <!-- testable: false -->
 <!-- expectedStatus: 200 -->
 **Description:**  
-Get data about your account basaed on authentification.
+Show telemetry data for your Umami server instance.
 
 **Latest status:** <!--status-->⏳<!--status-end-->
 

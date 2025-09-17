@@ -1,4 +1,4 @@
-name: API Tests
+name: Test API docu
 
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
             ! -path "*/_parameters_/*" \
             ! -name "index.md" | while read -r file; do
               echo "▶️ Testing $file"
-              bash .github/_scripts/tests/test-endpoint.sh "$file" || true
+              bash .github/_scripts/test-api-docu/test-endpoint.sh "$file" || true
           done
           echo "::endgroup::"
 
@@ -69,13 +69,13 @@ jobs:
 
       - name: Create and update GitHub Issues
         if: always()
-        run: node .github/_scripts/tests/report-failures.js
+        run: node .github/_scripts/test-api-docu/report-failures.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update API status table in README
         if: always()
-        run: node .github/_scripts/tests/update-readme.js
+        run: node .github/_scripts/test-api-docu/update-readme.js
 
       - name: Commit updated API status
         run: |

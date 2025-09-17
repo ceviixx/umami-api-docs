@@ -1,4 +1,4 @@
-## My websites
+## Account details
 <!-- testable: true -->
 <!-- expectedStatus: 200 -->
 **Description:**  

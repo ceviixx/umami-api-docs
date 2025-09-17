@@ -93,5 +93,10 @@ curl -X POST https://api.umami.is/v1/reports/journey \
 
 ### 📘 Response Structure
 ```json
-
+[
+    {
+        "items": ["string|null"],
+        "count": "number"
+    }
+]
 ```

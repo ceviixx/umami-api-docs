@@ -57,7 +57,7 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 <!--table:me-->
 | Status | Name           | Description                     |
 | :-------: | :-------- | :---------------- |
-| <!--status:me/Accountdetails-->✅<!--status-end--> | [Account details](docs/me/get-me.md) | Get data about your account based on authentification. |
+| <!--status:me/Accountdetails-->✅<!--status-end--> | [Account details](docs/me/get-me.md) | Get data about your account basaed on authentification. |
 | <!--status:me/Myteams-->✅<!--status-end--> | [My teams](docs/me/get-teams.md) | Get all your teams. |
 | <!--status:me/Mywebsites-->✅<!--status-end--> | [My websites](docs/me/get-websites.md) | Get all your websites. |
 <!--table-end-->
@@ -80,7 +80,7 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 <!--table:scripts-->
 | Status | Name           | Description                     |
 | :-------: | :-------- | :---------------- |
-| <!--status:scripts/Telemetry-->⏳<!--status-end--> | [Telemetry](docs/scripts/telemetry.md) | Get data about your account basaed on authentification. |
+| <!--status:scripts/Telemetry-->⏳<!--status-end--> | [Telemetry](docs/scripts/telemetry.md) | Show telemetry data for your Umami server instance. |
 <!--table-end-->
 
 ## Share
@@ -158,7 +158,7 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | <!--status:reports/Detailsforid-->✅<!--status-end--> | [Details for id](docs/reports/get-by-id.md) | Gets session details for a individual session |
 | <!--status:reports/Goals-->✅<!--status-end--> | [Goals](docs/reports/goals.md) | Track your goals for pageviews and events. |
 | <!--status:reports/Insights-->✅<!--status-end--> | [Insights](docs/reports/insights.md) | Dive deeper into your data by using segments and filters. |
-| <!--status:reports/Journey-->✔️<!--status-end--> | [Journey](docs/reports/journey.md) | Understand how users navigate through your website. |
+| <!--status:reports/Journey-->✅<!--status-end--> | [Journey](docs/reports/journey.md) | Understand how users nagivate through your website. |
 | <!--status:reports/Listreports-->✅<!--status-end--> | [List reports](docs/reports/reports.md) | Get all reports your personal reports. |
 | <!--status:reports/Retention-->✅<!--status-end--> | [Retention](docs/reports/retention.md) | Measure your website stickiness by tracking how often users return. |
 | <!--status:reports/Revenue-->✅<!--status-end--> | [Revenue](docs/reports/revenue.md) | Look into your revenue data and how users are spending. |
@@ -186,7 +186,7 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | <!--status:teams/Createsteam-->⏳<!--status-end--> | [Creates team](docs/teams/create.md) | Create an new team. |
 | <!--status:teams/Deleteteam-->⏳<!--status-end--> | [Delete team](docs/teams/delete.md) | Delete the team. |
 | <!--status:teams/Getteam-->⏳<!--status-end--> | [Get team](docs/teams/get-by-id.md) | Get all details for the team. |
-| <!--status:teams/Jointeam-->⏳<!--status-end--> | [Join team](docs/teams/join.md) | Join a team with access code |
+| <!--status:teams/Jointeam-->⏳<!--status-end--> | [Join team](docs/teams/join.md) | Join a theam with access code |
 | <!--status:teams/Removeuserfromteam.-->⏳<!--status-end--> | [Remove user from team.](docs/teams/remove-user-from-team.md) | Removes the user from the team. |
 | <!--status:teams/Updateuserteamrole-->⏳<!--status-end--> | [Update user team role](docs/teams/update-user-role-for-team.md) | Update a user's role on a team. |
 | <!--status:teams/Updateteam-->⏳<!--status-end--> | [Update team](docs/teams/update.md) | Update data of the team. |

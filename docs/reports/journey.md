@@ -4,7 +4,7 @@
 **Description:**  
 Understand how users nagivate through your website.
 
-**Latest status:** <!--status-->✔️<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 POST /reports/journey

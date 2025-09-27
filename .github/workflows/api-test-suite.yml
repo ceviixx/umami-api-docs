@@ -1,0 +1,200 @@
+name: API Test Suite
+
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+     - cron: '0 1,13 * * *'  # Run twice daily at 1 AM and 1 PM UTC
+
+env:
+  DEBUG: false
+  BASE_URL: https://api.umami.is/v1
+  API_KEY: ${{ secrets.API_KEY }}
+  TEST_WEBSITE_ID: ${{ secrets.TEST_WEBSITE_ID }}
+  TEST_SESSION_ID: ${{ secrets.TEST_SESSION_ID }}
+  TEST_USER_ID: ${{ secrets.TEST_USER_ID }}
+
+jobs:
+  test-api-suite:
+    name: API Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        group: [teams, users, websites, reports, sessions, standalone]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Execute API tests for ${{ matrix.group }}
+        continue-on-error: true
+        run: |
+          echo "::group::Running API tests for group: ${{ matrix.group }}"
+          bash .github/_scripts/api-test-suite/run-api-tests.sh ${{ matrix.group }}
+          echo "::endgroup::"
+
+      - name: Check if failures exist
+        id: check_failures
+        run: |
+          echo "🔍 Checking for failure files..."
+          ls -la failures/ || echo "❌ failures/ directory does not exist"
+          if [ -d failures ]; then
+            echo "📁 failures/ directory exists"
+            file_count=$(find failures -type f | wc -l)
+            echo "📄 Found $file_count files in failures/"
+            if [ "$file_count" -gt 0 ]; then
+              echo "✅ Failures found, will upload artifacts"
+              echo "found=true" >> "$GITHUB_OUTPUT"
+              echo "📋 Failure files:"
+              find failures -type f -exec basename {} \;
+            else
+              echo "⚠️ failures/ directory exists but is empty"
+              echo "found=false" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo "❌ failures/ directory does not exist"
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Upload test failures for ${{ matrix.group }}
+        if: steps.check_failures.outputs.found == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: crud-failures-${{ matrix.group }}
+          path: failures/
+
+      - name: Upload test state for debugging
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-state-${{ matrix.group }}
+          path: .github/_scripts/api-test-suite/test-state.json
+
+  report-failures:
+    name: Report Results
+    runs-on: ubuntu-latest
+    needs: [test-api-suite]
+    if: always()
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all failure artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-failures
+
+      - name: Debug downloaded artifacts
+        run: |
+          echo "🔍 Checking downloaded artifacts..."
+          ls -la all-failures/ || echo "❌ all-failures/ directory does not exist"
+          if [ -d all-failures ]; then
+            echo "📁 Found artifact directories:"
+            find all-failures -type d -name "*failures*" | head -10
+            echo "📄 Found failure files:"
+            find all-failures -name "*.txt" | head -10
+            echo "📊 Total artifact directories: $(find all-failures -maxdepth 1 -type d | wc -l)"
+            echo "📊 Total failure files: $(find all-failures -name "*.txt" | wc -l)"
+          fi
+
+      - name: Install dependencies for reporting
+        run: npm install @octokit/rest
+
+      - name: Create and update GitHub Issues
+        if: always()
+        run: node .github/_scripts/api-test-suite/report-failures.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update API status table in README
+        if: always()
+        run: node .github/_scripts/api-test-suite/update-readme.js
+
+      - name: Generate test summary
+        if: always()
+        run: |
+          echo "# 🧪 API Test Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 🔄 API Test Suite" >> $GITHUB_STEP_SUMMARY
+          
+          # Count total endpoints dynamically from crud-mapping.json
+          total_endpoints=0
+          if [ -f ".github/_scripts/api-test-suite/crud-mapping.json" ]; then
+            # Count CRUD endpoints (exclude metadata fields)
+            crud_count=$(jq -r '.crud_groups | to_entries[] | .value | to_entries[] | select(.key != "id_field" and .key != "id_extraction_path" and .key != "use_static_website_id" and .key != "id_dependencies") | .value' .github/_scripts/api-test-suite/crud-mapping.json | wc -l)
+            
+            # Count standalone endpoints
+            standalone_count=$(jq -r '.standalone_endpoints[]' .github/_scripts/api-test-suite/crud-mapping.json | wc -l)
+            
+            total_endpoints=$((crud_count + standalone_count))
+            
+            echo "📊 **Endpoint Count Analysis**:" >> $GITHUB_STEP_SUMMARY
+            echo "- **CRUD Endpoints**: $crud_count" >> $GITHUB_STEP_SUMMARY
+            echo "- **Standalone Endpoints**: $standalone_count" >> $GITHUB_STEP_SUMMARY
+            echo "- **Total Endpoints**: $total_endpoints" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Could not find crud-mapping.json, using fallback count" >> $GITHUB_STEP_SUMMARY
+            total_endpoints=67  # Fallback
+          fi
+          
+          # Count CRUD test results
+          crud_total=6  # teams, users, websites, reports, sessions, standalone
+          crud_passed=0
+          
+          if [ -d "all-failures" ]; then
+            crud_failed=$(find all-failures -name "crud-failures-*" -type d | wc -l)
+            crud_passed=$((crud_total - crud_failed))
+            
+            echo "- **Total Groups**: $crud_total" >> $GITHUB_STEP_SUMMARY
+            echo "- **Passed**: $crud_passed" >> $GITHUB_STEP_SUMMARY
+            echo "- **Failed**: $crud_failed" >> $GITHUB_STEP_SUMMARY
+            
+            if [ $crud_failed -gt 0 ]; then
+              echo "- **Status**: ❌ Some API tests failed" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "- **Status**: ✅ All API tests passed" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "- **Status**: ℹ️ No test results found" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 📋 Test Summary" >> $GITHUB_STEP_SUMMARY
+          echo "All $total_endpoints API endpoints tested through unified API test suite." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "*Tests executed on $(date)*" >> $GITHUB_STEP_SUMMARY
+
+      - name: Commit updated API status
+        run: |
+          git config user.name "Bot"
+          git config user.email "github-actions@github.com"
+          
+          # Show current git status for debugging
+          echo "📊 Current git status:"
+          git status --porcelain
+          
+          # Add README.md and individual markdown files with status updates
+          git add README.md
+          git add docs/*/*.md
+          
+          # Check if there are actual content changes
+          if ! git diff --cached --quiet; then
+            # Get list of changed files and check if they're meaningful
+            changed_files=$(git diff --cached --name-only)
+            echo "📝 Changed files: $changed_files"
+            
+            # Show the actual diff for transparency
+            echo "🔍 Changes preview:"
+            git diff --cached --stat
+            
+            # Check the actual content changes to see if they're substantial
+            if git diff --cached | grep -E "^[+-].*[⚠️🚨✅✔️🔄🔗⏳]" > /dev/null; then
+              echo "✅ Found meaningful status changes, committing..."
+              git commit -m "🔄 Update API status"
+              git push
+            else
+              echo "ℹ️ No significant status changes detected, skipping commit"
+              git reset
+            fi
+          else
+            echo "✅ No changes to commit"
+          fi

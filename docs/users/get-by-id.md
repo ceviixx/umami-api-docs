@@ -5,7 +5,7 @@
 Get detailed information for a specific user by their unique identifier.
 Returns user metadata including username, role, and account creation timestamp.
 
-**Latest status:** <!--status-->⏳<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 GET /api/users/:userId

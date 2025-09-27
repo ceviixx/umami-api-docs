@@ -1,0 +1,86 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS directories
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
+
+# Temporary files
+tmp
+temp/
+*.tmp
+*.temp
+
+# Test and debug files - NEVER commit these
+failures/
+all-failures/
+scripts/issues.json
+scripts/test-results.json
+debug-*.js
+test-*.js
+test-*.sh
+test_*.sh
+test_*.json
+tmp_*.json
+*-backup.js
+
+# IMPORTANT: Allow official test suite scripts
+!.github/_scripts/api-test-suite/test-endpoint-enhanced.sh
+
+# CRUD/Test state files
+.github/_scripts/api-test-suite/test-state.json
+.github/_scripts/test-api-docu/test-state.json
+test-state.json
+crud-state.json
+
+# API response files
+tmp_response.json
+*_response.json
+response_*.json
+
+# Node.js dependencies and lock files
+package-lock.json
+package.json
+/node_modules
+node_modules/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Log files
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment and config files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build and dist directories
+dist/
+build/
+out/
+
+# Obsolete test infrastructure (kept locally but not committed)
+.github/_scripts/test-api-docu/
+.github/workflows/main.yml

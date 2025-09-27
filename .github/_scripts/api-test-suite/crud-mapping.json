@@ -1,0 +1,107 @@
+{
+  "crud_groups": {
+    "teams": {
+      "create": "docs/teams/create.md",
+      "update": "docs/teams/update.md",
+      "delete": "docs/teams/delete.md",
+      "get": "docs/teams/get-by-id.md",
+      "id_field": "id",
+      "id_extraction_path": "id"
+    },
+    "users": {
+      "create": "docs/users/create.md",
+      "update": "docs/users/update.md", 
+      "delete": "docs/users/delete.md",
+      "get": "docs/users/get-by-id.md",
+      "id_field": "id",
+      "id_extraction_path": "id"
+    },
+    "websites": {
+      "create": "docs/websites/create.md",
+      "update": "docs/websites/update.md",
+      "reset": "docs/websites/reset.md",
+      "delete": "docs/websites/delete.md",
+      "get": "docs/websites/get-by-id.md",
+      "id_field": "id",
+      "id_extraction_path": "id"
+    },
+    "reports": {
+      "create": "docs/reports/create.md",
+      "delete": "docs/reports/delete.md",
+      "get": "docs/reports/get-by-id.md",
+      "id_field": "id",
+      "id_extraction_path": "id",
+      "use_static_website_id": true
+    },
+    "sessions": {
+        "list": "docs/sessions/sessions.md",
+        "get": "docs/sessions/get-by-id.md",
+        "activity": "docs/sessions/activity.md",
+        "properties": "docs/sessions/properties.md",
+        "stats": "docs/sessions/stats.md",
+        "weekly": "docs/sessions/weekly.md",
+        "id_field": "id",
+        "id_extraction_path": "data[0].id",
+        "use_static_website_id": true,
+        "id_dependencies": {
+          "get": ["list"],
+          "activity": ["list"],
+          "properties": ["list"]
+        }
+    }
+  },
+  "test_order": {
+    "teams": ["create", "get", "update", "delete"],
+    "users": ["create", "get", "update", "delete"],
+    "websites": ["create", "get", "update", "reset", "delete"],
+    "reports": ["create", "get", "delete"],
+    "sessions": ["list", "stats", "weekly", "get", "activity", "properties"]
+  },
+  "standalone_endpoints": [
+    "docs/auth/login.md",
+    "docs/auth/verify.md",
+    "docs/me/get-me.md",
+    "docs/me/get-teams.md",
+    "docs/me/get-websites.md",
+    "docs/realtime/realtime-stats.md",
+    "docs/scripts/telemetry.md",
+    "docs/share/share.md",
+    "docs/sending/sending-event.md",
+    "docs/sending/sending-stats.md",
+    "docs/sending/sending-with-currency.md",
+    "docs/admin/websites.md",
+    "docs/reports/addon_currency.md",
+    "docs/reports/attribution.md",
+    "docs/reports/funnel.md",
+    "docs/reports/goals.md",
+    "docs/reports/insights.md",
+    "docs/reports/journey.md",
+    "docs/reports/retention.md",
+    "docs/reports/revenue.md",
+    "docs/reports/utm.md",
+    "docs/reports/reports.md",
+    "docs/website-stats/active.md",
+    "docs/website-stats/events.md",
+    "docs/website-stats/metrics.md",
+    "docs/website-stats/pageviews.md",
+    "docs/website-stats/stats.md",
+    "docs/websites/get-all.md",
+    "docs/sessions/data-properties.md",
+    "docs/sessions/data-values.md",
+    "docs/events/data-events.md",
+    "docs/events/data-fields.md",
+    "docs/events/data-stats.md",
+    "docs/events/data-values.md",
+    "docs/events/events.md",
+    "docs/users/get-all.md",
+    "docs/users/teams-for-user.md",
+    "docs/users/websites-for-user.md",
+    "docs/teams/add-user-to-team.md",
+    "docs/teams/join.md",
+    "docs/teams/remove-user-from-team.md",
+    "docs/teams/update-user-role-for-team.md",
+    "docs/teams/user-for-team.md",
+    "docs/teams/users-for-team.md",
+    "docs/teams/websites-for-team.md"
+  ]
+}

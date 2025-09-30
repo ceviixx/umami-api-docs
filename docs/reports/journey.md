@@ -5,7 +5,7 @@
 Analyze user navigation paths through your website by tracking sequential visits.
 Maps user journeys to understand navigation patterns and optimization opportunities.
 
-**Latest status:** <!--status-->🚨 [#23](https://github.com/ceviixx/umami-api-docs/issues/23)<!--status-end-->
+**Latest status:** <!--status-->✅<!--status-end-->
 
 ```
 POST /reports/journey

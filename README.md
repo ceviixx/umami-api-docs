@@ -153,14 +153,14 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | Status  | Name            | Description                         |
 | :-------: | :-------- | :---------------- |
 | <!--status:reports/Currency-->🚨 [#21](https://github.com/ceviixx/umami-api-docs/issues/21)<!--status-end--> | [Currency](docs/reports/addon_currency.md) | Get list of available currencies used in revenue tracking within date range. |
-| <!--status:reports/Attribution-->🚨 [#22](https://github.com/ceviixx/umami-api-docs/issues/22)<!--status-end--> | [Attribution](docs/reports/attribution.md) | Analyze attribution paths to understand user marketing touchpoint interactions. |
+| <!--status:reports/Attribution-->✅<!--status-end--> | [Attribution](docs/reports/attribution.md) | Analyze attribution paths to understand user marketing touchpoint interactions. |
 | <!--status:reports/SaveReport-->✅<!--status-end--> | [Save Report](docs/reports/create.md) | Save a configured analytical report with specific parameters for future access. |
 | <!--status:reports/Deletereport-->✅<!--status-end--> | [Delete report](docs/reports/delete.md) | Permanently delete a custom report by its unique identifier. |
 | <!--status:reports/Funnel-->✅<!--status-end--> | [Funnel](docs/reports/funnel.md) | Analyze user conversion funnels by tracking visitor progression through defined steps. |
 | <!--status:reports/Detailsforid-->✅<!--status-end--> | [Details for id](docs/reports/get-by-id.md) | Get detailed information for a specific report by its unique identifier. |
 | <!--status:reports/Goals-->✅<!--status-end--> | [Goals](docs/reports/goals.md) | Track goal completion metrics by comparing actual performance against defined targets. |
 | <!--status:reports/Insights-->✅<!--status-end--> | [Insights](docs/reports/insights.md) | Generate custom analytical insights by combining multiple data fields with filtering. |
-| <!--status:reports/Journey-->🚨 [#23](https://github.com/ceviixx/umami-api-docs/issues/23)<!--status-end--> | [Journey](docs/reports/journey.md) | Analyze user navigation paths through your website by tracking sequential visits. |
+| <!--status:reports/Journey-->✅<!--status-end--> | [Journey](docs/reports/journey.md) | Analyze user navigation paths through your website by tracking sequential visits. |
 | <!--status:reports/Listreports-->✅<!--status-end--> | [List reports](docs/reports/reports.md) | Get paginated list of all custom reports created by the authenticated user. |
 | <!--status:reports/Retention-->✅<!--status-end--> | [Retention](docs/reports/retention.md) | Analyze user retention patterns by tracking how often visitors return. |
 | <!--status:reports/Revenue-->✅<!--status-end--> | [Revenue](docs/reports/revenue.md) | Analyze revenue data and user spending patterns on your website. |

@@ -4,7 +4,7 @@
 Analyze user conversion funnels by tracking visitor progression through defined steps.
 Shows conversion rates and drop-off points to identify optimization opportunities.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#30](https://github.com/ceviixx/umami-api-docs/issues/30)<!--status-end-->
 
 ```
 POST /reports/funnel

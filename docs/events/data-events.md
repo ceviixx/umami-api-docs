@@ -5,7 +5,7 @@
 Get aggregated statistics for event data properties and occurrence counts.
 Provides insights into custom event tracking with event names and frequency data.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#26](https://github.com/ceviixx/umami-api-docs/issues/26)<!--status-end-->
 
 
 ```

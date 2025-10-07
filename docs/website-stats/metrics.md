@@ -5,7 +5,7 @@
 Get aggregated metrics data for a website within specified time range.
 Provides detailed analytics breakdowns by URLs, referrers, browsers, and countries.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#39](https://github.com/ceviixx/umami-api-docs/issues/39)<!--status-end-->
 
 ```
 GET /api/websites/:websiteId/metrics

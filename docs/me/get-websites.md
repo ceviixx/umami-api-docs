@@ -5,7 +5,7 @@
 Get paginated list of websites owned by or accessible to the authenticated user.
 Provides complete website information including domain details and sharing settings.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#29](https://github.com/ceviixx/umami-api-docs/issues/29)<!--status-end-->
 
 ```
 GET /api/me/websites

@@ -5,7 +5,7 @@
 Get comprehensive account information for the authenticated user.
 Returns user profile details, role permissions, and administrative status.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#27](https://github.com/ceviixx/umami-api-docs/issues/27)<!--status-end-->
 
 ```
 GET /api/me

@@ -4,7 +4,7 @@
 Analyze attribution paths to understand user marketing touchpoint interactions.
 Supports first-click and last-click attribution models for customer journey tracking.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#22](https://github.com/ceviixx/umami-api-docs/issues/22)<!--status-end-->
 
 ```
 POST /api/reports/attribution

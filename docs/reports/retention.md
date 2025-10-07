@@ -5,7 +5,7 @@
 Analyze user retention patterns by tracking how often visitors return.
 Shows percentage of returning users broken down by days since first visit.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#34](https://github.com/ceviixx/umami-api-docs/issues/34)<!--status-end-->
 
 ```
 POST /reports/retention

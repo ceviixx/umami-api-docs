@@ -5,7 +5,7 @@
 Get paginated list of teams where the authenticated user has membership.
 Provides team information including member details, roles, and access codes.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#28](https://github.com/ceviixx/umami-api-docs/issues/28)<!--status-end-->
 
 ```
 GET /api/me/teams

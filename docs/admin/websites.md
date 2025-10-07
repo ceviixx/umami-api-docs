@@ -5,7 +5,7 @@
 Get all websites across the entire Umami system with admin privileges.
 Returns comprehensive list including user ownership and team associations.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#25](https://github.com/ceviixx/umami-api-docs/issues/25)<!--status-end-->
 
 ```
 GET /api/admin/websites

@@ -5,7 +5,7 @@
 Get all tracked websites accessible to the authenticated user.
 Returns complete list of websites with basic configuration and status information.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#41](https://github.com/ceviixx/umami-api-docs/issues/41)<!--status-end-->
 
 ```
 GET /api/websites

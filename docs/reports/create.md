@@ -5,7 +5,7 @@
 Save a configured analytical report with specific parameters for future access.
 Persists report configurations created through Umami interface for reuse and sharing.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#24](https://github.com/ceviixx/umami-api-docs/issues/24)<!--status-end-->
 
 ```
 POST /api/reports

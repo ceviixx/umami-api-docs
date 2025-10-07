@@ -5,7 +5,7 @@
 Get paginated list of all custom reports created by the authenticated user.
 Returns saved report configurations for data analysis with reusable settings.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#33](https://github.com/ceviixx/umami-api-docs/issues/33)<!--status-end-->
 
 ```
 GET /api/reports

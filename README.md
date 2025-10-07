@@ -59,16 +59,16 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 <!--table:me-->
 | Status  | Name            | Description                         |
 | :-------: | :-------- | :---------------- |
-| <!--status:me/Accountdetails-->✅<!--status-end--> | [Account details](docs/me/get-me.md) | Get comprehensive account information for the authenticated user. |
-| <!--status:me/Myteams-->✅<!--status-end--> | [My teams](docs/me/get-teams.md) | Get paginated list of teams where the authenticated user has membership. |
-| <!--status:me/Mywebsites-->✅<!--status-end--> | [My websites](docs/me/get-websites.md) | Get paginated list of websites owned by or accessible to the authenticated user. |
+| <!--status:me/Accountdetails-->🚨 [#27](https://github.com/ceviixx/umami-api-docs/issues/27)<!--status-end--> | [Account details](docs/me/get-me.md) | Get comprehensive account information for the authenticated user. |
+| <!--status:me/Myteams-->🚨 [#28](https://github.com/ceviixx/umami-api-docs/issues/28)<!--status-end--> | [My teams](docs/me/get-teams.md) | Get paginated list of teams where the authenticated user has membership. |
+| <!--status:me/Mywebsites-->🚨 [#29](https://github.com/ceviixx/umami-api-docs/issues/29)<!--status-end--> | [My websites](docs/me/get-websites.md) | Get paginated list of websites owned by or accessible to the authenticated user. |
 <!--table-end-->
 
 ## Admin
 <!--table:admin-->
 | Status  | Name            | Description                         |
 | :-------: | :-------- | :---------------- |
-| <!--status:admin/Adminallwebsites-->✅<!--status-end--> | [Admin all websites](docs/admin/websites.md) | Get all websites across the entire Umami system with admin privileges. |
+| <!--status:admin/Adminallwebsites-->🚨 [#25](https://github.com/ceviixx/umami-api-docs/issues/25)<!--status-end--> | [Admin all websites](docs/admin/websites.md) | Get all websites across the entire Umami system with admin privileges. |
 <!--table-end-->
 
 ## Realtime
@@ -107,7 +107,7 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | :-------: | :-------- | :---------------- |
 | <!--status:websites/Createswebsite-->✅<!--status-end--> | [Creates website](docs/websites/create.md) | Create a new website entry in Umami for tracking analytics data. |
 | <!--status:websites/Deletewebsiteentry-->✅<!--status-end--> | [Delete website entry](docs/websites/delete.md) | Permanently delete a website entry and all associated analytics data. |
-| <!--status:websites/Getallwebsites-->✅<!--status-end--> | [Get all websites](docs/websites/get-all.md) | Get all tracked websites accessible to the authenticated user. |
+| <!--status:websites/Getallwebsites-->🚨 [#41](https://github.com/ceviixx/umami-api-docs/issues/41)<!--status-end--> | [Get all websites](docs/websites/get-all.md) | Get all tracked websites accessible to the authenticated user. |
 | <!--status:websites/Websitebyid-->✅<!--status-end--> | [Website by id](docs/websites/get-by-id.md) | Get detailed information for a specific website by its unique identifier. |
 | <!--status:websites/Resetdataforwebsite-->✅<!--status-end--> | [Reset data for website](docs/websites/reset.md) | Reset all analytics data for a website while preserving the website configuration. |
 | <!--status:websites/Updateswebsite-->✅<!--status-end--> | [Updates website](docs/websites/update.md) | Update the configuration settings of an existing website entry. |
@@ -119,16 +119,16 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | :-------: | :-------- | :---------------- |
 | <!--status:website-stats/Active-->✅<!--status-end--> | [Active](docs/website-stats/active.md) | Get the number of currently active users on a website in real-time. |
 | <!--status:website-stats/Events-->✅<!--status-end--> | [Events](docs/website-stats/events.md) | Get event data as a time series within specified date range. |
-| <!--status:website-stats/Metrics-->✅<!--status-end--> | [Metrics](docs/website-stats/metrics.md) | Get aggregated metrics data for a website within specified time range. |
+| <!--status:website-stats/Metrics-->🚨 [#39](https://github.com/ceviixx/umami-api-docs/issues/39)<!--status-end--> | [Metrics](docs/website-stats/metrics.md) | Get aggregated metrics data for a website within specified time range. |
 | <!--status:website-stats/Pageviews-->✅<!--status-end--> | [Pageviews](docs/website-stats/pageviews.md) | Get time-series data for pageviews and unique sessions within specified date range. |
-| <!--status:website-stats/Stats-->✅<!--status-end--> | [Stats](docs/website-stats/stats.md) | Get comprehensive summarized website statistics including pageviews and unique visitors. |
+| <!--status:website-stats/Stats-->🚨 [#40](https://github.com/ceviixx/umami-api-docs/issues/40)<!--status-end--> | [Stats](docs/website-stats/stats.md) | Get comprehensive summarized website statistics including pageviews and unique visitors. |
 <!--table-end-->
 
 ## Events
 <!--table:events-->
 | Status  | Name            | Description                         |
 | :-------: | :-------- | :---------------- |
-| <!--status:events/Eventdataevents-->✅<!--status-end--> | [Event data events](docs/events/data-events.md) | Get aggregated statistics for event data properties and occurrence counts. |
+| <!--status:events/Eventdataevents-->🚨 [#26](https://github.com/ceviixx/umami-api-docs/issues/26)<!--status-end--> | [Event data events](docs/events/data-events.md) | Get aggregated statistics for event data properties and occurrence counts. |
 | <!--status:events/Getseventdatapropertyandvaluecounts-->✅<!--status-end--> | [Gets event data property and value counts](docs/events/data-fields.md) | Get detailed value distribution for event data properties within time range. |
 | <!--status:events/Eventdatastats-->✅<!--status-end--> | [Event data stats](docs/events/data-stats.md) | Get high-level summary statistics for event data within specified time range. |
 | <!--status:events/Eventdatavalues-->✔️<!--status-end--> | [Event data values](docs/events/data-values.md) | Get specific value counts for given event and property combination. |
@@ -153,19 +153,19 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 <!--table:reports-->
 | Status  | Name            | Description                         |
 | :-------: | :-------- | :---------------- |
-| <!--status:reports/Currency-->✅<!--status-end--> | [Currency](docs/reports/addon_currency.md) | Get list of available currencies used in revenue tracking within date range. |
-| <!--status:reports/Attribution-->✅<!--status-end--> | [Attribution](docs/reports/attribution.md) | Analyze attribution paths to understand user marketing touchpoint interactions. |
-| <!--status:reports/SaveReport-->✅<!--status-end--> | [Save Report](docs/reports/create.md) | Save a configured analytical report with specific parameters for future access. |
+| <!--status:reports/Currency-->🚨 [#21](https://github.com/ceviixx/umami-api-docs/issues/21)<!--status-end--> | [Currency](docs/reports/addon_currency.md) | Get list of available currencies used in revenue tracking within date range. |
+| <!--status:reports/Attribution-->🚨 [#22](https://github.com/ceviixx/umami-api-docs/issues/22)<!--status-end--> | [Attribution](docs/reports/attribution.md) | Analyze attribution paths to understand user marketing touchpoint interactions. |
+| <!--status:reports/SaveReport-->🚨 [#24](https://github.com/ceviixx/umami-api-docs/issues/24)<!--status-end--> | [Save Report](docs/reports/create.md) | Save a configured analytical report with specific parameters for future access. |
 | <!--status:reports/Deletereport-->✅<!--status-end--> | [Delete report](docs/reports/delete.md) | Permanently delete a custom report by its unique identifier. |
-| <!--status:reports/Funnel-->✅<!--status-end--> | [Funnel](docs/reports/funnel.md) | Analyze user conversion funnels by tracking visitor progression through defined steps. |
+| <!--status:reports/Funnel-->🚨 [#30](https://github.com/ceviixx/umami-api-docs/issues/30)<!--status-end--> | [Funnel](docs/reports/funnel.md) | Analyze user conversion funnels by tracking visitor progression through defined steps. |
 | <!--status:reports/Detailsforid-->✅<!--status-end--> | [Details for id](docs/reports/get-by-id.md) | Get detailed information for a specific report by its unique identifier. |
-| <!--status:reports/Goals-->✅<!--status-end--> | [Goals](docs/reports/goals.md) | Track goal completion metrics by comparing actual performance against defined targets. |
-| <!--status:reports/Insights-->✅<!--status-end--> | [Insights](docs/reports/insights.md) | Generate custom analytical insights by combining multiple data fields with filtering. |
-| <!--status:reports/Journey-->✅<!--status-end--> | [Journey](docs/reports/journey.md) | Analyze user navigation paths through your website by tracking sequential visits. |
-| <!--status:reports/Listreports-->✅<!--status-end--> | [List reports](docs/reports/reports.md) | Get paginated list of all custom reports created by the authenticated user. |
-| <!--status:reports/Retention-->✅<!--status-end--> | [Retention](docs/reports/retention.md) | Analyze user retention patterns by tracking how often visitors return. |
-| <!--status:reports/Revenue-->✅<!--status-end--> | [Revenue](docs/reports/revenue.md) | Analyze revenue data and user spending patterns on your website. |
-| <!--status:reports/UTMCampaignTracking-->✅<!--status-end--> | [UTM Campaign Tracking](docs/reports/utm.md) | Generate detailed UTM campaign tracking reports to analyze marketing performance. |
+| <!--status:reports/Goals-->🚨 [#31](https://github.com/ceviixx/umami-api-docs/issues/31)<!--status-end--> | [Goals](docs/reports/goals.md) | Track goal completion metrics by comparing actual performance against defined targets. |
+| <!--status:reports/Insights-->🚨 [#32](https://github.com/ceviixx/umami-api-docs/issues/32)<!--status-end--> | [Insights](docs/reports/insights.md) | Generate custom analytical insights by combining multiple data fields with filtering. |
+| <!--status:reports/Journey-->🚨 [#23](https://github.com/ceviixx/umami-api-docs/issues/23)<!--status-end--> | [Journey](docs/reports/journey.md) | Analyze user navigation paths through your website by tracking sequential visits. |
+| <!--status:reports/Listreports-->🚨 [#33](https://github.com/ceviixx/umami-api-docs/issues/33)<!--status-end--> | [List reports](docs/reports/reports.md) | Get paginated list of all custom reports created by the authenticated user. |
+| <!--status:reports/Retention-->🚨 [#34](https://github.com/ceviixx/umami-api-docs/issues/34)<!--status-end--> | [Retention](docs/reports/retention.md) | Analyze user retention patterns by tracking how often visitors return. |
+| <!--status:reports/Revenue-->🚨 [#35](https://github.com/ceviixx/umami-api-docs/issues/35)<!--status-end--> | [Revenue](docs/reports/revenue.md) | Analyze revenue data and user spending patterns on your website. |
+| <!--status:reports/UTMCampaignTracking-->🚨 [#36](https://github.com/ceviixx/umami-api-docs/issues/36)<!--status-end--> | [UTM Campaign Tracking](docs/reports/utm.md) | Generate detailed UTM campaign tracking reports to analyze marketing performance. |
 <!--table-end-->
 
 ## Users
@@ -175,10 +175,10 @@ These statuses are updated daily via GitHub Actions based on actual test runs an
 | <!--status:users/Createuser-->⏳<!--status-end--> | [Create user](docs/users/create.md) | Create a new user account in the Umami system. |
 | <!--status:users/Deleteuser-->⏳<!--status-end--> | [Delete user](docs/users/delete.md) | Permanently delete a user account from the system. |
 | <!--status:users/Getallusers-->⏳<!--status-end--> | [Get all users](docs/users/get-all.md) | Get complete list of all user accounts in the system. |
-| <!--status:users/Getuserbyid-->✅<!--status-end--> | [Get user by id](docs/users/get-by-id.md) | Get detailed information for a specific user by their unique identifier. |
-| <!--status:users/Teamsfromuser-->✅<!--status-end--> | [Teams from user](docs/users/teams-for-user.md) | Get paginated list of teams associated with a specific user. |
-| <!--status:users/Updateuser-->✅<!--status-end--> | [Update user](docs/users/update.md) | Update an existing user's account details including username, password, and role. |
-| <!--status:users/Websitesfromuser-->✅<!--status-end--> | [Websites from user](docs/users/websites-for-user.md) | Get paginated list of websites associated with a specific user. |
+| <!--status:users/Getuserbyid-->🚨 [#42](https://github.com/ceviixx/umami-api-docs/issues/42)<!--status-end--> | [Get user by id](docs/users/get-by-id.md) | Get detailed information for a specific user by their unique identifier. |
+| <!--status:users/Teamsfromuser-->🚨 [#37](https://github.com/ceviixx/umami-api-docs/issues/37)<!--status-end--> | [Teams from user](docs/users/teams-for-user.md) | Get paginated list of teams associated with a specific user. |
+| <!--status:users/Updateuser-->🚨 [#43](https://github.com/ceviixx/umami-api-docs/issues/43)<!--status-end--> | [Update user](docs/users/update.md) | Update an existing user's account details including username, password, and role. |
+| <!--status:users/Websitesfromuser-->🚨 [#38](https://github.com/ceviixx/umami-api-docs/issues/38)<!--status-end--> | [Websites from user](docs/users/websites-for-user.md) | Get paginated list of websites associated with a specific user. |
 <!--table-end-->
 
 ## Teams

@@ -5,7 +5,7 @@
 Generate detailed UTM campaign tracking reports to analyze marketing performance.
 Provides insights into traffic sources and campaign effectiveness through UTM parameters.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#36](https://github.com/ceviixx/umami-api-docs/issues/36)<!--status-end-->
 
 ```
 POST /reports/utm

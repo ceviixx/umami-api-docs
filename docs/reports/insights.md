@@ -5,7 +5,7 @@
 Generate custom analytical insights by combining multiple data fields with filtering.
 Allows deep-dive analysis through segments and advanced filtering to uncover trends.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#32](https://github.com/ceviixx/umami-api-docs/issues/32)<!--status-end-->
 
 ```
 POST /reports/insights

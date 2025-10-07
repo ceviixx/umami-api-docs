@@ -5,7 +5,7 @@
 Track goal completion metrics by comparing actual performance against defined targets.
 Supports count, sum, and average operators for different goal types.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#31](https://github.com/ceviixx/umami-api-docs/issues/31)<!--status-end-->
 
 ```
 POST /reports/goals

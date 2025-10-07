@@ -5,7 +5,7 @@
 Analyze revenue data and user spending patterns on your website.
 Provides comprehensive revenue analytics including transaction counts and time-series data.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#35](https://github.com/ceviixx/umami-api-docs/issues/35)<!--status-end-->
 
 ```
 POST /reports/revenue

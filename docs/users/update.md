@@ -5,7 +5,7 @@
 Update an existing user's account details including username, password, and role.
 All parameters are optional, allowing partial updates of user information.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#43](https://github.com/ceviixx/umami-api-docs/issues/43)<!--status-end-->
 
 ```
 POST /api/users/:userId

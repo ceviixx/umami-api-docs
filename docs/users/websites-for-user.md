@@ -5,7 +5,7 @@
 Get paginated list of websites associated with a specific user.
 Provides website ownership and access information including domains and sharing settings.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#38](https://github.com/ceviixx/umami-api-docs/issues/38)<!--status-end-->
 
 ```
 GET /api/users/:userId/websites

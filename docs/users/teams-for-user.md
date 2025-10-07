@@ -5,7 +5,7 @@
 Get paginated list of teams associated with a specific user.
 Provides team membership information including roles and access codes.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#37](https://github.com/ceviixx/umami-api-docs/issues/37)<!--status-end-->
 
 ```
 GET /api/users/:userId/teams

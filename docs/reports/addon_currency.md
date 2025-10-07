@@ -6,7 +6,7 @@ Get list of available currencies used in revenue tracking within date range.
 Essential for Revenue reports and can filter Attribution reports by specific currencies.
 **Note:** This endpoint works on eu.umami.is but not on api.umami.is
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#21](https://github.com/ceviixx/umami-api-docs/issues/21)<!--status-end-->
 
 ```
 GET /api/reports/revenue

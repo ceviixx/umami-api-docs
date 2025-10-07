@@ -5,7 +5,7 @@
 Get comprehensive summarized website statistics including pageviews and unique visitors.
 Provides key performance indicators with comparison to previous period values.
 
-**Latest status:** <!--status-->✅<!--status-end-->
+**Latest status:** <!--status-->🚨 [#40](https://github.com/ceviixx/umami-api-docs/issues/40)<!--status-end-->
 
 ```
 GET /api/websites/:websiteId/stats

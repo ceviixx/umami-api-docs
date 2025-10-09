@@ -1,0 +1,60 @@
+name: Lint PRs
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  redocly-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm install
+
+      - name: Lint (Annotations)
+        id: lint_anno
+        continue-on-error: true
+        run: npx redocly lint openapi/openapi.yaml --format=github-actions
+
+      - name: Lint (Markdown Report)
+        id: lint_md
+        continue-on-error: true
+        run: npx redocly lint openapi/openapi.yaml --format=markdown > lint-report.md
+
+
+      - name: Clean markdown report
+        if: ${{ steps.lint_anno.outcome == 'failure' }}
+        run: sed -n '/^| Severity \| Location \| Problem \| Message \|/,$p' lint-report.md | sed '/^Validation failed$/,$d' > lint-report.clean.md
+                  
+      - name: Build comment body
+        if: ${{ steps.lint_anno.outcome == 'failure' }}
+        run: |
+          {
+            echo "<!-- redocly-lint -->"
+            echo "@${{ github.event.pull_request.user.login }} Please fix the issues below and push another commit."
+            cat lint-report.clean.md
+          } > lint-comment.md
+
+      - name: Add or update PR comment
+        if: ${{ steps.lint_anno.outcome == 'failure' }}
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body-file: lint-comment.md
+          edit-mode: replace
+          find: '<!-- redocly-lint -->'
+
+      - name: Fail if Lint-Error
+        if: ${{ steps.lint_anno.outcome == 'failure' }}
+        run: exit 1

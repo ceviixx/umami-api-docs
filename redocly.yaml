@@ -1,0 +1,28 @@
+apis:
+  umami@v3: 
+    root: openapi/openapi.yaml
+    openapi:
+      hideDownloadButtons: true
+
+extends:
+  - recommended
+rules:
+  no-unused-components: error
+  no-server-example.com: off
+  info-license: off
+
+theme:
+  openapi:
+    hideDownloadButton: true
+    htmlTemplate: ./docs/index.html
+    theme:
+      sidebar:
+        backgroundColor: '#fff'
+        textColor: '#000'
+        
+      colors:
+        primary:
+          main: '#000'
+
+ignore:
+  - .github

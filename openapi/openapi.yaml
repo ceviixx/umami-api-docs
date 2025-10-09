@@ -1,0 +1,2840 @@
+openapi: 3.1.0
+info:
+  title: umami API docs
+  version: v3.0.0
+  description: |-
+    Documentation for Umami Analytics with daily status updates to help detect undocumented changes.
+    Information about broken or failed API endpoints, if available, can be found in the GitHub repository.
+  contact:
+    url: "https://github.com/ceviixx/umami-api-docs"
+  x-logo:
+    url: logo-light.svg
+    altText: "Umami API Docs"
+    href: "/umami-api-docs/#"
+    backgroundColor: "#fff"
+
+externalDocs: 
+  url: "https://umami.is/"
+  description: Documentation for umami Analytics
+  
+
+tags:
+  - name: Authentication
+    description: TBD
+  - name: Stats
+    description: TBD
+  - name: Sessions
+    description: TBD
+  - name: Events
+    description: TBD
+  - name: Reports
+    description: TBD
+  - name: Pixels
+    description: TBD
+  - name: Links
+    description: TBD
+  - name: Cohorts & Segments
+    description: TBD
+  - name: Websites
+    description: TBD
+  - name: Teams
+    description: TBD
+  - name: Helper
+    description: Helper requests
+
+paths:
+
+  /auth/login:
+    post: 
+      summary: Login
+      tags:
+        - Authentication
+      description: TBD
+      operationId: authLogin
+      security: []
+      servers: 
+        - url: https://umami.example.com/api
+          description: Self-hosted Umami
+      requestBody: 
+        content:
+          application:json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: TBD
+                password:
+                  type: string
+                  description: TBD
+        
+  /auth/verify:
+    post: 
+      summary: Verfiy
+      tags: 
+        -  Authentication
+      description: TBD
+      operationId: authVerify
+      security:
+        - bearer-token: []
+      servers: 
+        - url: https://umami.example.com/api
+          description: Self-hosted Umami
+
+  /websites/{id}/active:
+    get:
+      summary: Active
+      tags:
+        - Stats
+      description: TBD
+      operationId: activeVisitors
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                visitors: 20
+              schema:
+                type: object
+                properties:
+                  visitors:
+                    type: number
+                    description: TBD
+        "400":
+          description: Bad request
+
+  /websites/{id}/stats:
+    get:
+      summary: Statistics
+      tags:
+        - Stats
+      description: TBD
+      operationId: statistics
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: startAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: endAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: unit
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - hour
+              - day
+              - month
+          description: TBD
+        - name: timezone
+          in: query
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                pageviews: 20
+                visitors: 20
+                visits: 20
+                bounces: 20
+                totaltime: 20
+                comparison:
+                  pageviews: 20
+                  visitors: 20
+                  visits: 20
+                  bounces: 20
+                  totaltime: 20
+              schema:
+                type: object
+                properties:
+                  pageviews:
+                    type: number
+                    description: TBD
+                  visitors:
+                    type: number
+                    description: TBD
+                  visits:
+                    type: number
+                    description: TBD
+                  bounces:
+                    type: number
+                    description: TBD
+                  totaltime:
+                    type: number
+                    description: TBD
+                  comparison:
+                    type: object
+                    properties:
+                      pageviews:
+                        type: integer
+                        description: TBD
+                      visitors:
+                        type: integer
+                        description: TBD
+                      visits:
+                        type: integer
+                        description: TBD
+                      bounces:
+                        type: integer
+                        description: TBD
+                      totaltime:
+                        type: integer
+                        description: TBD
+
+        "400":
+          description: Bad request
+
+  /websites/{id}/pageviews:
+    get:
+      summary: Pageviews
+      tags:
+        - Stats
+      description: TBD
+      operationId: pageviews
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: compare
+          in: query
+          schema:
+            type: string
+            enum:
+              - prev
+              - yoy
+          description: Previous period or previous year
+        - name: startAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: endAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: unit
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - hour
+              - day
+              - month
+          description: TBD
+        - name: timezone
+          in: query
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                pageviews:
+                  - x: 2025-10-10T20:10:00Z
+                    y: 10
+                sessions:
+                  - x: 2025-10-10T20:10:00Z
+                    y: 15
+              schema:
+                type: object
+                properties:
+                  pageviews:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        x:
+                          type: string
+                          format: date-time
+                        y:
+                          type: integer
+                  sessions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        x:
+                          type: string
+                          format: date-time
+                        y:
+                          type: integer
+        "400":
+          description: Bad request
+
+  /websites/{id}/metrics:
+    get:
+      summary: Metrics
+      tags:
+        - Stats
+      description: TBD
+      operationId: metrics
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: x
+        - name: startAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: endAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: unit
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - hour
+              - day
+              - month
+          description: TBD
+        - name: timezone
+          in: query
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - browser
+              - device
+              - os
+              - city
+              - country
+              - region
+              - entry
+              - exit
+              - path
+              - channel
+              - referrer
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                - x: "/"
+                  y: 20
+                - x: "/home"
+                  y: 12
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    x:
+                      type: string
+                    y:
+                      type: number
+        "400":
+          description: Bad request
+
+  /realtime/{id}:
+    get:
+      summary: Realtime
+      tags:
+        - Stats
+      description: TBD
+      operationId: realtime
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: x
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                countries:
+                  DE: 1
+                urls:
+                  /gh-pages-api-test/: 1
+                referrers: {}
+                events:
+                  - __type: pageview
+                    sessionId: e5993b0b-5bf3-5a9f-80e6-f8f49a7845f3
+                    eventName: ""
+                    createdAt: "2025-10-15T17:45:07Z"
+                    browser: safari
+                    os: Mac OS
+                    device: desktop
+                    country: DE
+                    urlPath: /gh-pages-api-test/
+                    referrerDomain: ""
+                  - __type: session
+                    sessionId: e5993b0b-5bf3-5a9f-80e6-f8f49a7845f3
+                    eventName: ""
+                    createdAt: "2025-10-15T17:45:07Z"
+                    browser: safari
+                    os: Mac OS
+                    device: desktop
+                    country: DE
+                    urlPath: /gh-pages-api-test/
+                    referrerDomain: ""
+                series:
+                  views:
+                    - x: "2025-10-15T17:45:00Z"
+                      y: 1
+                  visitors:
+                    - x: "2025-10-15T17:45:00Z"
+                      y: 1
+                totals:
+                  views: 1
+                  visitors: 1
+                  events: 0
+                  countries: 1
+                timestamp: 1760550325565
+              schema:
+                type: object
+                properties:
+                  countries:
+                    type: object
+                    additionalProperties:
+                      type: integer
+                  urls:
+                    type: object
+                    additionalProperties:
+                      type: integer
+                  referrers:
+                    type: object
+                    additionalProperties:
+                      type: integer
+                  events:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        __type:
+                          type: string
+                        sessionId:
+                          type: string
+                        eventName:
+                          type: string
+                        createdAt:
+                          type: string
+                          format: date-time
+                        browser:
+                          type: string
+                        os:
+                          type: string
+                        device:
+                          type: string
+                        country:
+                          type: string
+                        urlPath:
+                          type: string
+                        referrerDomain:
+                          type: string
+                  series:
+                    type: object
+                    properties:
+                      views:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            x:
+                              type: string
+                              format: date-time
+                            y:
+                              type: integer
+                      visitors:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            x:
+                              type: string
+                              format: date-time
+                            y:
+                              type: integer
+                  totals:
+                    type: object
+                    properties:
+                      views:
+                        type: integer
+                      visitors:
+                        type: integer
+                      events:
+                        type: integer
+                      countries:
+                        type: integer
+                  timestamp:
+                    type: number 
+
+
+
+
+
+
+
+        "400":
+          description: Bad request
+
+  /websites/{id}/weekly:
+    get:
+      summary: Traffic (weekly)
+      tags:
+        - Stats
+      description: TBD
+      operationId: getWeeklyTraffic
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: startAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: endAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: unit
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - hour
+              - day
+              - month
+          description: TBD
+        - name: timezone
+          in: query
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                - [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                - [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                - [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
+                - [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                - [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                - [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                - [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+              schema:
+                type: array
+                description: TBD
+                items:
+                  type: array
+                  items:
+                    type: integer
+        "400":
+          description: Bad request
+
+  /websites/{id}/sessions:
+    get:
+      summary: Get all sessions
+      tags:
+        - Sessions
+      description: TBD
+      operationId: getSessions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: startAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: endAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: unit
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - hour
+              - day
+              - month
+          description: TBD
+        - name: timezone
+          in: query
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: pageSize
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                data:
+                  - id: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+                    websiteId: "f0e9d8c7-b6a5-4321-fedc-ba9876543210"
+                    hostname:
+                      - "example.com"
+                      - "www.example.com"
+                    browser: "Chrome"
+                    os: "Windows"
+                    device: "desktop"
+                    screen: "1920x1080"
+                    language: "en-US"
+                    country: "US"
+                    region: "California"
+                    city: "San Francisco"
+                    firstAt: "2025-10-14T15:00:00Z"
+                    lastAt: "2025-10-14T15:30:00Z"
+                    visits: 5
+                    views: 12
+                    createdAt: "2025-10-14T15:00:00Z"
+                count: 100
+                page: 1
+                pageSize: 10
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          description: TBD
+                        websiteId:
+                          type: string
+                          format: uuid
+                          description: TBD
+                        hostname:
+                          type: array
+                          items:
+                            type: string
+                        browser:
+                          type: string
+                        os:
+                          type: string
+                        device:
+                          type: string
+                        screen:
+                          type: string
+                        language:
+                          type: string
+                        country:
+                          type: string
+                        region:
+                          type: string
+                        city:
+                          type: string
+                        firstAt:
+                          type: string
+                          format: date-time
+                          description: TBD
+                        lastAt:
+                          type: string
+                          format: date-time
+                          description: TBD
+                        visits:
+                          type: integer
+                        views:
+                          type: integer
+                        createdAt:
+                          type: string
+                          format: date-time
+                          description: TBD
+                  count:
+                    type: integer
+                    description: TBD
+                  page:
+                    type: integer
+                    description: TBD
+                  pageSize:
+                    type: integer
+                    description: TBD
+        "400":
+          description: Bad request
+
+  /websites/{id}/session-data/properties:
+    get:
+      summary: Get properties
+      tags:
+        - Sessions
+      description: TBD
+      operationId: getSessionsProperties
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: startAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: endAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: unit
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - hour
+              - day
+              - month
+          description: TBD
+        - name: timezone
+          in: query
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+
+  /websites/{id}/sessions/:session_id:
+    get:
+      summary: Get session
+      tags:
+        - Sessions
+      description: TBD
+      operationId: sessionDetails
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                id: "b2c3d4e5-f6a7-8901-2345-67890abcdef0"
+                websiteId: "c7b6a5f0-e9d8-4321-fedc-ba9876543210"
+                distinctId: "user-12345"
+                browser: "Firefox"
+                os: "Linux"
+                device: "mobile"
+                screen: "375x667"
+                language: "fr-FR"
+                country: "FR"
+                region: "Ile-de-France"
+                city: "Paris"
+                firstAt: "2025-10-14T16:00:00Z"
+                lastAt: "2025-10-14T16:05:00Z"
+                visits: 1
+                views: 3
+                events: 5
+                totaltime: 300
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  websiteId:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  distinctId:
+                    type: string
+                    description: TBD
+                  browser:
+                    type: string
+                  os:
+                    type: string
+                  device:
+                    type: string
+                  screen:
+                    type: string
+                  language:
+                    type: string
+                  country:
+                    type: string
+                  region:
+                    type: string
+                  city:
+                    type: string
+                  firstAt:
+                    type: string
+                    format: date-time
+                    description: TBD
+                  lastAt:
+                    type: string
+                    format: date-time
+                    description: TBD
+                  visits:
+                    type: integer
+                  views:
+                    type: integer
+                  events:
+                    type: integer
+                  totaltime:
+                    type: integer
+                    description: TBD
+        "400":
+          description: Bad request
+
+  /websites/{id}/sessions/:session_id/properties:
+    get:
+      summary: Session properties
+      tags:
+        - Sessions
+      description: TBD
+      operationId: sessionProperties
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request
+
+  /websites/{id}/sessions/:session_id/activity:
+    get:
+      summary: Session activity
+      tags:
+        - Sessions
+      description: TBD
+      operationId: sessionActivity
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: startAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: endAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                - createdAt: "2025-10-14T17:00:00Z"
+                  urlPath: "/home"
+                  urlQuery: ""
+                  referrerDomain: ""
+                  eventId: "c1d2e3f4-a5b6-7890-1234-567890abcde1"
+                  eventType: 1
+                  eventName: "pageview"
+                  visitId: "d2e3f4a5-b6c7-8901-2345-67890abcdef2"
+                  hasData: 0
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    createdAt:
+                      type: string
+                      format: date-time
+                    urlPath:
+                      type: string
+                    urlQuery:
+                      type: string
+                    referrerDomain:
+                      type: string
+                    eventId:
+                      type: string
+                      format: uuid
+                    eventType:
+                      type: integer
+                    eventName:
+                      type: string
+                    visitId:
+                      type: string
+                      format: uuid
+                    hasData:
+                      type: number
+        "400":
+          description: Bad request
+
+  /websites/{id}/events:
+    get:
+      summary: Events (activity)
+      tags:
+        - Events
+      description: TBD
+      operationId: events
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+
+        - name: startAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: endAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: unit
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - hour
+              - day
+              - month
+          description: TBD
+        - name: timezone
+          in: query
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                data:
+                  - id: "d1e2f3a4-b5c6-7890-1234-567890abcde1"
+                    websiteId: "e2f3a4b5-c6d7-8901-2345-67890abcdef2"
+                    sessionId: "f3a4b5c6-d7e8-9012-3456-7890abcdef34"
+                    createdAt: "2025-10-14T18:00:00Z"
+                    hostname: "api.example.com"
+                    urlPath: "/dashboard"
+                    urlQuery: ""
+                    referrerPath: "/"
+                    referrerQuery: ""
+                    referrerDomain: "internal"
+                    country: "CA"
+                    city: "Toronto"
+                    device: "desktop"
+                    os: "macOS"
+                    browser: "Safari"
+                    pageTitle: "Dashboard Overview"
+                    eventType: 1
+                    eventName: "pageview"
+                    hasData: 0
+                count: 50
+                page: 1
+                pageSize: 20
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          description: TBD
+                        websiteId:
+                          type: string
+                          format: uuid
+                          description: TBD
+                        sessionId:
+                          type: string
+                          format: uuid
+                          description: TBD
+                        createdAt:
+                          type: string
+                          format: date-time
+                        hostname:
+                          type: string
+                        urlPath:
+                          type: string
+                        urlQuery:
+                          type: string
+                        referrerPath:
+                          type: string
+                        referrerQuery:
+                          type: string
+                        referrerDomain:
+                          type: string
+                        country:
+                          type: string
+                        city:
+                          type: string
+                        device:
+                          type: string
+                        os:
+                          type: string
+                        browser:
+                          type: string
+                        pageTitle:
+                          type: string
+                        eventType:
+                          type: integer
+                        eventName:
+                          type: string
+                        hasData:
+                          type: number
+                  count:
+                    type: integer
+                    description: TBD
+                  page:
+                    type: integer
+                    description: TBD
+                  pageSize:
+                    type: integer
+                    description: TBD
+        "400":
+          description: Bad request
+
+  /websites/{id}/event-data/properties:
+    get:
+      summary: Event properties
+      tags:
+        - Events
+      description: TBD
+      operationId: eventProperties
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+
+        - name: startAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: endAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: unit
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - hour
+              - day
+              - month
+          description: TBD
+        - name: timezone
+          in: query
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+
+  /websites/{id}/events/series:
+    get:
+      summary: Series (chart)
+      tags:
+        - Events
+      description: TBD
+      operationId: eventSeries
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+
+        - name: startAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: endAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: unit
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - hour
+              - day
+              - month
+          description: TBD
+        - name: timezone
+          in: query
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                - x: "Chrome"
+                  t: "2025-10-14T19:00:00Z"
+                  y: 150
+                - x: "Firefox"
+                  t: "2025-10-14T19:00:00Z"
+                  y: 80
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    x:
+                      type: string
+                      description: TBD
+                    t:
+                      type: string
+                      format: date-time
+                      description: TBD
+                    y:
+                      type: integer
+                      description: TBD
+        "400":
+          description: Bad request
+
+  /reports/breakdown:
+    post:
+      summary: Breakdown
+      tags:
+        - Reports
+      description: TBD
+      operationId: runBreakdown
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                websiteId:
+                  type: string
+                  format: uuid
+                  description: TBD
+                type:
+                  type: string
+                  description: TBD
+                  enum:
+                    - breakdown
+                filters:
+                  type: object
+                  description: TBD
+                  additionalProperties: true
+                parameters:
+                  type: object
+                  description: TBD
+                  properties:
+                    startDate:
+                      type: string
+                      format: date-time
+                      description: TBD
+                    endDate:
+                      type: string
+                      format: date-time
+                      description: TBD
+                    timezone:
+                      type: string
+                      description: TBD
+                    fields:
+                      type: array
+                      items:
+                        type: string
+                        description: TBD
+                  required:
+                    - startDate
+                    - endDate
+                    - timezone
+                    - fields
+              required:
+                - websiteId
+                - type
+                - parameters
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                - views: 69
+                  visitors: 8
+                  visits: 7
+                  bounces: 2
+                  totaltime: 2200
+                  path: "/"
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    views:
+                      type: integer
+                      description: TBD
+                    visitors:
+                      type: integer
+                      description: TBD
+                    visits:
+                      type: integer
+                      description: TBD
+                    bounces:
+                      type: integer
+                      description: TBD
+                    totaltime:
+                      type: integer
+                      description: TBD
+                    path:
+                      type: string
+                      description: TBD
+        "400":
+          description: Bad request
+
+  /reports/journey:
+    post:
+      summary: Journey
+      tags:
+        - Reports
+      description: TBD
+      operationId: runJourney
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                websiteId:
+                  type: string
+                  format: uuid
+                  description: TBD
+                type:
+                  type: string
+                  description: TBD
+                  enum: 
+                    - journey
+                filters:
+                  type: object
+                  description: TBD
+                  additionalProperties: true
+                parameters:
+                  type: object
+                  description: TBD
+                  properties:
+                    startDate:
+                      type: string
+                      format: date-time
+                      description: TBD
+                    endDate:
+                      type: string
+                      format: date-time
+                      description: TBD
+                    timezone:
+                      type: string
+                      description: TBD
+                    steps:
+                      type: integer
+                      description: TBD
+                    startStep:
+                      type: string
+                      description: TBD
+                    endStep:
+                      type: string
+                      description: TBD
+                  required:
+                    - startDate
+                    - endDate
+                    - timezone
+                    - steps
+              required:
+                - websiteId
+                - type
+                - parameters
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                - items:
+                    - "/page1"
+                    - "click"
+                    - "/page2"
+                    - null
+                  count: 150
+                - items:
+                    - "/home"
+                    - "/about"
+                    - null
+                  count: 25
+                - items:
+                    - "/contact"
+                    - "/submit"
+                    - null
+                  count: 5
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    items:
+                      type: array
+                      description: TBD
+                      items:
+                        type: 
+                          - string
+                          - 'null'
+                    count:
+                      type: integer
+                      description: TBD
+        "400":
+          description: Bad request
+
+  /reports/retention:
+    post:
+      summary: Retention
+      tags:
+        - Reports
+      description: TBD
+      operationId: runRetention
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                websiteId:
+                  type: string
+                  format: uuid
+                  description: TBD
+                type:
+                  type: string
+                  description: TBD
+                  enum:
+                    - retention
+                filters:
+                  type: object
+                  description: TBD
+                  additionalProperties: true
+                parameters:
+                  type: object
+                  description: TBD
+                  properties:
+                    startDate:
+                      type: string
+                      format: date-time
+                      description: TBD
+                    endDate:
+                      type: string
+                      format: date-time
+                      description: TBD
+                    timezone:
+                      type: string
+                      description: TBD
+                  required:
+                    - startDate
+                    - endDate
+                    - timezone
+              required:
+                - websiteId
+                - type
+                - parameters
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+
+  /reports/attribution:
+    post:
+      summary: Attribution
+      tags:
+        - Reports
+      description: TBD
+      operationId: runAttribution
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                websiteId:
+                  type: string
+                  format: uuid
+                  description: TBD
+                type:
+                  type: string
+                  description: TBD
+                  enum:
+                    - attribution
+                filters:
+                  type: object
+                  description: TBD
+                  additionalProperties: true
+                parameters:
+                  type: object
+                  description: TBD
+                  properties:
+                    startDate:
+                      type: string
+                      format: date-time
+                      description: TBD
+                    endDate:
+                      type: string
+                      format: date-time
+                      description: TBD
+                    timezone:
+                      type: string
+                      description: TBD
+                    model:
+                      type: string
+                      description: TBD
+                    type:
+                      type: string
+                      description: TBD
+                    step:
+                      type: string
+                      description: TBD
+                  required:
+                    - startDate
+                    - endDate
+                    - timezone
+                    - model
+                    - type
+                    - step
+              required:
+                - websiteId
+                - type
+                - parameters
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+
+  /reports/revenue:
+    post:
+      summary: Revenue
+      tags:
+        - Reports
+      description: TBD
+      operationId: runRevenue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                websiteId:
+                  type: string
+                  format: uuid
+                  description: TBD
+                type:
+                  type: string
+                  description: TBD
+                  enum:
+                    - revenue
+                filters:
+                  type: object
+                  description: TBD
+                  additionalProperties: true
+                parameters:
+                  type: object
+                  description: TBD
+                  properties:
+                    startDate:
+                      type: string
+                      format: date-time
+                      description: TBD
+                    endDate:
+                      type: string
+                      format: date-time
+                      description: TBD
+                    timezone:
+                      type: string
+                      description: TBD
+                    currency:
+                      type: string
+                      description: TBD
+                  required:
+                    - startDate
+                    - endDate
+                    - timezone
+                    - currency
+              required:
+                - websiteId
+                - type
+                - parameters
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request
+
+  /reports/utm:
+    post:
+      summary: UTM
+      tags:
+        - Reports
+      description: TBD
+      operationId: runUTM
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                websiteId:
+                  type: string
+                  format: uuid
+                  description: TBD
+                type:
+                  type: string
+                  description: TBD
+                  enum:
+                    - utm
+                filters:
+                  type: object
+                  description: TBD
+                  additionalProperties: true
+                parameters:
+                  type: object
+                  description: TBD
+                  properties:
+                    startDate:
+                      type: string
+                      format: date-time
+                      description: TBD
+                    endDate:
+                      type: string
+                      format: date-time
+                      description: Tx
+                    timezone:
+                      type: string
+                      description: TBD
+                  required:
+                    - startDate
+                    - endDate
+                    - timezone
+              required:
+                - websiteId
+                - type
+                - parameters
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+
+  /pixels:
+    get:
+      summary: Get all
+      tags:
+        - Pixels
+      description: TBD
+      operationId: getPixels
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                data:
+                  - id: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+                    name: "My Analytics Site"
+                    slug: "my-analytics-site"
+                    userId: "f0e9d8c7-b6a5-4321-fedc-ba9876543210"
+                    teamId: null
+                    createdAt: "2024-01-01T10:00:00.000Z"
+                    updatedAt: "2024-10-14T10:30:00.000Z"
+                    deletedAt: null
+                count: 1
+                page: 1
+                pageSize: 10
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          description: TBD
+                        name:
+                          type: string
+                          description: TBD
+                        slug:
+                          type: string
+                          description: TBD
+                        userId:
+                          type: string
+                          format: uuid
+                          description: TBD
+                        teamId:
+                          type: 
+                            - string
+                            - 'null'
+                          format: uuid
+                          description: TBD
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                        deletedAt:
+                          type: 
+                            - string
+                            - 'null'
+                          format: date-time
+                          description: TBD
+                  count:
+                    type: integer
+                    description: TBD
+                  page:
+                    type: integer
+                    description: TBD
+                  pageSize:
+                    type: integer
+                    description: TBD
+        "400":
+          description: Bad request
+    post:
+      summary: Create
+      tags:
+        - Pixels
+      description: TBD
+      operationId: createPixel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                slug:
+                  type: string
+                  description: TBD
+                name:
+                  type: string
+                  description: TBD
+              required:
+                - slug
+                - name
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+
+  /pixels/{id}:
+    get:
+      summary: Get details
+      tags:
+        - Pixels
+      description: TBD
+      operationId: getPixelDetails
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                id: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+                name: "My Website Name"
+                slug: "my-website-name"
+                userId: "f0e9d8c7-b6a5-4321-fedc-ba9876543210"
+                teamId: null
+                createdAt: "2024-01-01T10:00:00.000Z"
+                updatedAt: "2024-10-14T10:30:00.000Z"
+                deletedAt: null
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  name:
+                    type: string
+                    description: TBD
+                  slug:
+                    type: string
+                    description: TBD
+                  userId:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  teamId:
+                    type: 
+                      - string
+                      - 'null'
+                    format: uuid
+                    description: TBD
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  deletedAt:
+                    type: 
+                      - string
+                      - 'null'
+                    format: date-time
+                    description: TBD
+        "400":
+          description: Bad request
+    post:
+      summary: Update
+      tags:
+        - Pixels
+      description: TBD
+      operationId: updatePixel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of the chess result
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                slug:
+                  type: string
+                  description: TBD
+                name:
+                  type: string
+                  description: TBD
+              required:
+                - slug
+                - name
+      responses:
+        "200":
+          description: Updated link
+          content:
+            application/json:
+              example:
+                ok:: false
+        "400":
+          description: Bad request
+    delete:
+      summary: Delete
+      tags:
+        - Pixels
+      description: TBD
+      operationId: deletePixel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                ok: true
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    description: TBD
+        "400":
+          description: Bad request
+
+  /links:
+    get:
+      summary: Get all
+      tags:
+        - Links
+      description: TBD
+      operationId: getLinks
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                data:
+                  - id: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+                    name: "Blog"
+                    url: "https://example.com/blog"
+                    slug: "blog-site"
+                    userId: "f0e9d8c7-b6a5-4321-fedc-ba9876543210"
+                    teamId: null
+                    createdAt: "2024-01-01T10:00:00.000Z"
+                    updatedAt: "2024-10-14T10:30:00.000Z"
+                    deletedAt: null
+                count: 5
+                page: 1
+                pageSize: 10
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          description: TBD
+                        name:
+                          type: string
+                          description: TBD
+                        url:
+                          type: string
+                          format: url
+                          description: TBD
+                        slug:
+                          type: string
+                          description: TBD
+                        userId:
+                          type: string
+                          format: uuid
+                          description: TBD
+                        teamId:
+                          type: 
+                            - string
+                            - 'null'
+                          format: uuid
+                          description: TBD
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                        deletedAt:
+                          type: 
+                            - string
+                            - 'null'
+                          format: date-time
+                          description: TBD
+                  count:
+                    type: integer
+                    description: TBD
+                  page:
+                    type: integer
+                    description: TBD
+                  pageSize:
+                    type: integer
+                    description: TBD
+        "400":
+          description: Bad request
+    post:
+      summary: Create
+      tags:
+        - Links
+      description: TBD
+      operationId: createLink
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                slug:
+                  type: string
+                  description: TBD
+                name:
+                  type: string
+                  description: TBD
+                url:
+                  type: string
+                  format: url
+                  description: TBD
+              required:
+                - slug
+                - name
+                - url
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+
+  /links/{id}:
+    get:
+      summary: Get details
+      tags:
+        - Links
+      description: TBD
+      operationId: getLinkDetails
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                id: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+                name: "Test Site"
+                url: "https://example.com"
+                slug: "test-site"
+                userId: "f0e9d8c7-b6a5-4321-fedc-ba9876543210"
+                teamId: null
+                createdAt: "2024-01-01T10:00:00.000Z"
+                updatedAt: "2024-10-14T10:30:00.000Z"
+                deletedAt: null
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  name:
+                    type: string
+                    description: TBD
+                  url:
+                    type: string
+                    format: url
+                    description: TBD
+                  slug:
+                    type: string
+                    description: TBD
+                  userId:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  teamId:
+                    type: 
+                      - string
+                      - 'null'
+                    format: uuid
+                    description: TBD
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  deletedAt:
+                    type: 
+                      - string
+                      - 'null'
+                    format: date-time
+                    description: TBD
+        "400":
+          description: Bad request
+    post:
+      summary: Update
+      tags:
+        - Links
+      description: TBD
+      operationId: updateLink
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                slug:
+                  type: string
+                  description: TBD
+                name:
+                  type: string
+                  description: TBD
+                url:
+                  type: string
+                  format: url
+                  description: TBD
+              required:
+                - slug
+                - name
+                - url
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+    delete:
+      summary: Delete
+      tags:
+        - Links
+      description: TBD
+      operationId: deleteLink
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                ok: true
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    description: TBD
+        "400":
+          description: Bad request
+
+  /websites/{id}/segments:
+    get:
+      summary: Get all
+      tags:
+        - Cohorts & Segments
+      description: TBD
+      operationId: getAllCohortSegment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+
+        - name: client
+          in: query
+          required: true
+          schema:
+            type: string
+            # enum:
+            #  - [object Object]
+          description: TBD
+        - name: queryKey
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - website:segments,[object Object]
+          description: TBD
+        - name: signal
+          in: query
+          required: true
+          schema:
+            type: string
+            # enum:
+            #  - [object AbortSignal]
+          description: TBD
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - cohort
+              - segment
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                data:
+                  - id: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+                    websiteId: "f0e9d8c7-b6a5-4321-fedc-ba9876543210"
+                    type: "cohort"
+                    name: "Checkout Funnel"
+                    parameters:
+                      action:
+                        type: "pageview"
+                        value: "/checkout/success"
+                      filters:
+                        - name: "country"
+                          value: "US"
+                          operator: "eq"
+                      dateRange: "last_30_days"
+                    createdAt: "2024-01-01T10:00:00.000Z"
+                    updatedAt: "2024-10-14T10:30:00.000Z"
+                count: 1
+                page: 1
+                pageSize: 10
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          description: TBD
+                        websiteId:
+                          type: string
+                          format: uuid
+                          description: TBD
+                        type:
+                          type: string
+                          enum:
+                            - segment
+                            - cohort
+                          description: TBD
+                        name:
+                          type: string
+                          description: TBD
+                        parameters:
+                          type: object
+                          description: TBD
+                          properties:
+                            action:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                value:
+                                  type: string
+                              required:
+                                - type
+                                - value
+                            filters:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  value:
+                                    type: string
+                                  operator:
+                                    type: string
+                            dateRange:
+                              type: string
+                              description: TBD
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                  count:
+                    type: integer
+                    description: TBD
+                  page:
+                    type: integer
+                    description: TBD
+                  pageSize:
+                    type: integer
+                    description: TBD
+        "400":
+          description: Bad request
+    post:
+      summary: Create
+      tags:
+        - Cohorts & Segments
+      description: TBD
+      operationId: createCohortSegment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: TBD
+        "400":
+          description: Bad request
+
+  /websites/{id}/segments/:cohort_id:
+    get:
+      summary: Get details
+      tags:
+        - Cohorts & Segments
+      description: TBD
+      operationId: getDetailsCohortSegment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: TBD
+        "400":
+          description: Bad request
+    post:
+      summary: Update
+      tags:
+        - Cohorts & Segments
+      description: TBD
+      operationId: updateCohortSegment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: TBD
+        "400":
+          description: Bad request
+    delete:
+      summary: Delete
+      tags:
+        - Cohorts & Segments
+      description: TBD
+      operationId: deleteCohortSegment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: TBD
+        "400":
+          description: Bad request
+
+  /websites:
+    get:
+      summary: Get all websites
+      tags:
+        - Websites
+      description: TBD
+      operationId: getAllWebsites
+      responses:
+        "200":
+          description: Success
+          content: 
+            application/json:
+              example: 
+                data:
+                  - id: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+                    name: "Example Name"
+                    domain: "example.com"
+                    shareId: null
+                    resetAt: null
+                    userId: "b2c3d4e5-f678-9012-3456-7890abcdef12"
+                    teamId: null
+                    createdBy: "c3d4e5f6-7890-1234-5678-90abcdef1234"
+                    createdAt: "2025-10-14T10:00:00.000Z"
+                    updatedAt: "2025-10-14T10:05:00.000Z"
+                    deletedAt: null
+                    user:
+                      username: "example_user_name"
+                      id: "d4e5f678-9012-3456-7890-abcdef123456"
+                count: 1
+                page: 1
+                pageSize: 10
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    description: TBD
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        name:
+                          type: string
+                        domain:
+                          type: string
+                        shareId:
+                          type: 
+                            - string
+                            - 'null'
+                        resetAt:
+                          type: 
+                            - string
+                            - 'null'
+                          format: date-time
+                        userId:
+                          type: string
+                          format: uuid
+                        teamId:
+                          type: 
+                            - string
+                            - 'null'
+                        createdBy:
+                          type: string
+                          format: uuid
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                        deletedAt:
+                          type: 
+                            - string
+                            - 'null'
+                          format: date-time
+                        user:
+                          type: object
+                          properties:
+                            username:
+                              type: string
+                            id:
+                              type: string
+                              format: uuid
+                  count:
+                    type: integer
+                    description: TBD
+                  page:
+                    type: integer
+                    description: TBD
+                  pageSize:
+                    type: integer
+                    description: TBD
+        "400":
+          description: Bad request
+    post:
+      summary: Create website
+      tags:
+        - Websites
+      description: TBD
+      operationId: createWebsite
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+
+  /websites/{id}:
+    get:
+      summary: Get website details
+      tags:
+        - Websites
+      description: TBD
+      operationId: getWebsiteDetails
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+    post:
+      summary: Update
+      tags:
+        - Websites
+      description: TBD
+      operationId: updateWebsite
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+    delete:
+      summary: Delete website
+      tags:
+        - Websites
+      description: TBD
+      operationId: deleteWebsite
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+
+  /websites/{id}/reset:
+    post:
+      summary: Reset statistics
+      tags:
+        - Websites
+      description: TBD
+      operationId: resetWebsiteStatistics
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+
+  /teams:
+    get:
+      summary: Get all teams
+      tags:
+        - Teams
+      description: TBD
+      operationId: getTeams
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+    post:
+      summary: Create team
+      tags:
+        - Teams
+      description: TBD
+      operationId: createTeam
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+
+  /teams/{id}:
+    get:
+      summary: Get team details
+      tags:
+        - Teams
+      description: TBD
+      operationId: getTeamDetails
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+    post:
+      summary: Update team
+      tags:
+        - Teams
+      description: TBD
+      operationId: updateTeam
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+    delete:
+      summary: Delete team
+      tags:
+        - Teams
+      description: TBD
+      operationId: deleteTeam
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+
+  /teams/join:
+    post:
+      summary: Join team
+      tags:
+        - Teams
+      description: TBD
+      operationId: joinTeam
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+
+  /teams/{id}/users/{id}:
+    delete:
+      summary: Remove or leave team
+      tags:
+        - Teams
+      description: TBD
+      operationId: removeTeam
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+    post:
+      summary: Update member role
+      tags:
+        - Teams
+      description: TBD
+      operationId: updateTeamMemberRole
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request
+
+  /invite:
+    post:
+      summary: Invite to team
+      tags:
+        - Teams
+      description: TBD
+      operationId: inviteToTeam
+      responses:
+        "200":
+          description: TBD
+        "400":
+          description: Bad request
+
+  /websites/{id}/daterange:
+    get:
+      summary: Date range
+      tags:
+        - Helper
+      description: TBD
+      operationId: getDaterange
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content: 
+            application/json:
+              example:
+                  startDate: "2023-09-11T09:00:00Z"
+                  endDate: "2023-09-17T18:00:00Z"
+              schema:
+                type: object
+                properties:
+                  startDate:
+                    type: string
+                    format: date-time
+                    description: TBD
+                  endDate:
+                    type: string
+                    format: date-time
+                    description: TBD
+        "400":
+          description: Bad request
+
+  /websites/{id}/values:
+    get:
+      summary: Values
+      tags:
+        - Helper
+      description: TBD
+      operationId: getValues
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: 
+              - event
+              - path
+          description: TBD
+        - name: startAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+        - name: endAt
+          in: query
+          required: true
+          schema:
+            type: number
+          description: TBD
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              example:
+                - value: "category_a"
+                  count: 42
+                - value: "category_b"
+                  count: 105
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                    count:
+                      type: integer  
+        "400":
+          description: Bad request
+
+servers:
+  - url: https://api.umami.is/v1
+    description: Umami Cloud (use API Token authentication)
+  - url: https://umami.example.com/api
+    description: Self-hosted Umami (use Bearer Token authentication)
+
+security:
+  - api-key: []
+  - bearer-token: []
+
+components:
+  securitySchemes:
+    api-key:
+      type: apiKey
+      name: x-umami-api-key
+      in: header
+      description: >-
+        API Key authentication for Umami Cloud.
+        Get your API key from your Umami Cloud settings.
+    bearer-token:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Bearer token authentication for self-hosted Umami instances.
+        Use a JWT token obtained from your authentication endpoint.

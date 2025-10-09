@@ -1,0 +1,30 @@
+name: Readme linker
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - 'README.md'
+      - 'openapi/openapi.yaml'
+      - '.github/scripts/link_endpoints.sh'
+  workflow_dispatch:
+
+jobs:
+  link-endpoints:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Make script executable
+        run: chmod +x .github/scripts/link_endpoints.sh
+      - name: Run link_endpoints.sh
+        run: ./.github/scripts/link_endpoints.sh README.md openapi/openapi.yaml ceviixx gh-pages-api-test
+      - name: Commit and push changes
+        run: |
+          git add README.md
+          git commit -m "chore: update README endpoint links [automated]" || echo "No changes to commit"
+          git push

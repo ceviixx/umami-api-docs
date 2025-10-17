@@ -10,6 +10,8 @@
     "start:template": "npm run build:docs && npx serve dist -p 8080 --single",
     "build": "redocly bundle -o dist/bundle.yaml",
     "build:docs": "mkdir -p dist && redocly build-docs openapi/openapi.yaml --output=dist/index.html --template=docs/index.html",
-    "test": "redocly lint"
+    "test": "redocly lint",
+    "arazzo:build": "redocly generate-arazzo openapi/openapi.yaml -o arazzo.test.gen.yaml",
+    "arazzo:test": "redocly respect arazzo.test.yaml"
   }
 }

@@ -17,7 +17,6 @@ externalDocs:
   url: "https://umami.is/"
   description: Documentation for umami Analytics
   
-
 tags:
   - name: Authentication
     description: TBD
@@ -67,7 +66,48 @@ paths:
                 password:
                   type: string
                   description: TBD
-        
+      responses:
+        "200":
+          description: TBD
+          content: 
+            application/json:
+              example:
+                token: "km6ceWFN5t60a4zS1wwDCA4z/xPeLvQYAp838ZpdzHja5NvrB80+ioM0TxOolOaNiZJy60Ul7x4zLoAH9ODl8ChTxukbLzP3yTgXEQeNSLWCw4QWDn5IO7iID/ZopvOkUeTgKYKFOv6WNhYdpx7AU7xsIV9wzfa9hTNLmsD1VbXy5OSCEAPznwXAbPaydofVptsOOeHmjmdqRSQMn+Nrv74+Qp7YvVIt25QQUNxvc7if81HI8WwblZ2OShjvL6dPBrnnGLl/KxyRY7LAoBZ+TzypCQckqjwWQ2YJCWjRciXBEUzod72jJz9nj1PhOISwgqSnvjxQon2nVqOowvtjo6PcrMj5scDrPa1MZPsU2n3Z+VyhNNzvJZ27vfPP"
+                user:
+                  id: "41e2b680-648e-4b09-bcd7-3e2b10c06264"
+                  username: "admin"
+                  role: "admin"
+                  createdAt: "2025-10-09T08:17:51.401Z"
+                  isAdmin: true
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: TBD
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                        description: TBD
+                      username:
+                        type: string
+                        description: TBD
+                      role:
+                        type: string
+                        description: TBD
+                        enum: [admin, user]
+                      createdAt:
+                        type: string
+                        format: date-time
+                      isAdmin:
+                        type: boolean
+                        description: TBD
+        "400":
+          description: TBD
+
   /auth/verify:
     post: 
       summary: Verfiy
@@ -80,6 +120,42 @@ paths:
       servers: 
         - url: https://umami.example.com/api
           description: Self-hosted Umami
+      responses: 
+        "200":
+          description: TBD
+          content: 
+            application/json:
+              example:
+                id: "41e2b680-648e-4b09-bcd7-3e2b10c06264"
+                username: "admin"
+                role: "admin"
+                createdAt: "2025-10-09T08:17:51.401Z"
+                isAdmin: true
+              schema:
+                type: object
+                additionalProperties: false
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  username:
+                    type: string
+                    minLength: 1
+                    description: TBD
+                  role:
+                    type: string
+                    description: TBD
+                    enum: [admin, user]
+                  createdAt:
+                    type: string
+                    format: date-time
+                    description: TBD
+                  isAdmin:
+                    type: boolean
+                    description: TBD
+        "400":
+          description: TBD
 
   /websites/{id}/active:
     get:
@@ -1192,7 +1268,6 @@ paths:
           schema:
             type: string
           description: TBD
-
         - name: startAt
           in: query
           required: true
@@ -1259,7 +1334,6 @@ paths:
       description: TBD
       operationId: runBreakdown
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -1353,7 +1427,6 @@ paths:
       description: TBD
       operationId: runJourney
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -1453,7 +1526,6 @@ paths:
       description: TBD
       operationId: runRetention
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -1509,7 +1581,6 @@ paths:
       description: TBD
       operationId: runAttribution
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -1577,7 +1648,6 @@ paths:
       description: TBD
       operationId: runRevenue
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -1637,7 +1707,6 @@ paths:
       description: TBD
       operationId: runUTM
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -1768,7 +1837,6 @@ paths:
       description: TBD
       operationId: createPixel
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -1868,7 +1936,6 @@ paths:
             type: string
           description: ID of the chess result
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -2009,7 +2076,6 @@ paths:
       description: TBD
       operationId: createLink
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -2119,7 +2185,6 @@ paths:
             type: string
           description: TBD
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -2493,9 +2558,97 @@ paths:
         - Websites
       description: TBD
       operationId: createWebsite
+      requestBody: 
+        content: 
+          application/json:
+            schema: 
+              type: object
+              required:
+                - name
+                - domain
+              properties:
+                name:
+                  type: string
+                domain:
+                  type: string
+                  format: hostname
+                shareId:
+                  type: 
+                    - 'null'
+                    - string
+                  minimum: 8
+                  maximum: 50
       responses:
         "200":
           description: Success
+          content:
+            application/json:
+              example:
+                id: 9293665a-b4bc-4e4a-afde-ddecae0d48b7
+                name: Demo
+                domain: example.com
+                shareId: null
+                resetAt: null
+                userId: e027737a-1884-4a16-8028-e720615747d0
+                teamId: null
+                createdBy: e027737a-1884-4a16-8028-e720615747d0
+                createdAt: "2025-10-17T19:27:38.269Z"
+                updatedAt: "2025-10-17T19:27:38.269Z"
+                deletedAt: null
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  name:
+                    type: string
+                    description: TBD
+                  domain:
+                    type: string
+                    format: hostname
+                    description: TBD
+                  shareId:
+                    type: 
+                      - string
+                      - 'null'
+                    description: TBD
+                  resetAt:
+                    type: 
+                      - string
+                      - 'null'
+                    format: date-time
+                    description: TBD
+                  userId:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  teamId:
+                    type: 
+                      - string
+                      - 'null'
+                    format: uuid
+                    description: TBD
+                  createdBy:
+                    type: string
+                    format: uuid
+                    description: TBD
+                    readOnly: true
+                  createdAt:
+                    type: string
+                    format: date-time
+                    description: TBD
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    description: TBD
+                  deletedAt:
+                    type: 
+                      - string
+                      - 'null'
+                    format: date-time
+                    description: TBD
         "400":
           description: Bad request
 
@@ -2516,6 +2669,73 @@ paths:
       responses:
         "200":
           description: Success
+          content: 
+            application/json:
+              example:
+                id: "3a9f8c12-4d57-4e2a-9b3f-0f1a2b3c4d5e"
+                name: "Sandbox"
+                domain: "app.example.org"
+                shareId: null
+                resetAt: null
+                userId: "b1c2d3e4-5f67-489a-9abc-0123456789ab"
+                teamId: null
+                createdBy: "b1c2d3e4-5f67-489a-9abc-0123456789ab"
+                createdAt: "2025-09-22T11:35:23.635Z"
+                updatedAt: "2025-10-17T20:01:05.473Z"
+                deletedAt: null
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  name:
+                    type: string
+                    description: TBD
+                  domain:
+                    type: string
+                    format: hostname
+                    description: TBD
+                  shareId:
+                    type: 
+                      - string
+                      - 'null'
+                    description: TBD
+                  resetAt:
+                    type: 
+                      - string
+                      - 'null'
+                    format: date-time
+                    description: TBD
+                  userId:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  teamId:
+                    type: 
+                      - string
+                      - 'null'
+                    format: uuid
+                    description: TBD
+                  createdBy:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  createdAt:
+                    type: string
+                    format: date-time
+                    description: TBD
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    description: TBD
+                  deletedAt:
+                    type: 
+                      - string
+                      - 'null'
+                    format: date-time
+                    description: TBD
         "400":
           description: Bad request
     post:
@@ -2531,9 +2751,96 @@ paths:
           schema:
             type: string
           description: TBD
+      requestBody: 
+        content: 
+          application/json:
+            schema: 
+              type: object
+              properties:
+                name:
+                  type: string
+                domain:
+                  type: string
+                  format: hostname
+                shareId:
+                  type: 
+                    - string
+                    - 'null'
+                  format: hash
+                  minLength: 8
+                  maxLength: 50
+                  example: null
       responses:
         "200":
           description: Success
+          content:
+            application/json:
+              example:
+                id: 9293665a-b4bc-4e4a-afde-ddecae0d48b7
+                name: Demo
+                domain: example.com
+                shareId: null
+                resetAt: null
+                userId: e027737a-1884-4a16-8028-e720615747d0
+                teamId: null
+                createdBy: e027737a-1884-4a16-8028-e720615747d0
+                createdAt: "2025-10-17T19:27:38.269Z"
+                updatedAt: "2025-10-17T19:27:38.269Z"
+                deletedAt: null
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  name:
+                    type: string
+                    description: TBD
+                  domain:
+                    type: string
+                    format: hostname
+                    description: TBD
+                  shareId:
+                    type: 
+                      - string
+                      - 'null'
+                    description: TBD
+                  resetAt:
+                    type: 
+                      - string
+                      - 'null'
+                    format: date-time
+                    description: TBD
+                  userId:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  teamId:
+                    type: 
+                      - string
+                      - 'null'
+                    format: uuid
+                    description: TBD
+                  createdBy:
+                    type: string
+                    format: uuid
+                    description: TBD
+                    readOnly: true
+                  createdAt:
+                    type: string
+                    format: date-time
+                    description: TBD
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    description: TBD
+                  deletedAt:
+                    type: 
+                      - string
+                      - 'null'
+                    format: date-time
+                    description: TBD
         "400":
           description: Bad request
     delete:
@@ -2552,6 +2859,16 @@ paths:
       responses:
         "200":
           description: Success
+          content: 
+            application/json:
+              example:
+                ok: true
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    description: TBD
         "400":
           description: Bad request
 
@@ -2572,6 +2889,16 @@ paths:
       responses:
         "200":
           description: Success
+          content: 
+            application/json:
+              example:
+                ok: true
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    description: TBD
         "400":
           description: Bad request
 
@@ -2581,10 +2908,145 @@ paths:
       tags:
         - Teams
       description: TBD
-      operationId: getTeams
+      operationId: getAllTeams
       responses:
         "200":
           description: Success
+          content: 
+            application/json:
+              example:
+                data:
+                  - id: "3f1c0f3e-1e8b-4d1a-9b8b-5f7e3f0a4c2d"
+                    name: "alpha-team"
+                    accessCode: "team_N9x2Qw8Ka3Lp5Zr1"
+                    logoUrl: null
+                    createdAt: "2025-10-05T10:15:30.000Z"
+                    updatedAt: "2025-10-05T10:15:30.000Z"
+                    deletedAt: null
+                    members:
+                      - id: "6d0a8f0c-2b1e-4c7a-8d79-2a2b2f8f3b1e"
+                        teamId: "3f1c0f3e-1e8b-4d1a-9b8b-5f7e3f0a4c2d"
+                        userId: "a8d7f9b1-5e2f-4a93-9eb5-3b8c2a7e1f40"
+                        role: "team-owner"
+                        createdAt: "2025-10-05T10:16:00.000Z"
+                        updatedAt: "2025-10-05T10:16:00.000Z"
+                        user:
+                          id: "a8d7f9b1-5e2f-4a93-9eb5-3b8c2a7e1f40"
+                          username: "alice"
+                    _count:
+                      websites: 2
+                      members: 1
+                  - id: "9c2e7b14-4b1f-45b8-9d5c-b8e2b7a9e3f1"
+                    name: "beta-team"
+                    accessCode: "team_Ty4LmQ7vWd2Hs8P3"
+                    logoUrl: null
+                    createdAt: "2025-10-06T08:00:12.345Z"
+                    updatedAt: "2025-10-06T08:12:44.123Z"
+                    deletedAt: null
+                    members:
+                      - id: "f2b9a7c3-7e1d-4c6a-9f3a-1a2b3c4d5e6f"
+                        teamId: "9c2e7b14-4b1f-45b8-9d5c-b8e2b7a9e3f1"
+                        userId: "c7a1b2d3-e4f5-6789-abcd-0123456789ab"
+                        role: "team-owner"
+                        createdAt: "2025-10-06T08:01:00.000Z"
+                        updatedAt: "2025-10-06T08:01:00.000Z"
+                        user:
+                          id: "c7a1b2d3-e4f5-6789-abcd-0123456789ab"
+                          username: "bob"
+                    _count:
+                      websites: 0
+                      members: 1
+                count: 2
+                page: 1
+                pageSize: 20
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: false
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          description: TBD
+                        name:
+                          type: string
+                          minLength: 1
+                        accessCode:
+                          type: string
+                          minLength: 8
+                          maxLength: 64
+                          description: TBD
+                        logoUrl:
+                          type: 
+                            - string
+                            - 'null'
+                          format: uri
+                          description: TBD
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                        deletedAt:
+                          type: 
+                            - string
+                            - 'null'
+                          format: date-time
+                        members:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                format: uuid
+                              teamId:
+                                type: string
+                                format: uuid
+                              userId:
+                                type: string
+                                format: uuid
+                              role:
+                                type: string
+                                description: TBD
+                                enum: [team-owner, team-admin, team-member]
+                              createdAt:
+                                type: string
+                                format: date-time
+                              updatedAt:
+                                type: string
+                                format: date-time
+                              user:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    format: uuid
+                                  username:
+                                    type: string
+                                    minLength: 1
+                                    description: TBD
+                        _count:
+                          type: object
+                          properties:
+                            websites:
+                              type: integer
+                            members:
+                              type: integer
+                  count:
+                    type: integer
+                    description: TBD
+                  page:
+                    type: integer
+                    description: TBD
+                  pageSize:
+                    type: integer
+                    description: TBD
         "400":
           description: Bad request
     post:
@@ -2593,9 +3055,86 @@ paths:
         - Teams
       description: TBD
       operationId: createTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name:
+                  type: string
+                  description: TBD
       responses:
         "200":
           description: Success
+          content: 
+            application/json:
+              example:
+                - id: "5f8a7c3e-2d41-4b9a-9c1e-0a2b3c4d5e6f"
+                  name: "Testing team"
+                  accessCode: "team_Xy12Ab34Cd56Ef78"
+                  logoUrl: null
+                  createdAt: "2025-10-17T20:56:02.541Z"
+                  updatedAt: "2025-10-17T20:56:02.541Z"
+                  deletedAt: null
+                - id: "9e8d7c6b-5a4f-43e2-9d1c-0b1a2c3d4e5f"
+                  teamId: "5f8a7c3e-2d41-4b9a-9c1e-0a2b3c4d5e6f"
+                  userId: "1a2b3c4d-5e6f-4012-9abc-def012345678"
+                  role: "team-owner"
+                  createdAt: "2025-10-17T20:56:02.697Z"
+                  updatedAt: "2025-10-17T20:56:02.697Z"
+              schema: 
+                type: array
+                items:
+                  anyOf:
+                    - type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        name:
+                          type: string
+                        accessCode:
+                          type: string
+                          description: TBD
+                        logoUrl:
+                          type: 
+                            - string
+                            - 'null'
+                          format: uri
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                        deletedAt:
+                          type: 
+                            - string
+                            - 'null'
+                          format: date-time
+                    - type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        teamId:
+                          type: string
+                          format: uuid
+                        userId:
+                          type: string
+                          format: uuid
+                        role:
+                          type: string
+                          description: TBD
+                          enum: [team-owner, team-admin, team-member]
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
         "400":
           description: Bad request
 
@@ -2616,6 +3155,75 @@ paths:
       responses:
         "200":
           description: Success
+          content: 
+            application/json:
+              example:
+                id: "7f6a1c28-3d9e-4b4b-9f1b-8c2d7e4a1b5c"
+                name: "Testing team"
+                accessCode: "team_QwErTy1234567890"
+                logoUrl: null
+                createdAt: "2025-10-17T20:56:02.541Z"
+                updatedAt: "2025-10-17T20:56:02.541Z"
+                deletedAt: null
+                members:
+                  - id: "5e9b1d34-8f23-4a6b-9c71-2d3a4e5f6b7c"
+                    teamId: "7f6a1c28-3d9e-4b4b-9f1b-8c2d7e4a1b5c"
+                    userId: "c1b2a3d4-e5f6-4a78-9b01-23456789abcd"
+                    role: "team-owner"
+                    createdAt: "2025-10-17T20:56:02.697Z"
+                    updatedAt: "2025-10-17T20:56:02.697Z"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  name:
+                    type: string
+                  accessCode:
+                    type: string
+                    description: TBD
+                  logoUrl:
+                    type: 
+                      - string
+                      - 'null'
+                    format: uri
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  deletedAt:
+                    type: 
+                      - string
+                      - 'null'
+                    format: date-time
+                  members:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        teamId:
+                          type: string
+                          format: uuid
+                        userId:
+                          type: string
+                          format: uuid
+                        role:
+                          type: string
+                          enum: [team-owner, team-admin, team-member]
+                          description: TBD
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
         "400":
           description: Bad request
     post:
@@ -2631,9 +3239,57 @@ paths:
           schema:
             type: string
           description: TBD
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name:
+                  type: string
+                  description: TBD
       responses:
         "200":
           description: Success
+          content: 
+            application/json:
+              example:
+                id: "7f6a1c28-3d9e-4b4b-9f1b-8c2d7e4a1b5c"
+                name: "Testing team"
+                accessCode: "team_QwErTy1234567890"
+                logoUrl: null
+                createdAt: "2025-10-17T20:56:02.541Z"
+                updatedAt: "2025-10-17T20:56:02.541Z"
+                deletedAt: null
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: TBD
+                  name:
+                    type: string
+                  accessCode:
+                    type: string
+                    description: TBD
+                  logoUrl:
+                    type: 
+                      - string
+                      - 'null'
+                    format: uri
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  deletedAt:
+                    type: 
+                      - string
+                      - 'null'
+                    format: date-time
         "400":
           description: Bad request
     delete:
@@ -2652,6 +3308,16 @@ paths:
       responses:
         "200":
           description: Success
+          content: 
+            application/json:
+              example:
+                ok: true
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    description: TBD
         "400":
           description: Bad request
 
@@ -2713,9 +3379,39 @@ paths:
         - Teams
       description: TBD
       operationId: inviteToTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [email, role, teamId]
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: TBD
+                role:
+                  type: string
+                  description: TBD
+                  enum: [team-owner, team-admin, team-member, team-view-only]
+                teamId:
+                  type: string
+                  format: uuid
+                  description: TBD
       responses:
         "200":
           description: TBD
+          content: 
+            application/json:
+              example:
+                ok: true
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    description: TBD
         "400":
           description: Bad request
 

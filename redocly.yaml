@@ -3,6 +3,7 @@ apis:
     root: openapi/openapi.yaml
     openapi:
       hideDownloadButtons: true
+      hideLoading: true
 
 extends:
   - recommended

@@ -250,8 +250,349 @@ workflows:
 
 
 
+# Stats
+  - workflowId: stats-workflow
+    inputs:
+      $ref: '#/components/inputs/api-key'
+    parameters:
+      - name: x-umami-api-key
+        value: $inputs.api-key
+        in: header
+    steps:
 
+      - stepId: get-websites-step
+        operationId: $sourceDescriptions.openapi.getAllWebsites
+        outputs: 
+          websiteId: $response.body#/data/0/id
+        successCriteria:
+          - condition: $statusCode == 200
 
+      - stepId: get-websites-{id}-active-step
+        operationId: $sourceDescriptions.openapi.activeVisitors
+        parameters:
+          - in: path
+            name: id
+            value: $steps.get-websites-step.outputs.websiteId
+        successCriteria: 
+          - condition: $statusCode == 200 
+      
+      - stepId: get-websites-{id}-stats-step
+        operationId: $sourceDescriptions.openapi.statistics
+        parameters:
+          - in: path
+            name: id
+            value: $steps.get-websites-step.outputs.websiteId
+          - in: query
+            name: startAt
+            value: 1759777200000
+          - in: query
+            name: endAt
+            value: 1759867199999
+          - in: query
+            name: unit
+            value: hour
+          - in: query
+            name: timezone
+            value: Europe/Berlin
+        successCriteria: 
+          - condition: $statusCode == 200 
+      
+      - stepId: get-websites-{id}-pageviews-step
+        operationId: $sourceDescriptions.openapi.pageviews
+        parameters:
+          - in: path
+            name: id
+            value: $steps.get-websites-step.outputs.websiteId
+          - in: query
+            name: startAt
+            value: 1759777200000
+          - in: query
+            name: endAt
+            value: 1759867199999
+          - in: query
+            name: unit
+            value: hour
+          - in: query
+            name: timezone
+            value: Europe/Berlin
+        successCriteria: 
+          - condition: $statusCode == 200 
+      
+      - stepId: get-websites-{id}-metrics-path-step
+        operationId: $sourceDescriptions.openapi.metrics
+        parameters:
+          - in: path
+            name: id
+            value: $steps.get-websites-step.outputs.websiteId
+          - in: query
+            name: startAt
+            value: 1759777200000
+          - in: query
+            name: endAt
+            value: 1759867199999
+          - in: query
+            name: unit
+            value: hour
+          - in: query
+            name: timezone
+            value: Europe/Berlin
+          - in: query
+            name: type
+            value: path
+        successCriteria: 
+          - condition: $statusCode == 200 
+      
+      - stepId: get-websites-{id}-metrics-exit-step
+        operationId: $sourceDescriptions.openapi.metrics
+        parameters:
+          - in: path
+            name: id
+            value: $steps.get-websites-step.outputs.websiteId
+          - in: query
+            name: startAt
+            value: 1759777200000
+          - in: query
+            name: endAt
+            value: 1759867199999
+          - in: query
+            name: unit
+            value: hour
+          - in: query
+            name: timezone
+            value: Europe/Berlin
+          - in: query
+            name: type
+            value: exit
+        successCriteria: 
+          - condition: $statusCode == 200 
+
+      - stepId: get-websites-{id}-metrics-entry-step
+        operationId: $sourceDescriptions.openapi.metrics
+        parameters:
+          - in: path
+            name: id
+            value: $steps.get-websites-step.outputs.websiteId
+          - in: query
+            name: startAt
+            value: 1759777200000
+          - in: query
+            name: endAt
+            value: 1759867199999
+          - in: query
+            name: unit
+            value: hour
+          - in: query
+            name: timezone
+            value: Europe/Berlin
+          - in: query
+            name: type
+            value: entry
+        successCriteria: 
+          - condition: $statusCode == 200 
+
+      - stepId: get-websites-{id}-metrics-browser-step
+        operationId: $sourceDescriptions.openapi.metrics
+        parameters:
+          - in: path
+            name: id
+            value: $steps.get-websites-step.outputs.websiteId
+          - in: query
+            name: startAt
+            value: 1759777200000
+          - in: query
+            name: endAt
+            value: 1759867199999
+          - in: query
+            name: unit
+            value: hour
+          - in: query
+            name: timezone
+            value: Europe/Berlin
+          - in: query
+            name: type
+            value: browser
+        successCriteria: 
+          - condition: $statusCode == 200 
+
+      - stepId: get-websites-{id}-metrics-device-step
+        operationId: $sourceDescriptions.openapi.metrics
+        parameters:
+          - in: path
+            name: id
+            value: $steps.get-websites-step.outputs.websiteId
+          - in: query
+            name: startAt
+            value: 1759777200000
+          - in: query
+            name: endAt
+            value: 1759867199999
+          - in: query
+            name: unit
+            value: hour
+          - in: query
+            name: timezone
+            value: Europe/Berlin
+          - in: query
+            name: type
+            value: device
+        successCriteria: 
+          - condition: $statusCode == 200 
+
+      - stepId: get-websites-{id}-metrics-os-step
+        operationId: $sourceDescriptions.openapi.metrics
+        parameters:
+          - in: path
+            name: id
+            value: $steps.get-websites-step.outputs.websiteId
+          - in: query
+            name: startAt
+            value: 1759777200000
+          - in: query
+            name: endAt
+            value: 1759867199999
+          - in: query
+            name: unit
+            value: hour
+          - in: query
+            name: timezone
+            value: Europe/Berlin
+          - in: query
+            name: type
+            value: os
+        successCriteria: 
+          - condition: $statusCode == 200 
+        
+      - stepId: get-websites-{id}-metrics-city-step
+        operationId: $sourceDescriptions.openapi.metrics
+        parameters:
+          - in: path
+            name: id
+            value: $steps.get-websites-step.outputs.websiteId
+          - in: query
+            name: startAt
+            value: 1759777200000
+          - in: query
+            name: endAt
+            value: 1759867199999
+          - in: query
+            name: unit
+            value: hour
+          - in: query
+            name: timezone
+            value: Europe/Berlin
+          - in: query
+            name: type
+            value: city
+        successCriteria: 
+          - condition: $statusCode == 200 
+        
+      - stepId: get-websites-{id}-metrics-country-step
+        operationId: $sourceDescriptions.openapi.metrics
+        parameters:
+          - in: path
+            name: id
+            value: $steps.get-websites-step.outputs.websiteId
+          - in: query
+            name: startAt
+            value: 1759777200000
+          - in: query
+            name: endAt
+            value: 1759867199999
+          - in: query
+            name: unit
+            value: hour
+          - in: query
+            name: timezone
+            value: Europe/Berlin
+          - in: query
+            name: type
+            value: country
+        successCriteria: 
+          - condition: $statusCode == 200 
+        
+      - stepId: get-websites-{id}-metrics-region-step
+        operationId: $sourceDescriptions.openapi.metrics
+        parameters:
+          - in: path
+            name: id
+            value: $steps.get-websites-step.outputs.websiteId
+          - in: query
+            name: startAt
+            value: 1759777200000
+          - in: query
+            name: endAt
+            value: 1759867199999
+          - in: query
+            name: unit
+            value: hour
+          - in: query
+            name: timezone
+            value: Europe/Berlin
+          - in: query
+            name: type
+            value: region
+        successCriteria: 
+          - condition: $statusCode == 200 
+        
+      - stepId: get-websites-{id}-metrics-channel-step
+        operationId: $sourceDescriptions.openapi.metrics
+        parameters:
+          - in: path
+            name: id
+            value: $steps.get-websites-step.outputs.websiteId
+          - in: query
+            name: startAt
+            value: 1759777200000
+          - in: query
+            name: endAt
+            value: 1759867199999
+          - in: query
+            name: unit
+            value: hour
+          - in: query
+            name: timezone
+            value: Europe/Berlin
+          - in: query
+            name: type
+            value: channel
+        successCriteria: 
+          - condition: $statusCode == 200 
+
+      - stepId: get-websites-{id}-metrics-referrer-step
+        operationId: $sourceDescriptions.openapi.metrics
+        parameters:
+          - in: path
+            name: id
+            value: $steps.get-websites-step.outputs.websiteId
+          - in: query
+            name: startAt
+            value: 1759777200000
+          - in: query
+            name: endAt
+            value: 1759867199999
+          - in: query
+            name: unit
+            value: hour
+          - in: query
+            name: timezone
+            value: Europe/Berlin
+          - in: query
+            name: type
+            value: referrer
+        successCriteria: 
+          - condition: $statusCode == 200 
+        
+      - stepId: get-websites-{id}-realtime-step
+        operationId: $sourceDescriptions.openapi.realtime
+        parameters:
+          - in: path
+            name: id
+            value: $steps.get-websites-step.outputs.websiteId
+        successCriteria: 
+          - condition: $statusCode == 200 
+        
+        
+        
 
 
 components:

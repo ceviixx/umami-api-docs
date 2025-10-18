@@ -2782,6 +2782,12 @@ paths:
           schema:
             type: string
           description: TBD
+        - name: _id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
       responses:
         "200":
           description: TBD
@@ -2795,6 +2801,12 @@ paths:
       operationId: deleteCohortSegment
       parameters:
         - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TBD
+        - name: _id
           in: path
           required: true
           schema:

@@ -30,57 +30,57 @@ This repo maintains an OpenAPI spec that tracks changes in Umami and publishes d
 
 ### Endpoints not complete
 
-- GET [/websites/{id}/session-data/properties:](openapi/openapi.yaml#L1178):
+- GET [/websites/{id}/session-data/properties:](openapi/openapi.yaml#L1175):
   - response
     - example
     - schema
 
-- GET [/websites/{id}/sessions/:session_id/properties:](openapi/openapi.yaml#L1325):
+- GET [/websites/{id}/sessions/:session_id/properties:](openapi/openapi.yaml#L1322):
   - response
     - example
     - schema
 
-- GET [/websites/{id}/event-data/properties:](openapi/openapi.yaml#L1552):
+- GET [/websites/{id}/event-data/properties:](openapi/openapi.yaml#L1549):
   - response
     - example
     - schema
 
-- POST [/reports/retention:](openapi/openapi.yaml#L1865):
+- POST [/reports/retention:](openapi/openapi.yaml#L1862):
   - response
     - example
     - schema
 
-- POST [/reports/attribution:](openapi/openapi.yaml#L1920):
+- POST [/reports/attribution:](openapi/openapi.yaml#L1917):
   - response
     - example
     - schema
 
-- POST [/reports/revenue:](openapi/openapi.yaml#L1987):
+- POST [/reports/revenue:](openapi/openapi.yaml#L1984):
   - response
     - example
     - schema
 
-- POST [/reports/utm:](openapi/openapi.yaml#L2046):
+- POST [/reports/utm:](openapi/openapi.yaml#L2043):
   - response
     - example
     - schema
 
-- POST [/pixels:](openapi/openapi.yaml#L2101):
+- POST [/pixels:](openapi/openapi.yaml#L2098):
   - response
     - example
     - schema
 
-- POST [/pixels/{id}:](openapi/openapi.yaml#L2204):
+- POST [/pixels/{id}:](openapi/openapi.yaml#L2201):
   - response
     - example
     - schema
 
-- POST [/links:](openapi/openapi.yaml#L2335):
+- POST [/links:](openapi/openapi.yaml#L2332):
   - response
     - example
     - schema
 
-- POST [/links/{id}:](openapi/openapi.yaml#L2448):
+- POST [/links/{id}:](openapi/openapi.yaml#L2445):
   - response
     - example
     - schema
@@ -91,9 +91,9 @@ This repo maintains an OpenAPI spec that tracks changes in Umami and publishes d
 
 ### Only endpoint setup but config missing
 
-- POST [/teams/{id}/users/{id}:](openapi/openapi.yaml#L3699):
-- DELETE [/teams/{id}/users/{id}:](openapi/openapi.yaml#L3699):
-- POST [/teams/join:](openapi/openapi.yaml#L3686):
+- POST [/teams/{id}/users/{id}:](openapi/openapi.yaml#L3696):
+- DELETE [/teams/{id}/users/{id}:](openapi/openapi.yaml#L3696):
+- POST [/teams/join:](openapi/openapi.yaml#L3683):
 - DELETE [/websites/{id}/segments/:cohort_id:](openapi/openapi.yaml#L2403):
 - POST [/websites/{id}/segments/:cohort_id:](openapi/openapi.yaml#L2403):
 - GET [/websites/{id}/segments/:cohort_id:](openapi/openapi.yaml#L2403):

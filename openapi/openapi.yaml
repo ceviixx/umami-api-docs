@@ -940,13 +940,6 @@ paths:
                         type: integer
                   timestamp:
                     type: number 
-
-
-
-
-
-
-
         "400":
           description: Bad request
 

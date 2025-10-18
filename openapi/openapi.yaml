@@ -797,6 +797,10 @@ paths:
                       type: string
                     y:
                       type: number
+                    country:
+                      type: 
+                        - string
+                        - 'null'
         "400":
           description: Bad request
 
@@ -823,28 +827,28 @@ paths:
                 countries:
                   DE: 1
                 urls:
-                  /gh-pages-api-test/: 1
+                  /x/: 1
                 referrers: {}
                 events:
                   - __type: pageview
-                    sessionId: e5993b0b-5bf3-5a9f-80e6-f8f49a7845f3
+                    sessionId: e5993b0b-5bf3-5a9f-80e6-f8f49a784563
                     eventName: ""
                     createdAt: "2025-10-15T17:45:07Z"
                     browser: safari
                     os: Mac OS
                     device: desktop
                     country: DE
-                    urlPath: /gh-pages-api-test/
+                    urlPath: /x/
                     referrerDomain: ""
                   - __type: session
-                    sessionId: e5993b0b-5bf3-5a9f-80e6-f8f49a7845f3
+                    sessionId: e5993b0b-5bf3-5a9f-80e6-fdf49a7845f3
                     eventName: ""
                     createdAt: "2025-10-15T17:45:07Z"
                     browser: safari
                     os: Mac OS
                     device: desktop
                     country: DE
-                    urlPath: /gh-pages-api-test/
+                    urlPath: /x/
                     referrerDomain: ""
                 series:
                   views:
@@ -936,13 +940,6 @@ paths:
                         type: integer
                   timestamp:
                     type: number 
-
-
-
-
-
-
-
         "400":
           description: Bad request
 
@@ -2104,7 +2101,7 @@ paths:
       tags:
         - Pixels
       description: TBD
-      operationId: getPixels
+      operationId: getAllPixels
       responses:
         "200":
           description: Success
@@ -2317,7 +2314,7 @@ paths:
             type: string
           description: TBD
       responses:
-        "200":
+        200:
           description: Success
           content:
             application/json:
@@ -2329,7 +2326,7 @@ paths:
                   ok:
                     type: boolean
                     description: TBD
-        "400":
+        400:
           description: Bad request
 
   /links:
@@ -2338,7 +2335,7 @@ paths:
       tags:
         - Links
       description: TBD
-      operationId: getLinks
+      operationId: getAllLinks
       responses:
         "200":
           description: Success

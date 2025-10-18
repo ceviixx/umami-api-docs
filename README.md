@@ -92,9 +92,9 @@ This repo maintains an OpenAPI spec that tracks changes in Umami and publishes d
 
 ### Only endpoint setup but config missing
 
-- POST [/teams/{id}/users/{id}:](openapi/openapi.yaml#L3687):
-- DELETE [/teams/{id}/users/{id}:](openapi/openapi.yaml#L3687):
-- POST [/teams/join:](openapi/openapi.yaml#L3674):
+- POST [/teams/{id}/users/{id}:](openapi/openapi.yaml#L3699):
+- DELETE [/teams/{id}/users/{id}:](openapi/openapi.yaml#L3699):
+- POST [/teams/join:](openapi/openapi.yaml#L3686):
 - DELETE [/websites/{id}/segments/:cohort_id:](openapi/openapi.yaml#L2403):
 - POST [/websites/{id}/segments/:cohort_id:](openapi/openapi.yaml#L2403):
 - GET [/websites/{id}/segments/:cohort_id:](openapi/openapi.yaml#L2403):

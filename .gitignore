@@ -2,6 +2,3 @@ dist
 node_modules
 package-lock.json
 .DS_Store
-arazzo.test.yaml
-arazzo.test.gen.yaml
-test.result.json

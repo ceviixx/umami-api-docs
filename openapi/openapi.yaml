@@ -2104,7 +2104,7 @@ paths:
       tags:
         - Pixels
       description: TBD
-      operationId: getPixels
+      operationId: getAllPixels
       responses:
         "200":
           description: Success
@@ -2338,7 +2338,7 @@ paths:
       tags:
         - Links
       description: TBD
-      operationId: getLinks
+      operationId: getAllLinks
       responses:
         "200":
           description: Success

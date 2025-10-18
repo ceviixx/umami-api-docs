@@ -26,7 +26,6 @@ This repo maintains an OpenAPI spec that tracks changes in Umami and publishes d
   Run the arazzo respect tests with your creadentials
 
 
-
 ---
 
 ### Endpoints not complete

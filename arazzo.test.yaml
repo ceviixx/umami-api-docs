@@ -1,0 +1,274 @@
+arazzo: 1.0.1
+info:
+  title: umami API docs
+  version: v3.0.0
+sourceDescriptions:
+  - name: openapi
+    type: openapi
+    url: openapi/openapi.yaml
+
+# Test website
+workflows:
+  - workflowId: websites-workflow
+    inputs:
+      $ref: '#/components/inputs/api-key'
+    parameters:
+      - name: x-umami-api-key
+        value: $inputs.api-key
+        in: header
+    steps:
+
+      - stepId: get-websites-step
+        operationId: $sourceDescriptions.openapi.getAllWebsites
+        successCriteria:
+          - condition: $statusCode == 200
+
+      - stepId: create-websites-step
+        operationId: $sourceDescriptions.openapi.createWebsite
+        outputs: 
+          websiteId: $response.body#/id
+        successCriteria:
+          - condition: $statusCode == 200
+
+      - stepId: get-websites-{id}-step
+        operationId: $sourceDescriptions.openapi.getWebsiteDetails
+        parameters:
+          - in: path
+            name: id
+            value: $steps.create-websites-step.outputs.websiteId
+        successCriteria:
+          - condition: $statusCode == 200
+      
+      - stepId: update-websites-{id}-step
+        operationId: $sourceDescriptions.openapi.updateWebsite
+        parameters: 
+          - in: path
+            name: id
+            value: $steps.create-websites-step.outputs.websiteId
+        successCriteria: 
+          - condition: $statusCode == 200
+      
+      - stepId: reset-websites-{id}-step
+        operationId: $sourceDescriptions.openapi.resetWebsiteStatistics
+        parameters: 
+          - in: path
+            name: id
+            value: $steps.create-websites-step.outputs.websiteId
+        successCriteria: 
+          - condition: $statusCode == 200
+
+      - stepId: delete-websites-{id}-step
+        operationId: $sourceDescriptions.openapi.deleteWebsite
+        parameters: 
+          - in: path
+            name: id
+            value: $steps.create-websites-step.outputs.websiteId
+        successCriteria:
+          - condition: $statusCode == 200
+
+
+
+
+# Test team
+  - workflowId: teams-workflow
+    inputs:
+      $ref: '#/components/inputs/api-key'
+    parameters:
+      - name: x-umami-api-key
+        value: $inputs.api-key
+        in: header
+    steps:
+
+      - stepId: get-teams-step
+        operationId: $sourceDescriptions.openapi.getAllTeams
+        successCriteria:
+          - condition: $statusCode == 200
+
+      - stepId: create-teams-step
+        operationId: $sourceDescriptions.openapi.createTeam
+        outputs: 
+          teamId: $response.body#/0/id
+        successCriteria:
+          - condition: $statusCode == 200
+      
+      - stepId: get-teams-{id}-step
+        operationId: $sourceDescriptions.openapi.getTeamDetails
+        parameters:
+          - in: path
+            name: id
+            value: $steps.create-teams-step.outputs.teamId
+        successCriteria: 
+          - condition: $statusCode == 200 
+      
+      - stepId: update-teams-{id}-step
+        operationId: $sourceDescriptions.openapi.updateTeam
+        parameters: 
+          - in: path
+            name: id
+            value: $steps.create-teams-step.outputs.teamId
+        successCriteria: 
+          - condition: $statusCode == 200
+      
+      - stepId: delete-teams-{id}-step
+        operationId: $sourceDescriptions.openapi.deleteTeam
+        parameters: 
+          - in: path
+            name: id
+            value: $steps.create-teams-step.outputs.teamId
+        successCriteria:
+          - condition: $statusCode == 200
+
+
+
+# My account
+  - workflowId: me-workflow
+    inputs:
+      $ref: '#/components/inputs/api-key'
+    parameters:
+      - name: x-umami-api-key
+        value: $inputs.api-key
+        in: header
+    steps:
+
+      - stepId: get-me-step
+        operationId: $sourceDescriptions.openapi.meDetails
+        successCriteria:
+          - condition: $statusCode == 200
+
+      - stepId: get-me-websites-step
+        operationId: $sourceDescriptions.openapi.meTeams
+        successCriteria:
+          - condition: $statusCode == 200
+      
+      - stepId: get-me-teams-step
+        operationId: $sourceDescriptions.openapi.meWebsites
+        successCriteria: 
+          - condition: $statusCode == 200 
+
+
+
+
+# Test links
+  - workflowId: links-workflow
+    inputs:
+      $ref: '#/components/inputs/api-key'
+    parameters:
+      - name: x-umami-api-key
+        value: $inputs.api-key
+        in: header
+    steps:
+
+      - stepId: get-links-step
+        operationId: $sourceDescriptions.openapi.getAllLinks
+        successCriteria:
+          - condition: $statusCode == 200
+
+      - stepId: create-links-step
+        operationId: $sourceDescriptions.openapi.createLink
+        outputs: 
+          linkId: $response.body#/id
+        successCriteria:
+          - condition: $statusCode == 200
+      
+      - stepId: get-links-{id}-step
+        operationId: $sourceDescriptions.openapi.getLinkDetails
+        parameters:
+          - in: path
+            name: id
+            value: $steps.create-links-step.outputs.linkId
+        successCriteria: 
+          - condition: $statusCode == 200 
+      
+      - stepId: update-links-{id}-step
+        operationId: $sourceDescriptions.openapi.updateLink
+        parameters: 
+          - in: path
+            name: id
+            value: $steps.create-links-step.outputs.linkId
+        successCriteria: 
+          - condition: $statusCode == 200
+      
+      - stepId: delete-links-{id}-step
+        operationId: $sourceDescriptions.openapi.deleteLink
+        parameters: 
+          - in: path
+            name: id
+            value: $steps.create-links-step.outputs.linkId
+        successCriteria:
+          - condition: $statusCode == 200
+
+
+
+# Test pixels
+  - workflowId: pixels-workflow
+    inputs:
+      $ref: '#/components/inputs/api-key'
+    parameters:
+      - name: x-umami-api-key
+        value: $inputs.api-key
+        in: header
+    steps:
+
+      - stepId: get-pixels-step
+        operationId: $sourceDescriptions.openapi.getAllPixels
+        successCriteria:
+          - condition: $statusCode == 200
+
+      - stepId: create-pixels-step
+        operationId: $sourceDescriptions.openapi.createPixel
+        outputs: 
+          pixelId: $response.body#/id
+        successCriteria:
+          - condition: $statusCode == 200
+      
+      - stepId: get-pixels-{id}-step
+        operationId: $sourceDescriptions.openapi.getPixelDetails
+        parameters:
+          - in: path
+            name: id
+            value: $steps.create-pixels-step.outputs.pixelId
+        successCriteria: 
+          - condition: $statusCode == 200 
+      
+      - stepId: update-pixels-{id}-step
+        operationId: $sourceDescriptions.openapi.updatePixel
+        parameters: 
+          - in: path
+            name: id
+            value: $steps.create-pixels-step.outputs.pixelId
+        successCriteria: 
+          - condition: $statusCode == 200
+      
+      - stepId: delete-pixels-{id}-step
+        operationId: $sourceDescriptions.openapi.deletePixel
+        parameters: 
+          - in: path
+            name: id
+            value: $steps.create-pixels-step.outputs.pixelId
+        successCriteria:
+          - condition: $statusCode == 200
+
+
+
+
+
+
+
+components:
+  inputs:
+    api-key:
+      type: object
+      properties:
+        api-key:
+          type: string
+          description: >-
+            API Key authentication for Umami Cloud. Get your API key from your
+            Umami Cloud settings.
+          format: password
+    bearer-token:
+      type: object
+      properties:
+        bearer-token:
+          type: string
+          description: JWT Authentication token for ${name}
+          format: password
